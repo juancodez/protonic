@@ -1,0 +1,47 @@
+/* Protonic — CSS custom properties (generated from tokens/semantic.ts) */
+:root {
+  /* Color */
+  --color-primary:        #a43700;
+  --color-primary-subtle: rgba(164,55,0,0.1);
+  --color-bg:             #fff8f1;
+  --color-bg-surface:     #f4ede5;
+  --color-text:           #1e1b17;
+  --color-text-body:      #594139;
+  --color-text-muted:     #8c7168;
+  --color-accent:         #FFB830;
+  --color-success:        #15803d;
+  --color-danger:         #dc2626;
+
+  /* Typography */
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body:    "Plus Jakarta Sans", sans-serif;
+
+  /* Radius */
+  --radius:      8px;
+  --radius-pill: 100px;
+
+  /* Space */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
