@@ -1,16 +1,24 @@
 /* Protonic — CSS custom properties (generated from tokens/semantic.ts) */
 :root {
   /* Color */
-  --color-primary:        #a43700;
-  --color-primary-subtle: rgba(164,55,0,0.1);
-  --color-bg:             #fff8f1;
-  --color-bg-surface:     #f4ede5;
-  --color-text:           #1e1b17;
-  --color-text-body:      #594139;
-  --color-text-muted:     #8c7168;
-  --color-accent:         #FFB830;
-  --color-success:        #15803d;
-  --color-danger:         #dc2626;
+  --color-primary:              #a43700;
+  --color-primary-dark:         #8a2e00;
+  --color-primary-subtle:       rgba(164,55,0,0.1);
+  --color-primary-subtle-hover: rgba(164,55,0,0.18);
+  --color-on-primary:           #ffffff;
+  --color-bg:                   #fff8f1;
+  --color-bg-surface:           #f4ede5;
+  --color-text:                 #1e1b17;
+  --color-text-body:            #594139;
+  --color-text-muted:           #8c7168;
+  --color-accent:               #FFB830;
+  --color-success:              #15803d;
+  --color-danger:               #dc2626;
+  --color-danger-subtle:         rgba(220,38,38,0.08);
+  --color-danger-subtle-border:  rgba(220,38,38,0.2);
+  --color-danger-subtle-hover:   rgba(220,38,38,0.15);
+  --color-primary-subtle-select: rgba(164,55,0,0.15);
+  --color-overlay:               rgba(30,27,23,0.6);
 
   /* Typography */
   --font-display: "Bricolage Grotesque", sans-serif;

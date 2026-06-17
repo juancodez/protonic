@@ -8,7 +8,7 @@
   display:         flex;
   align-items:     center;
   justify-content: center;
-  background:      rgba(30, 27, 23, 0.6); /* navy900 at 60% — contract: flat, no blur */
+  background:      var(--color-overlay); /* navy900 at 60% — contract: flat, no blur */
   padding:         var(--space-6);
 }
 

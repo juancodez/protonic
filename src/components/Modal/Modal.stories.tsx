@@ -58,7 +58,8 @@ export const Destructive: Story = {
   render: () => (
     <ModalTrigger>
       <Button variant="destructive">Delete account</Button>
-      <Modal title="Delete your account?">
+      {/* alertdialog: announced immediately by AT — correct for destructive/urgent actions */}
+      <Modal title="Delete your account?" role="alertdialog">
         <p>This action cannot be undone. All your data will be permanently removed.</p>
       </Modal>
     </ModalTrigger>

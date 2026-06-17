@@ -65,7 +65,7 @@
 }
 
 .protonic-table__row[data-selected][data-hovered] {
-  background: rgba(164, 55, 0, 0.15);
+  background: var(--color-primary-subtle-select);
 }
 
 /* Cells */
