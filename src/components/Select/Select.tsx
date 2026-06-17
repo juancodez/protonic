@@ -8,14 +8,7 @@ import {
   SelectValue,
 } from 'react-aria-components';
 import type { ProtonicSelectProps, SelectOption } from './Select.types';
-
-// React Aria's Select is a compound component — each piece has a job:
-//   Label      → accessible name, wired to the trigger via aria-labelledby automatically
-//   Button     → the visible trigger (NOT our Protonic Button — this is React Aria's)
-//   SelectValue → renders the current selection inside the trigger
-//   Popover    → the floating dropdown, handles positioning + collision detection
-//   ListBox    → the list container (role="listbox")
-//   ListBoxItem → each option (role="option"), handles typeahead for free
+import './Select.css';
 
 export function Select<T extends SelectOption>({
   label,
@@ -24,15 +17,21 @@ export function Select<T extends SelectOption>({
   ...props
 }: ProtonicSelectProps<T>) {
   return (
-    <AriaSelect {...props}>
-      <Label>{label}</Label>
-      <Button>
-        <SelectValue>{({ selectedText }) => selectedText || placeholder}</SelectValue>
-        <span aria-hidden>▾</span>
+    <AriaSelect className="protonic-select" {...props}>
+      <Label className="protonic-select__label">{label}</Label>
+      <Button className="protonic-select__trigger">
+        <SelectValue>
+          {({ selectedText }) => selectedText || <span style={{ color: 'var(--color-text-muted)' }}>{placeholder}</span>}
+        </SelectValue>
+        <span aria-hidden className="protonic-select__arrow">▾</span>
       </Button>
-      <Popover>
-        <ListBox items={options}>
-          {(option) => <ListBoxItem id={option.id}>{option.label}</ListBoxItem>}
+      <Popover className="protonic-select__popover">
+        <ListBox className="protonic-select__listbox" items={options}>
+          {(option) => (
+            <ListBoxItem className="protonic-select__option" id={option.id}>
+              {option.label}
+            </ListBoxItem>
+          )}
         </ListBox>
       </Popover>
     </AriaSelect>

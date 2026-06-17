@@ -8,13 +8,7 @@ import {
 } from 'react-aria-components';
 import type { Key } from 'react-aria-components';
 import type { ProtonicTableProps } from './Table.types';
-
-// React Aria's Table gives us for free:
-//   - Arrow key navigation between cells (←→↑↓)
-//   - aria-sort on column headers when sorting is active
-//   - role="grid", role="row", role="columnheader", role="gridcell" — all automatic
-//   - Row selection with checkboxes (when selectionMode != "none")
-//   - Screen reader announces selected rows and sort state
+import './Table.css';
 
 export function Table({
   columns,
@@ -27,6 +21,7 @@ export function Table({
   return (
     <AriaTable
       aria-label={ariaLabel}
+      className="protonic-table"
       selectionMode={selectionMode}
       onSelectionChange={(keys) => {
         if (onSelectionChange && keys !== 'all') {
@@ -37,16 +32,23 @@ export function Table({
     >
       <TableHeader columns={columns}>
         {(col) => (
-          <Column id={col.id} allowsSorting={col.allowsSorting}>
+          <Column
+            id={col.id}
+            className="protonic-table__column"
+            allowsSorting={col.allowsSorting}
+            isRowHeader={col.id === columns[0].id}
+          >
             {col.label}
           </Column>
         )}
       </TableHeader>
       <TableBody items={rows}>
         {(row) => (
-          <Row id={row.id}>
+          <Row id={row.id} className="protonic-table__row">
             {columns.map((col) => (
-              <Cell key={col.id}>{String(row[col.id] ?? '')}</Cell>
+              <Cell key={col.id} className="protonic-table__cell">
+                {String(row[col.id] ?? '')}
+              </Cell>
             ))}
           </Row>
         )}

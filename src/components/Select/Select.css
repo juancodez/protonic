@@ -1,0 +1,112 @@
+/* Select — trigger + popover + listbox */
+
+.protonic-select {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-1);
+  width:          fit-content;
+  min-width:      200px;
+}
+
+.protonic-select__label {
+  font-family: var(--font-body);
+  font-size:   0.75rem;
+  font-weight: 600;
+  color:       var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* The visible trigger button */
+.protonic-select__trigger {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap:             var(--space-2);
+  padding:         var(--space-2) var(--space-4);
+  min-height:      40px;
+  background:      var(--color-bg);
+  border:          1px solid var(--color-bg-surface);
+  border-radius:   var(--radius);
+  font-family:     var(--font-body);
+  font-size:       0.875rem;
+  color:           var(--color-text);
+  cursor:          pointer;
+  transition:      border-color 150ms ease;
+}
+
+.protonic-select__trigger[data-hovered] {
+  border-color: var(--color-primary);
+}
+
+.protonic-select__trigger[data-focus-visible] {
+  outline:        2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* React Aria sets [data-open] on the trigger when the popover is open */
+.protonic-select__trigger[data-open] {
+  border-color: var(--color-primary);
+}
+
+.protonic-select__trigger[data-disabled] {
+  opacity: 0.4;
+  cursor:  not-allowed;
+}
+
+.protonic-select__arrow {
+  color:      var(--color-text-muted);
+  font-size:  0.75rem;
+  transition: transform 150ms ease;
+}
+
+.protonic-select__trigger[data-open] .protonic-select__arrow {
+  transform: rotate(180deg);
+}
+
+/* Popover — the floating dropdown */
+.protonic-select__popover {
+  background:    var(--color-bg);
+  border:        1px solid var(--color-bg-surface);
+  border-radius: var(--radius);
+  min-width:     var(--trigger-width);
+  overflow:      hidden;
+  /* flat elevation contract: border only, no shadow */
+}
+
+.protonic-select__popover[data-entering] { animation: popover-in  150ms ease; }
+.protonic-select__popover[data-exiting]  { animation: popover-out 100ms ease; }
+
+@keyframes popover-in  { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popover-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-4px); } }
+
+/* ListBox — the list of options */
+.protonic-select__listbox {
+  padding:    var(--space-1);
+  outline:    none;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+/* Each option */
+.protonic-select__option {
+  padding:       var(--space-2) var(--space-3);
+  border-radius: calc(var(--radius) - 2px);
+  font-family:   var(--font-body);
+  font-size:     0.875rem;
+  color:         var(--color-text);
+  cursor:        pointer;
+  outline:       none;
+  transition:    background 100ms ease;
+}
+
+/* React Aria sets these on focused/selected options */
+.protonic-select__option[data-focused] {
+  background: var(--color-bg-surface);
+}
+
+.protonic-select__option[data-selected] {
+  background: var(--color-primary-subtle);
+  color:      var(--color-primary);
+  font-weight: 600;
+}
