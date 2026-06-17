@@ -1,45 +1,82 @@
 # Protonic
 
-A React design system built on [React Aria Components](https://react-spectrum.adobe.com/react-aria/), with an agentic layer as the final phase.
+A contract-first, agentic design system built on [React Aria Components](https://react-spectrum.adobe.com/react-aria/).
+
+> *"El que dice que no es necesario un design system porque existe shadcn, sigue pensando en librerías. Tu ya estás en otra abstracción donde la librería es un artefacto."*
+> — Cristian Morales Achiardi
 
 ---
 
-## What is this
+## The idea
 
-Protonic is a component library built in three phases:
+shadcn/ui is opinionated. It ships with all its rules already decided, and those rules are hard to break. It only works on React web. It gives you atoms and molecules, nothing more.
 
-**Phase 1 — Accessible base components**
-Four components wrapped around React Aria: `Button`, `Modal`, `Select`, `Table`. No styles yet — only behavior and accessibility. React Aria handles keyboard navigation, focus management, screen readers, and ARIA attributes out of the box.
+Protonic is the opposite:
 
-**Phase 2 — Design system layer**
-Design tokens (colors, typography, spacing) applied via CSS custom properties. Variant API built with [Class Variance Authority](https://cva.style/docs). Visual documentation with Storybook. Component designs pushed to Figma via Figma CLI.
+| | shadcn | Protonic |
+|---|---|---|
+| Approach | Library-first | Contract-first |
+| Rules | Pre-decided, opinionated | You define them, agents enforce them |
+| Platform | React web only | General contracts, any binding |
+| Library | The product | An artifact |
+| Agents | None | Built in from day 1 |
 
-**Phase 3 — Agentic layer**
-AI agents that maintain and scale the design system:
-- **Component Auditor** — enforces naming conventions and API contracts
-- **A11y Agent** — verifies React Aria accessibility guarantees aren't broken
-- **Documentation Agent** — auto-updates Storybook when an API changes
-- **Design Review Agent** — flags hardcoded values and token inconsistencies
+The library Protonic produces is a side effect of well-defined contracts — not the goal.
 
 ---
 
-## Why this architecture
-
-Accessibility from scratch is hard. React Aria (by Adobe) already solves keyboard navigation, focus traps, ARIA roles, and screen reader behavior. Protonic builds the design layer on top — tokens, variant API, visual polish — without reinventing what's already solved.
-
-The agentic layer only makes sense once the design system has solid contracts to enforce. That's why it's Phase 3.
+## Architecture
 
 ```
-React Aria (behavior + accessibility)
-    ↓
-Protonic Design System (tokens, variants, visual design)
-    ↓
-Figma (design ↔ code sync via Figma CLI)
-    ↓
-Agentic Layer (auditors, docs, review agents)
-    ↓
-Real applications
+General contracts (Protonic core)
+  What is this component for? What are its axes? What behavior does it guarantee?
+  Portable across platforms. This layer doesn't care about brand or stack.
+        ↓
+Specific contracts (per-project theme)
+  Klaro theme: orange #a43700, Bricolage Grotesque, warm premium visual language
+  Bound to one product. Easy to swap for another.
+        ↓
+Components (the library — just an artifact)
+  React + React Aria. Accessible, typed, variant API via CVA.
+        ↓
+Agents (Phase 3 — the enforcement layer)
+  Component Auditor · A11y Agent · Docs Agent · Design Review Agent
+  They read the contracts and verify the artifacts don't drift from them.
 ```
+
+---
+
+## Why React Aria as the base
+
+Accessibility from scratch is hard. React Aria (by Adobe) already solved keyboard navigation, focus traps, ARIA roles, and screen reader behavior for every component. Protonic builds the design layer on top — tokens, variant API, visual polish — without reinventing what's already solved.
+
+---
+
+## Klaro — first consumer
+
+[Klaro](https://github.com/juancodez/klaro-landing) is a fiscal assistant for Spanish-speaking freelancers in Germany. It's the first real product consuming Protonic. Its tokens seed the default theme:
+
+| Token | Value |
+|-------|-------|
+| Primary | `#a43700` |
+| Background | `#fff8f1` |
+| Display font | Bricolage Grotesque |
+| Body font | Plus Jakarta Sans |
+
+This is a **theme**, not Protonic's identity. Any project can apply different values to the same contracts.
+
+---
+
+## Three phases
+
+**Phase 1 — Accessible base components** ✅
+Button · Modal · Select · Table — behavior only, no styles. React Aria foundation.
+
+**Phase 2 — Design system layer** ← current
+Axes registry · Design contracts · CVA variant API · CSS custom properties · Storybook · Figma sync
+
+**Phase 3 — Agentic layer** ← north star
+Agents that read the contracts and enforce them. Built from scratch so the rules are clean from day 1 — not retrofitted into something already running.
 
 ---
 
@@ -50,36 +87,9 @@ Real applications
 | Framework | Vite + React 18 + TypeScript (strict) |
 | Accessibility | `react-aria-components` |
 | Variant API | `class-variance-authority` |
-| Styling | CSS custom properties — no Tailwind, no CSS-in-JS |
+| Styling | CSS custom properties |
 | Design sync | Figma CLI |
-| Agentic tools | Claude API + graphify |
-
----
-
-## Token origin
-
-Design tokens are seeded from [Klaro](https://github.com/juancodez/klaro-landing), a fiscal assistant app for Spanish-speaking freelancers in Germany. The warm, premium visual language carries over into Protonic.
-
-| Token | Value |
-|-------|-------|
-| Primary | `#a43700` |
-| Background | `#fff8f1` |
-| Surface | `#f4ede5` |
-| Text | `#1e1b17` |
-| Display font | Bricolage Grotesque |
-| Body font | Plus Jakarta Sans |
-
----
-
-## Current status
-
-- [x] Phase 0 — Scaffold, tokens, CLAUDE.md, AGENTS.md
-- [x] Button (Phase 1 stub — accessible, no styles)
-- [ ] Modal
-- [ ] Select
-- [ ] Table
-- [ ] Phase 2 — Design layer
-- [ ] Phase 3 — Agentic layer
+| Agents | Claude API + graphify |
 
 ---
 
@@ -92,4 +102,4 @@ npm run dev
 
 ---
 
-Built by [Juan Gomez-Vara](https://github.com/juancodez) · Ponytail-mode active
+Built by [Juan Gomez-Vara](https://github.com/juancodez) · Based on methodology by [Cristian Morales Achiardi](https://medium.com/@cristian.morales.achiardi)

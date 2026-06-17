@@ -2,7 +2,11 @@
 
 ## What is this
 
-React design system built on React Aria Components. 3 phases, developed agile (sprint by sprint):
+**Contract-first, agentic design system built on React Aria. NOT opinionated like shadcn.**
+The library is an artifact. The contracts are the system.
+Klaro is the first consumer — it applies a theme. Protonic itself is generic.
+
+3 phases, developed agile (sprint by sprint):
 
 1. **Phase 1** — 4 accessible base components (no styles): Button, Modal, Select, Table
 2. **Phase 2** — Design layer: tokens from Klaro, CVA variant API, Storybook
@@ -18,11 +22,17 @@ React design system built on React Aria Components. 3 phases, developed agile (s
 | Classnames | `clsx` via `src/lib/cn.ts` |
 | Styling | CSS custom properties — no Tailwind, no CSS-in-JS |
 
-## Token origin
+## Token origin + scope
+
+Two layers — keep them separate:
+- **General contracts** (`src/tokens/axes.ts`, `src/tokens/contracts.ts`) — portable, platform-agnostic
+- **Klaro theme** (`src/tokens/primitives.ts`, `src/tokens/theme.css`) — Klaro-specific brand values
 
 Tokens ported from Klaro (`C:\Users\tn\klaro-landing-01`) actual implementation.  
-**Source of truth:** `src/tokens/primitives.ts`  
+**Source of truth for Klaro values:** `src/tokens/primitives.ts`  
 Klaro's `CLAUDE.md` colors/fonts are outdated — always use primitives.ts values.
+
+Any project can replace the theme layer without touching the general contracts.
 
 ## Integrated tools (activate as needed)
 
