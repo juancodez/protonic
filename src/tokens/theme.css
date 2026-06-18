@@ -8,17 +8,24 @@
   --color-on-primary:           #ffffff;
   --color-bg:                   #fff8f1;
   --color-bg-surface:           #f4ede5;
+  --color-surface:              #ffffff;
   --color-text:                 #1e1b17;
   --color-text-body:            #594139;
   --color-text-muted:           #8c7168;
   --color-accent:               #FFB830;
   --color-success:              #15803d;
+  --color-success-subtle:       rgba(21,128,61,0.1);
+  --color-warning-subtle:       rgba(255,184,48,0.15);
+  --color-warning-text:         #7a5a00;
   --color-danger:               #dc2626;
   --color-danger-subtle:         rgba(220,38,38,0.08);
   --color-danger-subtle-border:  rgba(220,38,38,0.2);
   --color-danger-subtle-hover:   rgba(220,38,38,0.15);
   --color-primary-subtle-select: rgba(164,55,0,0.15);
   --color-overlay:               rgba(30,27,23,0.6);
+  /* Inverted surface tokens — for dark-background (hero, panel) contexts */
+  --color-bg-inverted-subtle:    rgba(255,248,241,0.12);
+  --color-text-inverted-muted:   rgba(255,248,241,0.78);
 
   /* Typography */
   --font-display: "Bricolage Grotesque", sans-serif;

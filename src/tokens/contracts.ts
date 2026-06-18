@@ -59,6 +59,17 @@ export const DESIGN_CONTRACTS = {
   },
 
   // ─── SPACING ──────────────────────────────────────────────────────────────
+  surfaceColor: {
+    value: '#f4ede5 (--color-bg-surface)',
+    chain: [
+      'Klaro users are anxious about taxes — the interface must feel warm and grounded',
+      'Page background (#fff8f1 cream) needs a visually distinct "lifted" surface for cards',
+      'Beige (#f4ede5) is one step warmer/darker — same palette family, clear hierarchy without shadows',
+      'No shadow allowed (flatElevation contract) → background shift is the only elevation signal',
+    ],
+    contract: 'Cards and surface containers use --color-bg-surface. Page background uses --color-bg. Never invert.',
+  },
+
   spacingGrid: {
     value: '4px base grid',
     chain: [

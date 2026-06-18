@@ -23,8 +23,12 @@ Phase 3 ✅  Agentic layer — Component Auditor + Design Review Agent (scripts 
 Decided direction: **code → Figma** (not Figma-first).
 Tokens are already seeded from Klaro. Protonic IS Klaro's base.
 
-Start with: **Card component** — most fundamental Klaro-specific composition.
-Then: Hero, ClaraPanel, Badge, DraggableTicker (from Klaro's existing components).
+Klaro component progress:
+- [x] Card ✅ — surface container, 10/10 audit, 0 design-review warnings
+- [x] Badge ✅ — status axis, pill radius, 10/10 audit, 0 design-review warnings
+- [x] Hero ✅ — full-viewport layout shell, light + inverted, 10/10 audit, 0 design-review warnings
+- [x] ClaraPanel ✅ — chat layout shell, header/messages/input-dock, 10/10 audit, 0 design-review warnings
+- [x] DraggableTicker ✅ — infinite drag marquee, RAF animation, 10/10 audit, 0 design-review warnings
 
 After each component:
 1. `npm run audit -- src/components/ComponentName` — structure + conventions

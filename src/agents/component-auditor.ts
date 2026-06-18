@@ -141,17 +141,20 @@ function auditComponent(inputPath: string): void {
       );
     }
 
-    // Two valid patterns:
+    // Three valid patterns:
     // 1. extends directly: extends FooProps / extends Omit<FooProps<T>, '...'>
     // 2. data-component pattern: imports types from react-aria-components without extending
     //    (e.g., Table uses columns/rows API instead of React Aria's render-props TableProps)
+    // 3. display-only: annotated with // @protonic:display-only — pure HTML container,
+    //    no React Aria primitive exists for it (e.g., Card, Badge)
     const extendsAriaType =
       /extends\s+(?:Omit|Pick|Partial)?<?[^>]*?(Props|ButtonProps|SelectProps|DialogProps|TableProps|ModalOverlayProps)/.test(types) ||
-      /from\s+['"]react-aria-components['"]/.test(types);
+      /from\s+['"]react-aria-components['"]/.test(types) ||
+      /\/\/\s*@protonic:display-only/.test(types);
     check(
-      'Interface extends or imports from react-aria-components',
+      'Interface extends or imports from react-aria-components (or @protonic:display-only)',
       extendsAriaType,
-      `Import or extend a type from react-aria-components`,
+      `Import or extend a type from react-aria-components, or annotate with // @protonic:display-only`,
     );
   }
 

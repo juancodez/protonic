@@ -1,0 +1,34 @@
+/* Badge — all values trace back to contracts.ts */
+/* Uses --radius-pill per contracts.ts#borderRadius — canonical pill element */
+
+.protonic-badge {
+  display:       inline-flex;
+  align-items:   center;
+  font-family:   var(--font-body);
+  font-size:     0.75rem;
+  font-weight:   600;
+  line-height:   1;
+  padding:       var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  white-space:   nowrap;
+}
+
+.protonic-badge--info {
+  background: var(--color-primary-subtle);
+  color:      var(--color-primary);
+}
+
+.protonic-badge--success {
+  background: var(--color-success-subtle);
+  color:      var(--color-success);
+}
+
+.protonic-badge--warning {
+  background: var(--color-warning-subtle);
+  color:      var(--color-warning-text);
+}
+
+.protonic-badge--error {
+  background: var(--color-danger-subtle);
+  color:      var(--color-danger);
+}
