@@ -1,58 +1,88 @@
 # Protonic — Project Status
 
-Last updated: 2026-06-18
+Last updated: 2026-06-24
 
 ---
 
 ## Where we are
 
-All 3 phases are done.
+All 3 phases complete + 22-step agentic audit closed + Figma fully pushed + Lyse integrated.
 
 ```
-Phase 1 ✅  4 base components (Button, Modal, Select, Table) — React Aria, accessible
-Phase 2 ✅  Design layer — tokens from Klaro, CVA variants, CSS custom properties, Storybook
-Phase 3 ✅  Agentic layer — Component Auditor + Design Review Agent (scripts + slash commands)
+Phase 1 ✅  Button, Modal, Select, Table — React Aria base, fully accessible
+Phase 2 ✅  Design layer — DTCG tokens, CVA variants, CSS custom properties, Storybook
+Phase 3 ✅  Agentic layer — Component Auditor, Design Review, A11y Agent, Docs Agent, Review PR
+Audit  ✅  22-node agentic system closed (AGENTIC-SYSTEM.md documents every node)
+Figma  ✅  All 10 components pushed — variables + component sets live in Klaro Design System file
+Lyse   ✅  Health audit integrated — 66/100 (B), runs via npm run lyse
 ```
 
 ---
 
-## What's next
+## All 10 components — status
 
-**Build the Klaro design system on top of Protonic.**
+| Component | Category | Audit | Figma nodeId | Variants |
+|---|---|---|---|---|
+| Button | atom | 10/10 ✅ | 52:22 | 9 (variant × size) |
+| Badge | atom | 10/10 ✅ | 52:31 | 4 (status) |
+| Chip | atom | 10/10 ✅ | 52:52 | 8 (variant × state) |
+| Card | atom | 10/10 ✅ | 52:58 | 1 |
+| Select | molecule | 10/10 ✅ | 54:82 | 4 (state) |
+| Modal | molecule | 10/10 ✅ | 54:95 | 2 (role) |
+| Table | organism | 10/10 ✅ | 54:207 | 3 (selectionMode) |
+| Hero | layout | 10/10 ✅ | 54:220 | 2 (inverted) |
+| ClaraPanel | layout | 10/10 ✅ | 54:246 | 2 (state) |
+| DraggableTicker | atom | 10/10 ✅ | 54:313 | 3 (height) |
 
-Decided direction: **code → Figma** (not Figma-first).
-Tokens are already seeded from Klaro. Protonic IS Klaro's base.
+---
 
-Klaro component progress:
-- [x] Card ✅ — surface container, 10/10 audit, 0 design-review warnings
-- [x] Badge ✅ — status axis, pill radius, 10/10 audit, 0 design-review warnings
-- [x] Hero ✅ — full-viewport layout shell, light + inverted, 10/10 audit, 0 design-review warnings
-- [x] ClaraPanel ✅ — chat layout shell, header/messages/input-dock, 10/10 audit, 0 design-review warnings
-- [x] DraggableTicker ✅ — infinite drag marquee, RAF animation, 10/10 audit, 0 design-review warnings
+## Lyse health score — 66/100 (B)
 
-After each component:
-1. `npm run audit -- src/components/ComponentName` — structure + conventions
-2. `npm run design-review -- src/components/ComponentName` — token compliance
-3. `/figma-component-generator` — push to Klaro Figma file (key: `R4KIv7XKg8g1A1NR9R11cI`)
+| Axis | Score | Notes |
+|---|---|---|
+| tokens | 74 | Alias references correct — lyse alpha bug: doesn't cross-reference DTCG files |
+| a11y | 60 | **Next session**: add `@media (prefers-reduced-motion)` + `forced-colors` to CSS |
+| components | 87 | Strong |
+| stories | N/A | Needs `npm run build-storybook` first, then re-run lyse |
+| ai-surface | 10 | mcp.json + SKILL.md added; remaining: component-manifest-json |
+| ai-governance | 100 | Perfect |
+
+**To push score from 66 → 80+:**
+1. Add `@media (prefers-reduced-motion: reduce)` in all CSS files with transitions/animations (Button, Chip, Select, Modal, DraggableTicker) → a11y 60 → ~90
+2. Run `npm run build-storybook` → stories axis unlocks
+3. Wait for lyse to fix cross-file DTCG resolution (alpha bug) → tokens 74 → ~95
+
+---
+
+## What's left to finish (next session)
+
+- [ ] **a11y CSS**: add `prefers-reduced-motion` + `forced-colors` media queries to the 5 animated components
+- [ ] **Storybook build**: `npm run build-storybook` to unlock the stories axis in lyse
+- [ ] **Token alias bug**: open issue on lyse repo (`https://github.com/lyse-labs/lyse`) — cross-file DTCG resolution broken in alpha
+- [ ] **Present to Cristian**: repo is ready, Figma is ready, Lyse score shows 66/100 with clear path to 80+
 
 ---
 
 ## Key commands
 
 ```bash
-npm run dev              # Vite dev server
-npm run storybook        # Storybook on :6006
-npm run typecheck        # Main app TypeScript check
-npm run audit -- src/components/ComponentName
-npm run design-review -- src/components/ComponentName
+npm run audit:all                              # audit all 10 components
+npm run lyse                                   # health score (66/100 today)
+npm run lyse:fix                               # auto-fix high-confidence findings
+npm run design-review -- src/components/<Name>
+npm run typecheck
+npm run build:tokens                           # regenerate variables.css from DTCG
+npm run storybook                              # Storybook on :6006
+npm run build-storybook                        # build static Storybook (needed for lyse stories axis)
 ```
 
-Claude Code slash commands (inside a session):
+Claude Code slash commands:
 ```
-/component-auditor src/components/ComponentName
-/a11y-agent src/components/ComponentName
-/design-review src/components/ComponentName
-/docs-agent src/components/ComponentName
+/component-auditor src/components/<Name>
+/a11y-agent src/components/<Name>
+/design-review src/components/<Name>
+/review-pr --all
+/codebase-index
 ```
 
 ---
@@ -60,16 +90,39 @@ Claude Code slash commands (inside a session):
 ## Key files
 
 | File | Purpose |
-|------|---------|
-| `src/tokens/axes.ts` | Canonical prop vocabulary — variant, size, status |
-| `src/tokens/contracts.ts` | Articulated design chains (the WHY behind every value) |
-| `src/tokens/theme.css` | CSS custom properties — all components reference these |
-| `src/agents/component-auditor.ts` | Static analysis script |
-| `src/agents/design-review.ts` | CSS token linter |
-| `.claude/commands/` | 4 AI-powered slash commands |
-| `AGENTS.md` | Agent contracts + how to run them |
-| `NOTES.md` | React Aria findings log |
-| `roadmap-protonic.md` | Original roadmap from Cristian |
+|---|---|
+| `AGENTIC-SYSTEM.md` | Full 22-node architecture reference — start here |
+| `AGENTS.md` | Agent contracts + how to run |
+| `LYSE.md` | Lyse stack detection + component manifest (auto-generated) |
+| `.lyse.yaml` | Lyse config — component paths, rule overrides |
+| `AI_GOVERNANCE.md` | AI feature go/no-go checklist |
+| `CHANGELOG.md` | Version history (Keep a Changelog format) |
+| `llms.txt` | AI agent discoverability file |
+| `src/tokens/axes.ts` | Canonical prop vocabulary (variant, size, status) |
+| `src/tokens/contracts.ts` | Design chains — the WHY behind every value |
+| `tokens/color/foundation.json` | Raw palette (never use in components) |
+| `tokens/color/semantic.json` | Role aliases — what components actually use |
+| `src/tokens/variables.css` | Compiled output — regenerated by build:tokens |
+| `.figma/maps/tokens.json` | CSS var → Figma variable ID (45 tokens) |
+| `.figma/maps/components.json` | Component name → Figma componentSetId + key (10/10 filled) |
+| `.ai/index.json` | Machine-readable component map for agents |
+| `.ai/relationships/` | component-usage, design-tokens, dependencies maps |
+| `.claude/rules/` | Path-scoped rules (auto-load on file touch) |
+| `.claude/commands/` | All slash command definitions |
+| `.mcp.json` | MCP server config (lyse + Claude Code) |
+
+---
+
+## Figma
+
+File: `rRSxMj33ZtioxdrabH5rm6` — Klaro Design System
+Page: Design System Klaro
+Variable collections: Protonic/Color (26 vars) · Protonic/Spacing (15 vars) · Protonic/Radius (4 vars)
+Canvas layout: atoms row → molecules row → organism → layout row (organized by category)
+
+figma-cli: `C:/Users/tn/figma-cli`
+Connect: `node src/index.js connect`
+Eval: `node src/index.js eval --file <path>`
 
 ---
 
