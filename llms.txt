@@ -1,0 +1,8 @@
+# protonic
+
+> A design system for AI agents and humans.
+
+## Documentation
+
+- [Getting started](https://example.com/getting-started): How to install and use protonic.
+- [Components](https://example.com/components): Component API reference.

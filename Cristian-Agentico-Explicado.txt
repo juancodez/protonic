@@ -1,0 +1,112 @@
+¡Tranquilo! No necesito abrir ningún sitio web para esto — solo te lo explico yo. Vamos paso a paso, súper simple. 🙌
+
+---
+
+## ¿Qué es esto en palabras normales?
+
+Imagina que vas a construir una casa. Normalmente necesitas:
+- Un **arquitecto** que diseñe los planos
+- Un **obrero** que construya
+- Un **inspector** que revise que todo esté bien
+- Un **catálogo** de materiales
+
+**Este proyecto hace exactamente eso, pero para apps y websites... y el obrero es una IA (Claude Code).**
+
+---
+
+## Los 5 pedazos del sistema, explicados fácil
+
+### 🟡 1. Los Tokens — "El catálogo de materiales"
+
+Imagina que tienes una lista que dice:
+- El azul principal de tu app es `#389fba`
+- El espacio entre botones es `16px`
+- La letra principal es `Outfit`
+
+Eso es un **token** — una decisión de diseño guardada con nombre.
+
+En vez de que cada desarrollador escriba `color: #389fba` por su cuenta (y alguno se equivoque poniendo `#389fab`), **todos usan el mismo nombre**: `var(--background-interactive-primary)`.
+
+Si el día de mañana quieres cambiar ese azul, cambias **UN solo archivo** y toda la app cambia sola. Magia ✨
+
+---
+
+### 🟢 2. Los Componentes — "Las piezas de LEGO"
+
+Un componente es como un bloque de LEGO reutilizable. Por ejemplo: un botón, una tarjeta, un chip de categoría.
+
+El sistema tiene **78 componentes**. Cada uno tiene 5 archivos:
+- El **código** del componente (cómo funciona)
+- El **CSS** (cómo se ve, usando tokens, nunca colores escritos a mano)
+- El **metadata** (instrucciones para la IA: cuándo usarlo, cómo usarlo, qué NO hacer)
+- Los **tests** (pruebas automáticas)
+- El **index** (para exportarlo)
+
+Lo importante: **nadie escribe estos archivos a mano**. Se generan con un comando (`/scaffold-component`) y siempre salen igual. Sin errores humanos.
+
+---
+
+### 🔵 3. El Índice — "El mapa del tesoro"
+
+Imagina que tienes 78 componentes y 348 tokens. ¿Cómo sabe la IA dónde está cada cosa sin leer 500 archivos?
+
+Con un **mapa** — un archivo especial llamado `.ai/index.toon` que dice:
+- Qué componentes existen
+- Qué tokens usa cada uno
+- Cómo se relacionan entre sí
+
+La IA carga ese mapa **una vez** al inicio y ya sabe todo. En vez de "explorar" el proyecto como un turista perdido, **navega** como alguien con GPS.
+
+---
+
+### 🟣 4. Las Reglas y Skills — "El manual de instrucciones + las herramientas"
+
+**Las Reglas** son como un manual que le dice a Claude Code cómo comportarse en este proyecto específico. Por ejemplo: "nunca pongas colores hardcodeados en el CSS" o "siempre sigue el schema de metadata".
+
+**Las Skills (habilidades)** son comandos que puede ejecutar, como:
+- `/scaffold-component` → Crea un componente nuevo completo
+- `/token-auditor` → Revisa si hay colores escritos a mano (errores)
+- `/review-pr` → Revisa el código antes de publicarlo
+- `/figma-ds` → Genera los diseños en Figma automáticamente
+
+---
+
+### 🩷 5. Figma — "El diseño se genera solo"
+
+Normalmente un diseñador hace el diseño en Figma y el desarrollador lo copia al código. Aquí es al revés:
+
+**El código ES la fuente de verdad → Figma se genera automáticamente desde el código.**
+
+Si creas un botón con sus variantes en código, el sistema lo manda a Figma solo. Sin copiar y pegar.
+
+---
+
+### 🔴 6. El Loop Agéntico — "El sistema que se corrige solo"
+
+Esta es la parte más cool. El sistema no solo crea cosas — también se **audita y se repara solo**:
+
+```
+Crea componente → Audita si hay errores → 
+Encuentra error → Propone el fix exacto → 
+Humano aprueba → Se repara → vuelta al inicio
+```
+
+Es como tener un inspector de calidad 24/7 que además te dice exactamente cómo arreglar cada problema.
+
+---
+
+## ¿Y Claude Code qué tiene que ver?
+
+**Claude Code es el "obrero inteligente"** que ejecuta todo esto. No es solo un chatbot — es el operador del sistema. Sabe qué herramientas usar, cuándo indexar, cómo auditar, cómo generar componentes.
+
+El CLAUDE.md que generé es justamente eso: **el manual que le da a Claude Code todo el contexto** para que entienda tu proyecto desde el primer mensaje.
+
+---
+
+## El resumen en una frase
+
+> Estás construyendo un sistema de diseño donde **una IA construye, revisa y repara** los componentes automáticamente, usando un conjunto de reglas, tokens y herramientas — y los resultados se sincronizan solos con Figma.
+
+---
+
+¿Qué parte quieres que te explique más a fondo? Puedo profundizar en cualquiera de los 6 pedazos con ejemplos aún más simples. 🚀

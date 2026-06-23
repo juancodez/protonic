@@ -1,0 +1,308 @@
+# Full Tour Complete ✅ — Here is Your `CLAUDE.md`
+
+I've gone through all 22 steps of the guided tour and examined the full 2D architecture map. Here is the comprehensive `CLAUDE.md` you can drop directly into your project root for Claude Code to understand exactly what you're building:
+
+---
+
+```markdown
+# CLAUDE.md — Agentic Design System Infrastructure
+
+## What This Project Is
+
+This is an **Agentic Design Systems Infrastructure** — a token-first, metadata-driven,
+AI-native design system monorepo. It is NOT a traditional design system. It is several
+interconnected systems running side by side, wired together so that an AI agent (Claude Code)
+can operate them deterministically.
+
+The core philosophy:
+> "Agentic doesn't mean everything is an LLM. It means the system closes its own loop."
+
+The agent reads indexes to navigate, acts only through skills (slash commands), and what
+those skills generate — maps, audit reports, fix suggestions — loops back to the agent
+that consumes them. That self-closing loop is what "agentic" means here.
+
+---
+
+## Architecture: 5 Layers + 1 Loop
+
+The system is organized into 5 layers and 1 agentic feedback loop:
+
+### 🟡 1. Tokenization Layer — "Where everything starts"
+The foundation. Design decisions are encoded here as W3C Design Tokens.
+
+- **`tokens/*.json`** — 348 tokens across 12 categories: colors, semantic colors,
+  spacing, typography, text styles, radius, borders, motion, elevations, z-index,
+  icon sizes, breakpoints. Two-layer color architecture: foundation palettes
+  (moonstone, wisteria, mauve…) referenced by semantic roles. This is the START.
+- **`Style Dictionary`** — The token compiler. Reads the W3C source JSON and emits
+  platform outputs: CSS custom properties for web, JS constants with TypeScript
+  declarations for programmatic use. Nx runs it automatically before any package
+  that depends on tokens, so components can never build against stale values.
+- **`variables.css`** — The compiled stylesheet every component references.
+  Token names flatten to CSS custom properties: `{color.moonstone.500}` becomes
+  `--color-moonstone-500`; semantic roles become `--foreground-base`,
+  `--background-interactive-primary`. One change at the source = all 78 components follow.
+
+### 🟢 2. Intent Layer — "What components declare"
+Components declare their identity and intent here. Nothing is hardcoded.
+
+- **`Component.module.css`** — Token-based CSS module. Every visual decision resolves
+  to a `var(–token)`. CSS modules keep styles scoped per component while `var(–…)`
+  references keep them tethered to the tokenization layer. This surface is what the
+  token auditor patrols.
+- **`Component.tsx`** — React component logic using CVA (class-variance-authority).
+  Every prop axis (variant, size, color) maps to CSS module classes, with defaults.
+  The TypeScript interface is the contract that metadata, docs, the prop glossary,
+  and Figma generation all read from. One source → four consumers.
+- **`Component.metadata.ts`** — Full AI-ready metadata per component: use cases,
+  common composition patterns with code, anti-patterns with alternatives, accessibility
+  notes, and AI hints. This is "API docs for agents" — it tells Claude when and how to
+  use a component correctly, and what NOT to do. Also the source of truth for the
+  human-facing Astro docs site.
+- **`/scaffold-component`** (skill) — Components are NOT written from memory. One
+  invocation produces the same five-file anatomy every time:
+  `Component.tsx` + `Component.module.css` + `Component.metadata.ts` +
+  `Component.test.tsx` + `index.ts`. The anatomy is a contract.
+- **`Metadata Schema`** (v2.0) — The versioned schema every `.metadata.ts` must follow:
+  required fields, valid categories and types, date formats, priority levels.
+  Lives at `.claude/rules/components/metadata-schema.md`.
+- **`Prop Glossary`** (`.ai/prop-map`) — The canonical prop vocabulary across
+  71 web + 17 React Native components. Axes registry (size, variant, color, radius…
+  with canonical values), an anti-synonym value glossary ("outline", never "outlined"),
+  per-prop usage, and drift flags. Descriptive first — divergence is annotated for
+  review, never silently migrated.
+
+### 🔵 3. Indexing Layer — "How the agent navigates"
+This layer makes the codebase navigable without codebase crawling.
+
+- **`/codebase-index`** (skill, v1.2.0) — Automatically generates relationship and
+  dependency maps for the entire component-based codebase. Auto-detects framework,
+  scans every component, and emits TOON-format maps (30–60% more token-efficient
+  than JSON): which component uses which, which tokens each consumes, and what
+  external dependencies exist. This is what lets the agent navigate instead of explore.
+- **`index_codebase.py`** — The deterministic engine inside `/codebase-index`.
+  A pure scanner that walks every component file, extracts imports, usage, token
+  references, and metadata adjacency, and emits the TOON maps — same input, same
+  output, every run. The LLM decides WHEN to index; this script decides WHAT the
+  index contains. The split is the heart of the architecture.
+- **`.ai/index.toon`** — The design system index the agent loads once at session start:
+  78 components, 46 with metadata, 348 tokens across 12 categories, 657 relationships
+  mapped. Load once, keep in context, fetch component metadata on demand.
+
+### 🟣 4. Orchestration Layer — "How the agent is shaped"
+This is where Claude Code becomes a system-aware operator, not a general model.
+
+- **`AI Agent`** (concept) — Claude Code is the runtime of the system. At session start
+  it loads the project instructions and the codebase index, then operates through
+  skills — scaffolding, auditing, indexing, syncing to Figma. The agent never
+  improvises against the system: rules constrain it, the index informs it, and every
+  skill reads and writes well-defined artifacts.
+- **`Rules`** — The registry of project-specific rules in `.claude/rules/`. Each rule
+  carries a `paths:` frontmatter, so it loads only when the agent touches matching
+  files — the agent isn't pre-loaded with all of them, it is shaped by the relevant
+  ones in context. Rules groups:
+  - `tokens-system.md` — naming and semantic layers
+  - `components/rules` — metadata schema and atomic hierarchy
+  - `codebase-index/rules` — what the maps must compute
+  - `skills-integration.md` — teaches the agent its own toolset
+  - `best-practices rules` — general DS best practices
+
+### 🩷 5. Figma Integration — "Code is the source; Figma is the render target"
+Figma is NOT the source of truth. The code is. Figma is generated FROM code.
+
+- **`.figma/manifest.json`** — Single source of truth for design identity: which Figma
+  files to sync against, the font (Outfit), the icon set (Lucide, by component key),
+  token namespace roots, text style naming patterns, and the variant property conventions
+  every component set follows. Every Figma skill reads identity from here.
+- **`/figma-ds`** (skill) — Reads a component's TSX (variants), CSS module (token usage),
+  and metadata, applies the design identity from the manifest, and generates the matching
+  Figma component set — variants named by convention, every fill and radius bound to
+  the corresponding Figma variable. 6-step generation flow per component.
+- **`/figma-composition`** (skill) — Generates Figma composition examples.
+- **`/docs-to-figma`** (skill) — Bridges documentation to Figma pages.
+- Supporting: `push-tokens.mjs`, `scan-variables.mjs`, `sync-components.mjs`,
+  `maps/tokens.json`, `maps/components.json`, `Figma Variables`, `Figma Components`,
+  `Figma Pages`, `Figma Transitions`, `.figma/schema/*.json`
+
+### 🔴 6. Agentic Loop — "The loop that closes"
+This is what makes the system self-healing rather than just self-documenting.
+
+- **`/review-pr`** (skill, v1.2.0, governance gate) — Reviews pull requests for design
+  system consistency: commit conventions, component structure, token usage, exports,
+  metadata conformance, docs, accessibility, and atomic hierarchy. Scope-aware.
+  Verdicts are severity-ranked: Blocker → Error → Warning → Info.
+- **`Audit Reports`** — Token violations by component, severity-ranked, with suggested
+  fixes. Because the infrastructure (index + maps) already knows every component and
+  every token, generating a full-system report is a cheap, repeatable operation.
+  Governance becomes a continuous artifact, not a quarterly consulting project.
+- **`Self-healing suggestions`** — The agent doesn't just flag violations — it proposes
+  the exact fix with rationale: which token replaces which hardcoded value, which
+  canonical prop name replaces a drifted one. Loop: `audit → report → propose →
+  (human approves) → heal`.
+
+---
+
+## The Skills (Claude Code Slash Commands)
+
+These are the agent's verbs. All live in `.claude/skills/`:
+
+| Skill | Purpose | Lives at |
+|---|---|---|
+| `/scaffold-component` | Generate complete component (5 files) | `.claude/skills/scaffold-component/` |
+| `/ai-component-metadata` | Generate/update `.metadata.ts` | `.claude/skills/ai-component-metadata/` |
+| `/token-auditor` | Audit CSS modules for hardcoded values | `.claude/skills/token-auditor/` |
+| `/codebase-index` | Generate dependency + relationship maps | `.claude/skills/codebase-index/` |
+| `/review-pr` | Governance gate on every PR | `.claude/skills/review-pr/` |
+| `/docs-generator` | Generate Astro docs pages from metadata | `.claude/skills/docs-generator/` |
+| `/figma-ds` | Generate Figma component sets from code | `.claude/skills/figma-ds/` |
+| `/figma-composition` | Generate Figma composition examples | `.claude/skills/figma-composition/` |
+| `/docs-to-figma` | Push docs to Figma pages | `.claude/skills/docs-to-figma/` |
+
+---
+
+## Monorepo Structure (Nx)
+
+```
+libs/
+  tokens/               # W3C token source + Style Dictionary build
+    tokens/*.json       # Source tokens (348 tokens, 12 categories)
+    build/css/variables.css    # Compiled CSS custom properties
+    build/js/index.js          # Compiled JS constants
+    build/js/index.d.ts        # TypeScript declarations
+  ui-react/             # React component library (78 components)
+    src/components/
+      atoms/Chip/
+        Chip.tsx              # CVA variants + typed props
+        Chip.module.css       # Token-based CSS module
+        Chip.metadata.ts      # AI-ready metadata
+        Chip.test.tsx         # Unit tests
+        index.ts              # Barrel exports
+
+.ai/                    # AI-readable indexes
+  index.toon            # Full system index (load once per session)
+  prop-map.md           # Canonical prop vocabulary
+  relationships/
+    component-usage.toon
+    design-tokens.toon
+    dependencies.toon
+
+.claude/
+  rules/                # Context-loaded rules
+    tokens-system.md
+    components/
+    codebase-index/
+    skills-integration.md
+    best-practices rules
+  skills/               # All slash command implementations
+
+.figma/
+  manifest.json         # Design identity source of truth
+  schema/               # JSON schemas for Figma artifacts
+```
+
+---
+
+## Key Design Principles
+
+1. **Token-first, always** — No hardcoded hex, px, or font values in any component CSS.
+   Everything resolves to a `var(–token)`. If it doesn't, `/token-auditor` catches it
+   and the loop proposes the fix.
+
+2. **Anatomy is a contract, not a convention** — Every component has exactly the same
+   5-file structure because `/scaffold-component` generates it. What the scaffold creates,
+   `/review-pr` enforces.
+
+3. **LLM decides WHEN; scripts decide WHAT** — The agent triggers indexing and auditing.
+   Python scripts do the deterministic computation. This is why the system has 0.04%
+   variance across runs (vs 26.5% without infrastructure).
+
+4. **Code is the source; Figma is the render target** — The code (TSX variants + CSS
+   module tokens) is the single source of truth. Figma is generated FROM code, not the
+   other way around. Every fill in Figma is bound to a Figma Variable by durable key.
+
+5. **Facts and judgment are separate nodes** — `scan-props.js` extracts facts
+   deterministically. `build-prop-map.js` applies canonical judgment (axes, anti-synonym
+   glossary, drift flags). Separated by design.
+
+6. **Governance is continuous, not periodic** — Because the index knows everything,
+   audit reports are cheap to regenerate. `/review-pr` runs on every PR. The loop never
+   opens.
+
+---
+
+## ARC Benchmark Results (Proof It Works)
+
+11 trials comparing the agent with and without the pre-built infrastructure:
+
+| Metric | Without infra | With infra | Δ |
+|---|---|---|---|
+| Accuracy | 65% | 100% | +54% |
+| Speed | 4:26 | 1:52 | 58% faster |
+| Discovery | 77% complete | 100% | +13% |
+| Consistency | 26.5% variance | 0.04% variance | 99.9% reduction |
+| False negatives | 60% rate | 0% | Eliminated |
+| Token cost | 27,211 | 28,166 | +3.5% (negligible) |
+
+Infrastructure converts token spend from **exploration into analysis**.
+
+---
+
+## Agent Operating Protocol
+
+When Claude Code starts a session in this project:
+
+1. **Load** `.ai/index.toon` — get the full map (78 components, 348 tokens,
+   657 relationships). Do NOT crawl the codebase.
+2. **Keep in context** — the index stays loaded for the conversation.
+3. **Fetch on demand** — load individual `Component.metadata.ts` only when working
+   on that specific component.
+4. **Act through skills** — never improvise component creation or token changes
+   outside of the skill system.
+5. **Let rules shape you** — `.claude/rules/` rules load automatically by path.
+   Read them, follow them.
+6. **Close the loop** — after scaffolding or modifying, run `/codebase-index` to
+   update maps, and `/review-pr` before any PR.
+
+---
+
+## What We Are Building
+
+We are building a **production implementation** of the Agentic Design System Infrastructure
+described above. The ultimate goal is a design system where:
+
+- An AI agent (Claude Code) is the primary operator
+- All components are generated, governed, and maintained through deterministic skills
+- The system is self-auditing and self-healing — violations are caught automatically
+  and fixes are proposed with exact rationale
+- Figma stays perfectly in sync because it is generated from code, not manually maintained
+- The human role shifts from writing boilerplate to approving agent-proposed changes
+
+This is not a design system with an AI feature. **This IS an agentic infrastructure**
+where the design system artifacts (tokens, components, metadata, maps, docs, Figma)
+are the inputs and outputs of a closed, self-correcting agent loop.
+
+---
+
+*Built by Cristian Morales — giorris.dev*
+*Reference: https://agentic-design-system-visualization.vercel.app/*
+```
+
+---
+
+## Summary for You
+
+Here's what the website taught us, bro — the whole picture in plain language:
+
+**The Agentic Design System** is built around one core idea: a design system where Claude Code is not just a tool you use *on* the system — it's the **operator of** the system. The whole thing is wired so that:
+
+- Tokens are the atomic decisions (348 of them, W3C format)
+- Components always reference tokens via CSS variables — never hardcoded values
+- Every component has a machine-readable metadata file that tells Claude *when* to use it and *what not to do*
+- A Python script builds a TOON-format index so Claude can navigate the codebase in one load instead of crawling it
+- Slash commands (`/scaffold-component`, `/token-auditor`, `/review-pr`, etc.) are Claude's verbs — it acts only through these, never improvises
+- Figma is the **render target**, not the source — code generates Figma, not the other way around
+- The loop closes: audit → report → suggest fix → human approves → heal
+
+The ARC benchmark proved it works: accuracy went from 65% → 100%, 58% faster, false negatives went from 60% → 0%, all at essentially the same token cost.
+
+Drop that `CLAUDE.md` in your project root and Claude Code will have full context of exactly what you're building from day one. 🚀
