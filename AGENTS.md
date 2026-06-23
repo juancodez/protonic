@@ -126,3 +126,18 @@ npm run design-review -- src/components/Modal
 - [ ] Pre-commit hook — auto-run scripts on staged `.tsx`/`.css` files
 - [ ] graphify integration — generate knowledge graph of component relationships + dependencies
 - [ ] Populate `figma-map.json` componentSetIds — run figma eval to capture actual node IDs
+
+## Lyse audit (auto-managed)
+
+<!-- lyse-managed:begin -->
+### Validate design-system conformance
+
+```bash
+pnpm exec lyse audit
+```
+
+Exit codes:
+- 0 — pass (Health Score ≥ project threshold)
+- 1 — fail (Health Score below threshold or hard errors)
+- 2 — config error
+<!-- lyse-managed:end -->

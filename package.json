@@ -14,7 +14,10 @@
     "audit": "tsx src/agents/component-auditor.ts",
     "audit:all": "tsx src/agents/audit-all.ts",
     "design-review": "tsx src/agents/design-review.ts",
-    "index": "node .ai/index-components.mjs"
+    "index": "node .ai/index-components.mjs",
+    "lyse": "lyse audit",
+    "lyse:fix": "lyse fix",
+    "lyse:share": "lyse share"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -25,6 +28,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.2.1",
+    "@lyse-labs/lyse": "^0.2.0-alpha.3",
     "@storybook/addon-a11y": "^10.4.6",
     "@storybook/addon-docs": "^10.4.6",
     "@storybook/addon-mcp": "^0.6.0",

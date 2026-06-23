@@ -1,0 +1,36 @@
+# Lyse configuration for Protonic — contract-first agentic design system
+# Docs: https://github.com/lyse-labs/lyse/blob/main/docs/guide/configuration.md
+
+designSystem:
+  # Protonic itself is the component library — point at src/
+  componentsModule: "./src"
+
+  # Map native HTML elements to Protonic equivalents
+  componentMap:
+    "button": "Button"
+    "select": "Select"
+
+  excludePaths:
+    - "**/node_modules/**"
+    - "**/dist/**"
+    - "**/storybook-static/**"
+    - "src/agents/**"       # audit agents, not product code
+    - "src/tokens/**"       # generated output — not source
+    - "src/lib/**"          # utility only
+
+rules:
+  # Protonic IS the DS — no-native-shadows would flag its own internals
+  components/no-native-shadows: off
+
+  # Stories exist as *.stories.tsx in each component folder
+  stories/coverage:
+    componentPaths:
+      - "src/components/**/*.tsx"
+    storyExtensions:
+      - "stories.tsx"
+
+  # Tokens: warn on hardcoded values (design-review.ts already catches these)
+  tokens/no-hardcoded-color:
+    severity: warning
+  tokens/no-hardcoded-spacing:
+    severity: warning
