@@ -1,0 +1,1384 @@
+{
+  "$schema": "https://github.com/lyse-labs/lyse/raw/main/schemas/v1/lyse-result.json",
+  "axes": [
+    {
+      "absoluteCap": 100,
+      "axis": "tokens",
+      "findings": 82,
+      "opportunities": 745,
+      "rateScore": 74,
+      "score": 74,
+      "sevPenalty": 193,
+      "weightedFindings": 193
+    },
+    {
+      "absoluteCap": 100,
+      "axis": "a11y",
+      "findings": 2,
+      "opportunities": 10,
+      "rateScore": 60,
+      "score": 60,
+      "sevPenalty": 4,
+      "weightedFindings": 4
+    },
+    {
+      "absoluteCap": 100,
+      "axis": "components",
+      "findings": 10,
+      "opportunities": 77,
+      "rateScore": 87,
+      "score": 87,
+      "sevPenalty": 10,
+      "weightedFindings": 10
+    },
+    {
+      "absoluteCap": "N/A",
+      "axis": "stories",
+      "findings": 0,
+      "opportunities": 0,
+      "rateScore": "N/A",
+      "score": "N/A",
+      "sevPenalty": 0,
+      "weightedFindings": 0
+    },
+    {
+      "absoluteCap": 100,
+      "axis": "ai-surface",
+      "findings": 7,
+      "opportunities": 10,
+      "rateScore": -30,
+      "score": 0,
+      "sevPenalty": 13,
+      "weightedFindings": 13
+    },
+    {
+      "absoluteCap": 100,
+      "axis": "ai-governance",
+      "findings": 0,
+      "opportunities": 44,
+      "rateScore": 100,
+      "score": 100,
+      "sevPenalty": 0,
+      "weightedFindings": 0
+    }
+  ],
+  "finalScore": 64,
+  "findings": [
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.primary\" references unresolved alias {color.orange.500}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.primary-dark\" references unresolved alias {color.orange.700}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.on-primary\" references unresolved alias {color.white}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.bg\" references unresolved alias {color.cream.50}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.bg-surface\" references unresolved alias {color.beige.100}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.surface\" references unresolved alias {color.white}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.text\" references unresolved alias {color.navy.900}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.text-body\" references unresolved alias {color.brown.700}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.text-muted\" references unresolved alias {color.taupe.500}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.text-subtle\" references unresolved alias {color.taupe.300}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.accent\" references unresolved alias {color.amber.400}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.accent-light\" references unresolved alias {color.terracotta.200}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.success\" references unresolved alias {color.green.600}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.warning-text\" references unresolved alias {color.brown.500}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\color\\semantic.json",
+        "line": 1
+      },
+      "message": "Token \"color.danger\" references unresolved alias {color.red.600}",
+      "ruleId": "tokens/dtcg-conformance",
+      "severity": "error"
+    },
+    {
+      "axis": "a11y",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": ".",
+        "line": 1
+      },
+      "message": "Design system paints colors but defines no forced-colors / high-contrast handling — in Windows High Contrast Mode (forced-colors) components may lose borders, focus rings, and meaning conveyed by color",
+      "ruleId": "a11y/forced-colors",
+      "severity": "warning",
+      "suggestion": "add a `@media (forced-colors: active)` block (use `forced-color-adjust` and system color keywords for borders/focus), or a `prefers-contrast` / high-contrast token set"
+    },
+    {
+      "axis": "a11y",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": ".",
+        "line": 1
+      },
+      "message": "Design system uses transitions/animations but defines no `prefers-reduced-motion` guard — users who request reduced motion still get the full animations",
+      "ruleId": "a11y/prefers-reduced-motion",
+      "severity": "warning",
+      "suggestion": "add a `@media (prefers-reduced-motion: reduce)` block that disables or shortens motion (or gate motion behind `prefers-reduced-motion: no-preference`)"
+    },
+    {
+      "axis": "ai-surface",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": ".cursor/rules/",
+        "line": 1
+      },
+      "message": "No agent instruction files found (neither `.cursor/rules/*.mdc` nor `.claude/skills/*/SKILL.md`)",
+      "ruleId": "ai-surface/agent-instruction-files",
+      "severity": "warning",
+      "suggestion": "add at least one Cursor rule under `.cursor/rules/` or one Claude skill under `.claude/skills/<name>/SKILL.md` so coding agents have project-specific guidance"
+    },
+    {
+      "axis": "ai-surface",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": ".mcp.json",
+        "line": 1
+      },
+      "message": "No MCP config file found — design system is not declared as AI-agent-accessible",
+      "ruleId": "ai-surface/mcp-config-present",
+      "severity": "warning",
+      "suggestion": "create `.mcp.json` (Claude Code), `.cursor/mcp.json` (Cursor), or `claude_desktop_config.json` declaring at least one MCP server with a `command`"
+    },
+    {
+      "axis": "ai-surface",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "AGENTS.md",
+        "line": 1
+      },
+      "message": "AGENTS.md does not mention any toolchain config file present in the repo (package.json, tsconfig.json, ...)",
+      "ruleId": "ai-surface/agents-md-quality",
+      "severity": "warning",
+      "suggestion": "reference the project's actual config files so agents know which toolchain is in scope"
+    },
+    {
+      "axis": "ai-surface",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "CHANGELOG.md",
+        "line": 1
+      },
+      "message": "No structured CHANGELOG found — AI agents (and humans) can't see what changed between versions",
+      "ruleId": "versioning/changelog-present",
+      "severity": "warning",
+      "suggestion": "add a CHANGELOG.md with version-structured entries (Keep a Changelog: `## [1.2.0]` headings) so consumers and AI agents can track changes and breaking updates"
+    },
+    {
+      "axis": "ai-surface",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "MIGRATION.md",
+        "line": 1
+      },
+      "message": "No migration/upgrade guide found — AI agents (and humans) upgrading across versions have no documented path for breaking changes",
+      "ruleId": "versioning/migration-guide-present",
+      "severity": "warning",
+      "suggestion": "add a MIGRATION.md / UPGRADING.md (or a `## Migration` section in the CHANGELOG) describing how to move across breaking versions"
+    },
+    {
+      "axis": "ai-surface",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "llms.txt",
+        "line": 1
+      },
+      "message": "No llms.txt at repo root — AI agents have no top-level map of the design system",
+      "ruleId": "ai-surface/llms-txt-structure",
+      "severity": "warning",
+      "suggestion": "add an llms.txt file (llmstxt.org spec) with an H1 title, a blockquote summary, and `## <section>` link lists"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Badge/Badge.css",
+        "line": 8
+      },
+      "message": "Hardcoded font-size `0.75rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Badge/Badge.css",
+        "line": 9
+      },
+      "message": "Hardcoded font-weight `600` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "context": "bad:    '<Button style={{ background: \"#ff0000\" }}>',",
+      "location": {
+        "column": 46,
+        "file": "src/components/Button/Button.metadata.ts",
+        "line": 71
+      },
+      "message": "Hardcoded color value: #ff0000",
+      "ruleId": "tokens/no-hardcoded-color",
+      "severity": "warning"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Button/Button.module.css",
+        "line": 11
+      },
+      "message": "Hardcoded border-width `1.5px` — border thickness should come from a token scale",
+      "ruleId": "tokens/no-hardcoded-border-width",
+      "severity": "warning",
+      "suggestion": "reference a border-width token (e.g. `--border-width-thick`) instead of a raw length"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Button/Button.module.css",
+        "line": 32
+      },
+      "message": "Hardcoded opacity `0.4` — opacity should come from a token scale",
+      "ruleId": "tokens/no-hardcoded-opacity",
+      "severity": "warning",
+      "suggestion": "reference an opacity token (e.g. `--opacity-disabled`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Button/Button.module.css",
+        "line": 37
+      },
+      "message": "Hardcoded motion duration `100ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Button/Button.module.css",
+        "line": 45
+      },
+      "message": "Hardcoded `linear-gradient()` — gradients should come from a token, not inline literals",
+      "ruleId": "tokens/no-hardcoded-gradient",
+      "severity": "warning",
+      "suggestion": "define the gradient as a token (CSS custom property `--gradient-*`, or a DTCG/theme entry) and reference it via `var(--gradient-*)`"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "medium",
+      "location": {
+        "column": 5,
+        "file": "src/components/Button/Button.module.css",
+        "line": 48
+      },
+      "message": "Hardcoded color value: rgba(255, 255, 255, 0.14)",
+      "ruleId": "tokens/no-hardcoded-color",
+      "severity": "warning"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "medium",
+      "location": {
+        "column": 28,
+        "file": "src/components/Card/Card.css",
+        "line": 5
+      },
+      "message": "Hardcoded color value: rgba(164,55,0,0.07)",
+      "ruleId": "tokens/no-hardcoded-color",
+      "severity": "warning"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Card/Card.css",
+        "line": 8
+      },
+      "message": "Hardcoded box-shadow `0 1px 6px rgba(164,55,0,0.04)` — elevation should come from a shadow token scale",
+      "ruleId": "tokens/no-hardcoded-shadow",
+      "severity": "warning",
+      "suggestion": "reference a shadow token (e.g. `--shadow-sm`, `--elevation-2`) instead of a raw box-shadow"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "medium",
+      "location": {
+        "column": 28,
+        "file": "src/components/Card/Card.css",
+        "line": 8
+      },
+      "message": "Hardcoded color value: rgba(164,55,0,0.04)",
+      "ruleId": "tokens/no-hardcoded-color",
+      "severity": "warning"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "medium",
+      "context": "tokens: { background: ['--color-bg'], border: ['rgba(164,55,0,0.07)'], shadow: ['--shadow-card', '--shadow-card-hover'],",
+      "location": {
+        "column": 51,
+        "file": "src/components/Card/Card.metadata.ts",
+        "line": 19
+      },
+      "message": "Hardcoded color value: rgba(164,55,0,0.07)",
+      "ruleId": "tokens/no-hardcoded-color",
+      "severity": "warning"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "medium",
+      "location": {
+        "column": 28,
+        "file": "src/components/Card/Card.module.css",
+        "line": 3
+      },
+      "message": "Hardcoded color value: rgba(164, 55, 0, 0.07)",
+      "ruleId": "tokens/no-hardcoded-color",
+      "severity": "warning"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Chip/Chip.module.css",
+        "line": 45
+      },
+      "message": "Hardcoded opacity `0.6` — opacity should come from a token scale",
+      "ruleId": "tokens/no-hardcoded-opacity",
+      "severity": "warning",
+      "suggestion": "reference an opacity token (e.g. `--opacity-disabled`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/ClaraPanel/ClaraPanel.css",
+        "line": 49
+      },
+      "message": "Hardcoded font-size `0.875rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/ClaraPanel/ClaraPanel.css",
+        "line": 57
+      },
+      "message": "Hardcoded font-size `0.7rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/ClaraPanel/ClaraPanel.css",
+        "line": 58
+      },
+      "message": "Hardcoded font-weight `500` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/ClaraPanel/ClaraPanel.css",
+        "line": 97
+      },
+      "message": "Hardcoded font-size `0.875rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/ClaraPanel/ClaraPanel.css",
+        "line": 137
+      },
+      "message": "Hardcoded font-size `0.875rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/ClaraPanel/ClaraPanel.css",
+        "line": 150
+      },
+      "message": "Hardcoded font-size `0.625rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/ClaraPanel/ClaraPanel.module.css",
+        "line": 48
+      },
+      "message": "Hardcoded font-size `0.7rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/ClaraPanel/ClaraPanel.module.css",
+        "line": 130
+      },
+      "message": "Hardcoded font-size `0.625rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/DraggableTicker/DraggableTicker.css",
+        "line": 43
+      },
+      "message": "Hardcoded font-size `0.8125rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/DraggableTicker/DraggableTicker.css",
+        "line": 44
+      },
+      "message": "Hardcoded font-weight `600` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/DraggableTicker/DraggableTicker.module.css",
+        "line": 35
+      },
+      "message": "Hardcoded font-size `0.8125rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Hero/Hero.css",
+        "line": 39
+      },
+      "message": "Hardcoded font-size `0.65rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Hero/Hero.css",
+        "line": 41
+      },
+      "message": "Hardcoded letter-spacing `0.2em` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Hero/Hero.css",
+        "line": 56
+      },
+      "message": "Hardcoded font-size `2.5rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Hero/Hero.css",
+        "line": 57
+      },
+      "message": "Hardcoded font-weight `800` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Hero/Hero.css",
+        "line": 59
+      },
+      "message": "Hardcoded letter-spacing `-0.02em` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Hero/Hero.css",
+        "line": 71
+      },
+      "message": "Hardcoded font-size `1.125rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "context": "'inverted=true → use accent-light (#ffb59a) for overline, text-inverted-muted for body.',",
+      "location": {
+        "column": 40,
+        "file": "src/components/Hero/Hero.metadata.ts",
+        "line": 16
+      },
+      "message": "Hardcoded color value: #ffb59a",
+      "ruleId": "tokens/no-hardcoded-color",
+      "severity": "warning"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Hero/Hero.module.css",
+        "line": 52
+      },
+      "message": "Hardcoded font-size `2.5rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Modal/Modal.css",
+        "line": 7
+      },
+      "message": "Hardcoded z-index `100` — stacking order should come from a z-index token scale",
+      "ruleId": "tokens/no-hardcoded-z-index",
+      "severity": "warning",
+      "suggestion": "define a z-index scale (e.g. `--z-modal`, `--z-popover`) and reference it instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Modal/Modal.css",
+        "line": 16
+      },
+      "message": "Hardcoded motion duration `200ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Modal/Modal.css",
+        "line": 17
+      },
+      "message": "Hardcoded motion duration `150ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Modal/Modal.css",
+        "line": 34
+      },
+      "message": "Hardcoded motion duration `200ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Modal/Modal.css",
+        "line": 35
+      },
+      "message": "Hardcoded motion duration `150ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Modal/Modal.css",
+        "line": 50
+      },
+      "message": "Hardcoded font-size `1.25rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Modal/Modal.css",
+        "line": 58
+      },
+      "message": "Hardcoded font-size `0.875rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Modal/Modal.module.css",
+        "line": 4
+      },
+      "message": "Hardcoded z-index `100` — stacking order should come from a z-index token scale",
+      "ruleId": "tokens/no-hardcoded-z-index",
+      "severity": "warning",
+      "suggestion": "define a z-index scale (e.g. `--z-modal`, `--z-popover`) and reference it instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Modal/Modal.module.css",
+        "line": 45
+      },
+      "message": "Hardcoded font-size `1.25rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 13
+      },
+      "message": "Hardcoded font-size `0.75rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 14
+      },
+      "message": "Hardcoded font-weight `600` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 17
+      },
+      "message": "Hardcoded letter-spacing `0.05em` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 32
+      },
+      "message": "Hardcoded font-size `0.875rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 35
+      },
+      "message": "Hardcoded motion duration `150ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 53
+      },
+      "message": "Hardcoded opacity `0.4` — opacity should come from a token scale",
+      "ruleId": "tokens/no-hardcoded-opacity",
+      "severity": "warning",
+      "suggestion": "reference an opacity token (e.g. `--opacity-disabled`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 59
+      },
+      "message": "Hardcoded font-size `0.75rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 60
+      },
+      "message": "Hardcoded motion duration `150ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 77
+      },
+      "message": "Hardcoded motion duration `150ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 78
+      },
+      "message": "Hardcoded motion duration `100ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 96
+      },
+      "message": "Hardcoded font-size `0.875rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 100
+      },
+      "message": "Hardcoded motion duration `100ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.css",
+        "line": 111
+      },
+      "message": "Hardcoded font-weight `600` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.module.css",
+        "line": 15
+      },
+      "message": "Hardcoded letter-spacing `0.05em` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.module.css",
+        "line": 38
+      },
+      "message": "Hardcoded opacity `0.4` — opacity should come from a token scale",
+      "ruleId": "tokens/no-hardcoded-opacity",
+      "severity": "warning",
+      "suggestion": "reference an opacity token (e.g. `--opacity-disabled`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.module.css",
+        "line": 58
+      },
+      "message": "Hardcoded motion duration `100ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Select/Select.module.css",
+        "line": 78
+      },
+      "message": "Hardcoded motion duration `100ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Table/Table.css",
+        "line": 7
+      },
+      "message": "Hardcoded font-size `0.875rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Table/Table.css",
+        "line": 18
+      },
+      "message": "Hardcoded font-size `0.75rem` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Table/Table.css",
+        "line": 19
+      },
+      "message": "Hardcoded font-weight `600` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Table/Table.css",
+        "line": 22
+      },
+      "message": "Hardcoded letter-spacing `0.05em` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Table/Table.css",
+        "line": 45
+      },
+      "message": "Hardcoded motion duration `100ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Table/Table.module.css",
+        "line": 19
+      },
+      "message": "Hardcoded letter-spacing `0.05em` — typography should come from a type token scale",
+      "ruleId": "tokens/no-hardcoded-typography",
+      "severity": "warning",
+      "suggestion": "reference a typography token (e.g. `--font-size-md`, `--font-weight-semibold`) instead of a raw value"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "src/components/Table/Table.module.css",
+        "line": 33
+      },
+      "message": "Hardcoded motion duration `100ms` — motion should come from a duration/easing token scale",
+      "ruleId": "tokens/no-hardcoded-motion",
+      "severity": "warning",
+      "suggestion": "reference a motion token (e.g. `--duration-fast`, `--easing-standard`) instead of a raw value"
+    },
+    {
+      "axis": "ai-surface",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "components.json",
+        "line": 1
+      },
+      "message": "No component manifest JSON found — MCP tools fall back to source-file reads",
+      "ruleId": "ai-surface/component-manifest-json",
+      "severity": "info",
+      "suggestion": "create a `components.json` or `lyse.components.json` listing your components ({ name, sourceFile }) so MCP servers can serve component lookups at ~5× lower cost than reading source files"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/Badge/Badge.tsx",
+        "line": 5
+      },
+      "message": "Exported component <Badge> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above Badge describing what it is and when to use it"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/Button/Button.tsx",
+        "line": 6
+      },
+      "message": "Exported component <Button> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above Button describing what it is and when to use it"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/Card/Card.tsx",
+        "line": 5
+      },
+      "message": "Exported component <Card> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above Card describing what it is and when to use it"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/Chip/Chip.tsx",
+        "line": 7
+      },
+      "message": "Exported component <Chip> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above Chip describing what it is and when to use it"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/ClaraPanel/ClaraPanel.tsx",
+        "line": 5
+      },
+      "message": "Exported component <ClaraPanel> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above ClaraPanel describing what it is and when to use it"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/DraggableTicker/DraggableTicker.tsx",
+        "line": 6
+      },
+      "message": "Exported component <DraggableTicker> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above DraggableTicker describing what it is and when to use it"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/Hero/Hero.tsx",
+        "line": 6
+      },
+      "message": "Exported component <Hero> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above Hero describing what it is and when to use it"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/Modal/Modal.tsx",
+        "line": 12
+      },
+      "message": "Exported component <Modal> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above Modal describing what it is and when to use it"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/Select/Select.tsx",
+        "line": 13
+      },
+      "message": "Exported component <Select> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above Select describing what it is and when to use it"
+    },
+    {
+      "axis": "components",
+      "confidence": "low",
+      "location": {
+        "column": 0,
+        "file": "src/components/Table/Table.tsx",
+        "line": 13
+      },
+      "message": "Exported component <Table> has no doc comment — IDE tooltips and AI agents get no usage guidance",
+      "ruleId": "components/doc-comments",
+      "severity": "info",
+      "suggestion": "add a JSDoc block (/** … */) above Table describing what it is and when to use it"
+    },
+    {
+      "axis": "tokens",
+      "confidence": "low",
+      "location": {
+        "column": 1,
+        "file": "tokens\\borders.json",
+        "line": 1
+      },
+      "message": "Semantic-layer $description coverage is 0% (0/6); target is 80%",
+      "ruleId": "tokens/description-coverage",
+      "severity": "info",
+      "suggestion": "add $description to semantic tokens (action.*, surface.*, text.*, feedback.*, etc.)"
+    }
+  ],
+  "grade": {
+    "autoFailed": false,
+    "grade": "B",
+    "reasons": []
+  },
+  "meta": {
+    "coverage": {
+      "configPath": "C:/Users/tn/protonic-agenticsystem/.lyse.yaml",
+      "scannedFiles": 79
+    }
+  },
+  "repoRoot": "C:\\Users\\tn\\protonic-agenticsystem",
+  "rulesVersion": "0.1.0",
+  "schemaVersion": 2,
+  "scoringVersion": "scoring-v1.1",
+  "stack": [
+    "react",
+    "storybook"
+  ],
+  "tier": "Quantitative",
+  "timestamp": "",
+  "toolVersion": "0.2.0-alpha.3"
+}
