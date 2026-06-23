@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "lyse": {
+      "command": "npx",
+      "args": ["@lyse-labs/lyse", "mcp"],
+      "description": "Lyse design system health audit MCP server"
+    }
+  }
+}
