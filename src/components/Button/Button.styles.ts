@@ -1,28 +1,20 @@
 import { cva } from 'class-variance-authority';
+import styles from './Button.module.css';
 
-// CVA = Class Variance Authority
-// It maps variant + size → the correct CSS class combination.
-// This is the component's style contract — one place, no drift.
-
-export const buttonStyles = cva(
-  // Base styles — applied to every Button regardless of variant/size
-  'protonic-btn',
-  {
-    variants: {
-      variant: {
-        primary:     'protonic-btn--primary',
-        secondary:   'protonic-btn--secondary',
-        destructive: 'protonic-btn--destructive',
-      },
-      size: {
-        small:  'protonic-btn--sm',
-        medium: 'protonic-btn--md',
-        large:  'protonic-btn--lg',
-      },
+// Intent layer — maps axes values to CSS module classes.
+// axes.ts → (this file) → Button.module.css → variables.css
+export const buttonVariants = cva(styles.btn, {
+  variants: {
+    variant: {
+      primary:     styles.primary,
+      secondary:   styles.secondary,
+      destructive: styles.destructive,
     },
-    defaultVariants: {
-      variant: 'primary',
-      size:    'medium',
+    size: {
+      small:  styles.sm,
+      medium: styles.md,
+      large:  styles.lg,
     },
-  }
-);
+  },
+  defaultVariants: { variant: 'primary', size: 'medium' },
+});

@@ -55,8 +55,7 @@ function auditComponent(inputPath: string): void {
   const required = [
     `${componentName}.tsx`,
     `${componentName}.types.ts`,
-    `${componentName}.styles.ts`,
-    `${componentName}.css`,
+    `${componentName}.module.css`,
     `${componentName}.stories.tsx`,
     'index.ts',
   ];

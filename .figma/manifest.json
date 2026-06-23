@@ -1,0 +1,47 @@
+{
+  "fileKey": "R4KIv7XKg8g1A1NR9R11cI",
+  "fonts": {
+    "body": "Plus Jakarta Sans",
+    "display": "Bricolage Grotesque"
+  },
+  "iconSet": {
+    "name": "Lucide",
+    "componentKey": "TBD"
+  },
+  "textStyleNaming": {
+    "pattern": "{category}.{size}.{weight}",
+    "example": "body.md.regular → Body/Md/Regular"
+  },
+  "tokenNamespaces": {
+    "roots": [
+      "color-primary", "color-text", "color-bg", "color-surface",
+      "color-danger", "color-success", "color-warning", "color-accent"
+    ]
+  },
+  "tokenNamespace": "--",
+  "componentConventions": {
+    "variantProperty": "Variant",
+    "sizeProperty": "Size",
+    "stateProperty": "State",
+    "statusProperty": "Status"
+  },
+  "variableCollections": {
+    "color": "Protonic/Color",
+    "spacing": "Protonic/Spacing",
+    "typography": "Protonic/Typography",
+    "radius": "Protonic/Radius",
+    "motion": "Protonic/Motion"
+  },
+  "pageName": "Components",
+  "components": [
+    { "name": "Button",          "path": "src/components/Button",          "category": "atom" },
+    { "name": "Badge",           "path": "src/components/Badge",           "category": "atom" },
+    { "name": "Card",            "path": "src/components/Card",            "category": "atom" },
+    { "name": "Modal",           "path": "src/components/Modal",           "category": "molecule" },
+    { "name": "Select",          "path": "src/components/Select",          "category": "molecule" },
+    { "name": "Table",           "path": "src/components/Table",           "category": "organism" },
+    { "name": "Hero",            "path": "src/components/Hero",            "category": "layout" },
+    { "name": "ClaraPanel",      "path": "src/components/ClaraPanel",      "category": "layout" },
+    { "name": "DraggableTicker", "path": "src/components/DraggableTicker", "category": "atom" }
+  ]
+}

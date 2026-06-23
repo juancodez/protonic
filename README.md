@@ -1,6 +1,6 @@
 # Protonic
 
-A contract-first, agentic design system built on [React Aria Components](https://react-spectrum.adobe.com/react-aria/).
+A contract-first, agentic design system framework built on [React Aria Components](https://react-spectrum.adobe.com/react-aria/).
 
 > *"El que dice que no es necesario un design system porque existe shadcn, sigue pensando en librerías. Tu ya estás en otra abstracción donde la librería es un artefacto."*
 > — Cristian Morales Achiardi
@@ -9,74 +9,183 @@ A contract-first, agentic design system built on [React Aria Components](https:/
 
 ## The idea
 
-shadcn/ui is opinionated. It ships with all its rules already decided, and those rules are hard to break. It only works on React web. It gives you atoms and molecules, nothing more.
+shadcn/ui is a library. Protonic is a model.
 
-Protonic is the opposite:
+The difference: in shadcn, the library IS the system. In Protonic, the library is an artifact produced by contracts. The contracts are the system. An AI agent (Claude Code) enforces them.
 
 | | shadcn | Protonic |
 |---|---|---|
 | Approach | Library-first | Contract-first |
-| Rules | Pre-decided, opinionated | You define them, agents enforce them |
+| Rules | Pre-decided, baked in | You define them — agents enforce them |
 | Platform | React web only | General contracts, any binding |
 | Library | The product | An artifact |
 | Agents | None | Built in from day 1 |
-
-The library Protonic produces is a side effect of well-defined contracts — not the goal.
+| Adoption | Copy → paste → customize | Define your contracts → apply your theme → ship |
 
 ---
 
-## Architecture
+## Architecture: 5 Layers + 1 Loop
 
 ```
-General contracts (Protonic core)
-  What is this component for? What are its axes? What behavior does it guarantee?
-  Portable across platforms. This layer doesn't care about brand or stack.
-        ↓
-Specific contracts (per-project theme)
-  Klaro theme: orange #a43700, Bricolage Grotesque, warm premium visual language
-  Bound to one product. Easy to swap for another.
-        ↓
-Components (the library — just an artifact)
-  React + React Aria. Accessible, typed, variant API via CVA.
-        ↓
-Agents (Phase 3 — the enforcement layer)
-  Component Auditor · A11y Agent · Docs Agent · Design Review Agent
-  They read the contracts and verify the artifacts don't drift from them.
+🟡 1. Tokenization Layer
+   Design decisions as CSS custom properties.
+   Style Dictionary compiles W3C-format source → variables.css
+   One change = every component follows.
+
+🟢 2. Intent Layer
+   Components declare identity through contracts, not code.
+   axes.ts   — canonical prop vocabulary (variant / size / status)
+   contracts.ts — articulated WHY behind every visual decision
+   Component.metadata.ts — AI-readable docs per component
+
+🔵 3. Indexing Layer
+   .ai/index.json — the agent's map. Load once. Navigate without crawling.
+   /codebase-index — regenerate the map after any change (deterministic, no LLM)
+
+🟣 4. Orchestration Layer
+   CLAUDE.md — Agent Operating Protocol (how Claude Code runs this project)
+   .claude/commands/ — all agentic skills (slash commands)
+   The agent reads indexes, acts through skills, never improvises.
+
+🩷 5. Figma Integration
+   Code is the source. Figma is the render target.
+   .figma/manifest.json — design identity (file key, fonts, conventions)
+   /figma-component-generator — pushes component sets to Figma, bound to variables
+
+🔴 6. Agentic Loop
+   scaffold → audit → design-review → review-pr → (merge) → codebase-index
+   The loop never opens. Violations are caught. Fixes are proposed with rationale.
 ```
 
 ---
 
-## Why React Aria as the base
+## The Agentic Skills
 
-Accessibility from scratch is hard. React Aria (by Adobe) already solved keyboard navigation, focus traps, ARIA roles, and screen reader behavior for every component. Protonic builds the design layer on top — tokens, variant API, visual polish — without reinventing what's already solved.
+All slash commands live in `.claude/commands/`:
+
+| Command | What it does |
+|---|---|
+| `/scaffold-component <Name>` | Generate complete 8-file component anatomy |
+| `/component-auditor <path>` | Audit file structure, props, React Aria conventions |
+| `/a11y-agent <path>` | Full AT support audit (NVDA, JAWS, VoiceOver, TalkBack, Narrator, Orca) |
+| `/design-review <path>` | CSS token compliance — no hardcoded values |
+| `/docs-agent <path>` | Generate/update Storybook stories for full variant coverage |
+| `/codebase-index` | Regenerate `.ai/index.json` after any component change |
+| `/review-pr [path\|--all]` | Governance gate — runs all layers before merge |
+
+Static scripts (CI-friendly, no LLM needed):
+
+```bash
+npm run audit -- src/components/<Name>
+npm run design-review -- src/components/<Name>
+```
 
 ---
 
-## Klaro — first consumer
+## Why the Infrastructure Matters
 
-[Klaro](https://github.com/juancodez/klaro-landing) is a fiscal assistant for Spanish-speaking freelancers in Germany. It's the first real product consuming Protonic. Its tokens seed the default theme:
+Benchmark from Cristian Morales Achiardi's ARC study (11 trials, agent with/without pre-built infrastructure):
 
-| Token | Value |
-|-------|-------|
-| Primary | `#a43700` |
-| Background | `#fff8f1` |
-| Display font | Bricolage Grotesque |
-| Body font | Plus Jakarta Sans |
+| Metric | Without infra | With infra | Δ |
+|---|---|---|---|
+| Accuracy | 65% | 100% | +54% |
+| Speed | 4:26 | 1:52 | 58% faster |
+| Consistency | 26.5% variance | 0.04% variance | 99.9% reduction |
+| False negatives | 60% | 0% | Eliminated |
 
-This is a **theme**, not Protonic's identity. Any project can apply different values to the same contracts.
+Infrastructure converts token spend from **exploration into analysis**. The agent reads a map. It doesn't wander the codebase.
 
 ---
 
-## Three phases
+## How to Adopt Protonic for Your Project
 
-**Phase 1 — Accessible base components** ✅
-Button · Modal · Select · Table — behavior only, no styles. React Aria foundation.
+Protonic is designed to be forked, not installed. The framework is the contracts — you bring your brand.
 
-**Phase 2 — Design system layer** ← current
-Axes registry · Design contracts · CVA variant API · CSS custom properties · Storybook · Figma sync
+**Step 1 — Define your general contracts** (portable, platform-agnostic)
+```
+src/tokens/axes.ts      — your prop vocabulary (variant / size / status axes)
+src/tokens/contracts.ts — articulate WHY every design decision was made
+```
 
-**Phase 3 — Agentic layer** ← north star
-Agents that read the contracts and enforce them. Built from scratch so the rules are clean from day 1 — not retrofitted into something already running.
+**Step 2 — Apply your theme** (brand-specific)
+```
+src/tokens/primitives.ts  — your raw brand values (colors, fonts, radii)
+src/tokens/theme.css      — CSS custom properties wiring tokens to the system
+tokens/*.json             — Style Dictionary source (compiled → variables.css)
+```
+
+**Step 3 — Update the Figma manifest**
+```
+.figma/manifest.json — your Figma file key, font names, variable collection names
+```
+
+**Step 4 — Scaffold your first component**
+```
+/scaffold-component Button
+```
+The skill reads YOUR axes and generates the 8-file anatomy with YOUR token names.
+
+**Step 5 — The loop runs itself**
+```
+scaffold → /component-auditor → /design-review → /review-pr → /codebase-index
+```
+Every time you add a component, the agents check it. Every contract violation is caught before it ships. Figma stays in sync because it's generated from code.
+
+---
+
+## Component Anatomy (8 files per component)
+
+```
+src/components/<Name>/
+  <Name>.tsx           React Aria primitive + CVA + typed props
+  <Name>.types.ts      TypeScript interface extending React Aria type
+  <Name>.styles.ts     CVA variant configuration
+  <Name>.module.css    Token-based CSS (NO hardcoded values)
+  <Name>.metadata.ts   AI-readable: use cases, compositions, anti-patterns, a11y
+  <Name>.stories.tsx   Storybook: all variants covered, ArgTypes from axes
+  <Name>.test.tsx      Vitest browser tests (Playwright headless)
+  index.ts             Barrel: component + types + metadata
+```
+
+---
+
+## Klaro — Reference Consumer
+
+[Klaro](https://github.com/juancodez/klaro-landing) is a fiscal assistant for Spanish-speaking freelancers in Germany. It's the first real product consuming Protonic. Its tokens are the default theme — NOT Protonic's identity.
+
+Any project applies a different `theme.css` and `primitives.ts`. The 9 core components + all the agents work with any theme.
+
+**9 components shipped — all at 10/10 audit, 0 design-review warnings:**
+
+Phase 1 (React Aria base, accessible):
+Button · Modal · Select · Table
+
+Phase 2 (Klaro theme applied):
+Badge · Card · Hero · ClaraPanel · DraggableTicker
+
+---
+
+## Getting Started
+
+```bash
+git clone https://github.com/juancodez/protonic
+cd protonic
+npm install
+npm run dev        # Vite dev server
+npm run storybook  # Storybook on :6006
+```
+
+Run agents:
+```bash
+# Static (no Claude needed)
+npm run audit -- src/components/Button
+npm run design-review -- src/components/Button
+
+# AI agents (Claude Code slash commands)
+/codebase-index
+/component-auditor src/components/Button
+/review-pr src/components/Button
+```
 
 ---
 
@@ -87,18 +196,10 @@ Agents that read the contracts and enforce them. Built from scratch so the rules
 | Framework | Vite + React 18 + TypeScript (strict) |
 | Accessibility | `react-aria-components` |
 | Variant API | `class-variance-authority` |
-| Styling | CSS custom properties |
-| Design sync | Figma CLI |
-| Agents | Claude API + graphify |
-
----
-
-## Getting started
-
-```bash
-npm install
-npm run dev
-```
+| Styling | CSS custom properties (no Tailwind, no CSS-in-JS) |
+| Tokens | Style Dictionary (W3C format) |
+| Agents | Claude Code + 7 slash commands |
+| Figma sync | figma-cli |
 
 ---
 

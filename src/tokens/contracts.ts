@@ -49,13 +49,14 @@ export const DESIGN_CONTRACTS = {
 
   // ─── SHAPE ────────────────────────────────────────────────────────────────
   borderRadius: {
-    value: '8px default, 100px pill',
+    value: '8px default, 16px surface, 100px pill',
     chain: [
       'Sharp corners feel unfinished; large radii feel playful/informal',
-      '8px is the professional midpoint — structured but approachable',
-      'Pill (100px) reserved for tags and status badges only, never interactive controls',
+      '8px for internal UI elements (inputs, dropdowns, modals)',
+      'Pill (100px) for interactive controls — buttons and nav items — matches Klaro brand language',
+      '16px for surface containers — cards, panels — warm and approachable at component scale',
     ],
-    contract: 'Default radius is 8px. Pill radius (100px) is reserved for non-interactive elements.',
+    contract: 'Buttons use pill (100px). Cards/panels use --radius-lg (16px). Internal elements use --radius (8px).',
   },
 
   // ─── SPACING ──────────────────────────────────────────────────────────────

@@ -1,0 +1,313 @@
+{
+  "--color-danger": [
+    "Badge",
+    "Button",
+    "Chip"
+  ],
+  "--color-danger-subtle": [
+    "Badge",
+    "Button",
+    "Chip"
+  ],
+  "--color-primary": [
+    "Badge",
+    "Button",
+    "Chip",
+    "ClaraPanel",
+    "Hero",
+    "Select",
+    "Table"
+  ],
+  "--color-primary-subtle": [
+    "Badge",
+    "Chip",
+    "ClaraPanel",
+    "DraggableTicker",
+    "Hero",
+    "Select",
+    "Table"
+  ],
+  "--color-success": [
+    "Badge",
+    "Chip"
+  ],
+  "--color-success-subtle": [
+    "Badge",
+    "Chip"
+  ],
+  "--color-warning-subtle": [
+    "Badge",
+    "Chip"
+  ],
+  "--color-warning-text": [
+    "Badge",
+    "Chip"
+  ],
+  "--font-family-body": [
+    "Badge",
+    "Button",
+    "Chip",
+    "ClaraPanel",
+    "DraggableTicker",
+    "Hero",
+    "Modal",
+    "Select",
+    "Table"
+  ],
+  "--font-size-xs": [
+    "Badge",
+    "Chip",
+    "Hero",
+    "Select",
+    "Table"
+  ],
+  "--font-weight-semibold": [
+    "Badge",
+    "Button",
+    "Chip",
+    "DraggableTicker",
+    "Select",
+    "Table"
+  ],
+  "--radius-pill": [
+    "Badge",
+    "Button",
+    "Chip",
+    "DraggableTicker",
+    "Hero"
+  ],
+  "--space-1": [
+    "Badge",
+    "Chip",
+    "ClaraPanel",
+    "Hero",
+    "Select"
+  ],
+  "--space-3": [
+    "Badge",
+    "Button",
+    "Chip",
+    "ClaraPanel",
+    "Hero",
+    "Modal",
+    "Select",
+    "Table"
+  ],
+  "--color-danger-subtle-border": [
+    "Button"
+  ],
+  "--color-danger-subtle-hover": [
+    "Button"
+  ],
+  "--color-on-primary": [
+    "Button",
+    "ClaraPanel"
+  ],
+  "--color-primary-dark": [
+    "Button"
+  ],
+  "--color-primary-subtle-hover": [
+    "Button"
+  ],
+  "--color-text-body": [
+    "Button",
+    "DraggableTicker",
+    "Hero",
+    "Modal",
+    "Table"
+  ],
+  "--font-size-base": [
+    "Button",
+    "Chip",
+    "ClaraPanel",
+    "Modal",
+    "Select",
+    "Table"
+  ],
+  "--font-size-md": [
+    "Button"
+  ],
+  "--font-size-sm": [
+    "Button"
+  ],
+  "--font-weight-bold": [
+    "Button",
+    "ClaraPanel",
+    "Hero",
+    "Modal"
+  ],
+  "--motion-duration-long": [
+    "Button"
+  ],
+  "--motion-duration-medium": [
+    "Button"
+  ],
+  "--motion-duration-normal": [
+    "Button",
+    "Chip",
+    "Modal"
+  ],
+  "--motion-easing-spring": [
+    "Button",
+    "Card",
+    "Modal"
+  ],
+  "--shadow-btn": [
+    "Button"
+  ],
+  "--shadow-btn-hover": [
+    "Button"
+  ],
+  "--space-10": [
+    "Button"
+  ],
+  "--space-2": [
+    "Button",
+    "ClaraPanel",
+    "DraggableTicker",
+    "Hero",
+    "Modal",
+    "Select"
+  ],
+  "--space-4": [
+    "Button",
+    "ClaraPanel",
+    "DraggableTicker",
+    "Hero",
+    "Modal",
+    "Select",
+    "Table"
+  ],
+  "--space-5": [
+    "Button",
+    "ClaraPanel"
+  ],
+  "--space-8": [
+    "Button",
+    "Modal"
+  ],
+  "--color-bg": [
+    "Card",
+    "ClaraPanel",
+    "DraggableTicker",
+    "Hero",
+    "Modal",
+    "Select"
+  ],
+  "--motion-duration-slow": [
+    "Card"
+  ],
+  "--radius-md": [
+    "Card"
+  ],
+  "--shadow-card": [
+    "Card"
+  ],
+  "--shadow-card-hover": [
+    "Card"
+  ],
+  "--space-6": [
+    "Card",
+    "ClaraPanel",
+    "Hero",
+    "Modal"
+  ],
+  "--motion-easing-out": [
+    "Chip"
+  ],
+  "--radius-sm": [
+    "Chip",
+    "ClaraPanel",
+    "DraggableTicker",
+    "Modal",
+    "Select",
+    "Table"
+  ],
+  "--color-bg-surface": [
+    "ClaraPanel",
+    "DraggableTicker",
+    "Modal",
+    "Select",
+    "Table"
+  ],
+  "--color-surface": [
+    "ClaraPanel"
+  ],
+  "--color-text": [
+    "ClaraPanel",
+    "Hero",
+    "Modal",
+    "Select",
+    "Table"
+  ],
+  "--color-text-muted": [
+    "ClaraPanel",
+    "Select",
+    "Table"
+  ],
+  "--font-weight-medium": [
+    "ClaraPanel"
+  ],
+  "--space-16": [
+    "ClaraPanel"
+  ],
+  "--color-accent-light": [
+    "Hero"
+  ],
+  "--color-bg-inverted-subtle": [
+    "Hero"
+  ],
+  "--color-text-inverted-muted": [
+    "Hero"
+  ],
+  "--font-family-display": [
+    "Hero",
+    "Modal"
+  ],
+  "--font-letter-spacing-display": [
+    "Hero"
+  ],
+  "--font-letter-spacing-wide": [
+    "Hero"
+  ],
+  "--font-line-height-relaxed": [
+    "Hero"
+  ],
+  "--font-line-height-tight": [
+    "Hero"
+  ],
+  "--font-size-xl": [
+    "Hero"
+  ],
+  "--font-weight-extrabold": [
+    "Hero"
+  ],
+  "--font-weight-regular": [
+    "Hero"
+  ],
+  "--space-18": [
+    "Hero"
+  ],
+  "--space-30": [
+    "Hero"
+  ],
+  "--color-overlay": [
+    "Modal"
+  ],
+  "--motion-duration-fast": [
+    "Modal",
+    "Select"
+  ],
+  "--shadow-xl": [
+    "Modal"
+  ],
+  "--shadow-md": [
+    "Select"
+  ],
+  "--trigger-width": [
+    "Select"
+  ],
+  "--color-primary-subtle-select": [
+    "Table"
+  ]
+}

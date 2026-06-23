@@ -1,0 +1,24 @@
+{
+  "Badge": [],
+  "Button": [
+    "react-aria-components"
+  ],
+  "Card": [],
+  "Chip": [
+    "react-aria-components"
+  ],
+  "ClaraPanel": [],
+  "DraggableTicker": [
+    "react"
+  ],
+  "Hero": [],
+  "Modal": [
+    "react-aria-components"
+  ],
+  "Select": [
+    "react-aria-components"
+  ],
+  "Table": [
+    "react-aria-components"
+  ]
+}

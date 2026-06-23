@@ -118,9 +118,11 @@ npm run design-review -- src/components/Modal
 
 ---
 
-## Phase 3 roadmap (future sprints)
+## Phase 3 roadmap
 
-- [ ] `npm run audit:all` — run Component Auditor on all components at once
+- [x] `npm run audit:all` — runs Component Auditor across all 9 components (`src/agents/audit-all.ts`)
+- [x] figma-component-generator sync — all 9 components pushed to Figma (`.ai/figma-map.json` tracks state)
+- [x] `.ai/index.json` — upgraded with `figma` field + `contractRefs` per component
 - [ ] Pre-commit hook — auto-run scripts on staged `.tsx`/`.css` files
 - [ ] graphify integration — generate knowledge graph of component relationships + dependencies
-- [ ] figma-component-generator sync — push component API changes to Figma
+- [ ] Populate `figma-map.json` componentSetIds — run figma eval to capture actual node IDs

@@ -1,0 +1,438 @@
+{
+  "summary": {
+    "totalComponents": 10,
+    "componentsWithMetadata": 10,
+    "totalTokens": 68,
+    "tokenCategories": 12,
+    "relationshipsMapped": 176,
+    "generatedAt": "2026-06-23T22:18:36.087Z"
+  },
+  "usage": {
+    "loadOnce": "Read .ai/index.json and .ai/relationships/* once at session start",
+    "keepInContext": "Maintain loaded data for the full conversation",
+    "loadMetadataOnDemand": "Read Component.metadata.ts only when working on that component"
+  },
+  "components": [
+    {
+      "name": "Badge",
+      "path": "src/components/Badge/Badge.tsx",
+      "foundation": "none",
+      "variants": {
+        "status": [
+          "info",
+          "success",
+          "warning",
+          "error"
+        ]
+      },
+      "tokens": [
+        "--color-danger",
+        "--color-danger-subtle",
+        "--color-primary",
+        "--color-primary-subtle",
+        "--color-success",
+        "--color-success-subtle",
+        "--color-warning-subtle",
+        "--color-warning-text",
+        "--font-family-body",
+        "--font-size-xs",
+        "--font-weight-semibold",
+        "--radius-pill",
+        "--space-1",
+        "--space-3"
+      ],
+      "usedBy": [],
+      "category": "klaro",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "Badge"
+      },
+      "contractRefs": [
+        "primaryColor"
+      ]
+    },
+    {
+      "name": "Button",
+      "path": "src/components/Button/Button.tsx",
+      "foundation": [
+        "Button"
+      ],
+      "variants": {
+        "variant": [
+          "primary",
+          "secondary",
+          "destructive"
+        ],
+        "size": [
+          "small",
+          "medium",
+          "large"
+        ]
+      },
+      "tokens": [
+        "--color-danger",
+        "--color-danger-subtle",
+        "--color-danger-subtle-border",
+        "--color-danger-subtle-hover",
+        "--color-on-primary",
+        "--color-primary",
+        "--color-primary-dark",
+        "--color-primary-subtle-hover",
+        "--color-text-body",
+        "--font-family-body",
+        "--font-size-base",
+        "--font-size-md",
+        "--font-size-sm",
+        "--font-weight-bold",
+        "--font-weight-semibold",
+        "--motion-duration-long",
+        "--motion-duration-medium",
+        "--motion-duration-normal",
+        "--motion-easing-spring",
+        "--radius-pill",
+        "--shadow-btn",
+        "--shadow-btn-hover",
+        "--space-10",
+        "--space-2",
+        "--space-3",
+        "--space-4",
+        "--space-5",
+        "--space-8"
+      ],
+      "usedBy": [
+        "Modal"
+      ],
+      "category": "core",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "Button"
+      },
+      "contractRefs": [
+        "primaryColor",
+        "borderRadius",
+        "spacingGrid"
+      ]
+    },
+    {
+      "name": "Card",
+      "path": "src/components/Card/Card.tsx",
+      "foundation": "none",
+      "variants": null,
+      "tokens": [
+        "--color-bg",
+        "--motion-duration-slow",
+        "--motion-easing-spring",
+        "--radius-md",
+        "--shadow-card",
+        "--shadow-card-hover",
+        "--space-6"
+      ],
+      "usedBy": [],
+      "category": "klaro",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "Card"
+      },
+      "contractRefs": [
+        "flatElevation",
+        "surfaceColor",
+        "spacingGrid",
+        "borderRadius"
+      ]
+    },
+    {
+      "name": "Chip",
+      "path": "src/components/Chip/Chip.tsx",
+      "foundation": [
+        "Button"
+      ],
+      "variants": {
+        "status": [
+          "info",
+          "success",
+          "warning",
+          "error"
+        ]
+      },
+      "tokens": [
+        "--color-danger",
+        "--color-danger-subtle",
+        "--color-primary",
+        "--color-primary-subtle",
+        "--color-success",
+        "--color-success-subtle",
+        "--color-warning-subtle",
+        "--color-warning-text",
+        "--font-family-body",
+        "--font-size-base",
+        "--font-size-xs",
+        "--font-weight-semibold",
+        "--motion-duration-normal",
+        "--motion-easing-out",
+        "--radius-pill",
+        "--radius-sm",
+        "--space-1",
+        "--space-3"
+      ],
+      "usedBy": [],
+      "category": "klaro",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "Chip"
+      },
+      "contractRefs": []
+    },
+    {
+      "name": "ClaraPanel",
+      "path": "src/components/ClaraPanel/ClaraPanel.tsx",
+      "foundation": "none",
+      "variants": null,
+      "tokens": [
+        "--color-bg",
+        "--color-bg-surface",
+        "--color-on-primary",
+        "--color-primary",
+        "--color-primary-subtle",
+        "--color-surface",
+        "--color-text",
+        "--color-text-muted",
+        "--font-family-body",
+        "--font-size-base",
+        "--font-weight-bold",
+        "--font-weight-medium",
+        "--radius-sm",
+        "--space-1",
+        "--space-16",
+        "--space-2",
+        "--space-3",
+        "--space-4",
+        "--space-5",
+        "--space-6"
+      ],
+      "usedBy": [],
+      "category": "klaro",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "ClaraPanel"
+      },
+      "contractRefs": [
+        "primaryColor",
+        "surfaceColor",
+        "spacingGrid",
+        "borderRadius"
+      ]
+    },
+    {
+      "name": "DraggableTicker",
+      "path": "src/components/DraggableTicker/DraggableTicker.tsx",
+      "foundation": "none",
+      "variants": null,
+      "tokens": [
+        "--color-bg",
+        "--color-bg-surface",
+        "--color-primary-subtle",
+        "--color-text-body",
+        "--font-family-body",
+        "--font-weight-semibold",
+        "--radius-pill",
+        "--radius-sm",
+        "--space-2",
+        "--space-4"
+      ],
+      "usedBy": [],
+      "category": "klaro",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "DraggableTicker"
+      },
+      "contractRefs": [
+        "primaryColor",
+        "borderRadius",
+        "spacingGrid"
+      ]
+    },
+    {
+      "name": "Hero",
+      "path": "src/components/Hero/Hero.tsx",
+      "foundation": "none",
+      "variants": {
+        "inverted": [
+          "true",
+          "false"
+        ]
+      },
+      "tokens": [
+        "--color-accent-light",
+        "--color-bg",
+        "--color-bg-inverted-subtle",
+        "--color-primary",
+        "--color-primary-subtle",
+        "--color-text",
+        "--color-text-body",
+        "--color-text-inverted-muted",
+        "--font-family-body",
+        "--font-family-display",
+        "--font-letter-spacing-display",
+        "--font-letter-spacing-wide",
+        "--font-line-height-relaxed",
+        "--font-line-height-tight",
+        "--font-size-xl",
+        "--font-size-xs",
+        "--font-weight-bold",
+        "--font-weight-extrabold",
+        "--font-weight-regular",
+        "--radius-pill",
+        "--space-1",
+        "--space-18",
+        "--space-2",
+        "--space-3",
+        "--space-30",
+        "--space-4",
+        "--space-6"
+      ],
+      "usedBy": [],
+      "category": "klaro",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "Hero"
+      },
+      "contractRefs": [
+        "primaryColor",
+        "displayFont",
+        "bodyFont",
+        "spacingGrid"
+      ]
+    },
+    {
+      "name": "Modal",
+      "path": "src/components/Modal/Modal.tsx",
+      "foundation": [
+        "Dialog",
+        "DialogTrigger",
+        "Heading",
+        "Modal",
+        "ModalOverlay"
+      ],
+      "variants": null,
+      "tokens": [
+        "--color-bg",
+        "--color-bg-surface",
+        "--color-overlay",
+        "--color-text",
+        "--color-text-body",
+        "--font-family-body",
+        "--font-family-display",
+        "--font-size-base",
+        "--font-weight-bold",
+        "--motion-duration-fast",
+        "--motion-duration-normal",
+        "--motion-easing-spring",
+        "--radius-sm",
+        "--shadow-xl",
+        "--space-2",
+        "--space-3",
+        "--space-4",
+        "--space-6",
+        "--space-8"
+      ],
+      "usedBy": [],
+      "category": "core",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "Modal"
+      },
+      "contractRefs": [
+        "surfaceColor",
+        "spacingGrid",
+        "borderRadius",
+        "bodyFont"
+      ]
+    },
+    {
+      "name": "Select",
+      "path": "src/components/Select/Select.tsx",
+      "foundation": [
+        "Select",
+        "Button",
+        "Label",
+        "ListBox",
+        "ListBoxItem",
+        "Popover",
+        "SelectValue"
+      ],
+      "variants": null,
+      "tokens": [
+        "--color-bg",
+        "--color-bg-surface",
+        "--color-primary",
+        "--color-primary-subtle",
+        "--color-text",
+        "--color-text-muted",
+        "--font-family-body",
+        "--font-size-base",
+        "--font-size-xs",
+        "--font-weight-semibold",
+        "--motion-duration-fast",
+        "--radius-sm",
+        "--shadow-md",
+        "--space-1",
+        "--space-2",
+        "--space-3",
+        "--space-4",
+        "--trigger-width"
+      ],
+      "usedBy": [],
+      "category": "core",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "Select"
+      },
+      "contractRefs": [
+        "primaryColor",
+        "surfaceColor",
+        "spacingGrid",
+        "borderRadius"
+      ]
+    },
+    {
+      "name": "Table",
+      "path": "src/components/Table/Table.tsx",
+      "foundation": [
+        "Cell",
+        "Column",
+        "Row",
+        "Table",
+        "TableBody",
+        "TableHeader"
+      ],
+      "variants": null,
+      "tokens": [
+        "--color-bg-surface",
+        "--color-primary",
+        "--color-primary-subtle",
+        "--color-primary-subtle-select",
+        "--color-text",
+        "--color-text-body",
+        "--color-text-muted",
+        "--font-family-body",
+        "--font-size-base",
+        "--font-size-xs",
+        "--font-weight-semibold",
+        "--radius-sm",
+        "--space-3",
+        "--space-4"
+      ],
+      "usedBy": [],
+      "category": "core",
+      "figma": {
+        "fileKey": "rRSxMj33ZtioxdrabH5rm6",
+        "component": "Table"
+      },
+      "contractRefs": [
+        "primaryColor",
+        "surfaceColor",
+        "spacingGrid"
+      ]
+    }
+  ]
+}

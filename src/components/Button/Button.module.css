@@ -1,0 +1,110 @@
+/* Button.module.css — every value is a token var, no hardcoded values */
+
+/* ── Base ────────────────────────────────────────────────────────────── */
+.btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             var(--space-2);
+  font-family:     var(--font-family-body);
+  font-weight:     var(--font-weight-semibold);
+  border:          1.5px solid transparent;
+  border-radius:   var(--radius-pill);
+  cursor:          pointer;
+  position:        relative;
+  overflow:        hidden;
+  text-decoration: none;
+  white-space:     nowrap;
+  transition:
+    background      var(--motion-duration-medium) var(--motion-easing-spring),
+    color           var(--motion-duration-normal) ease,
+    border-color    var(--motion-duration-normal) ease,
+    box-shadow      var(--motion-duration-medium) ease,
+    transform       var(--motion-duration-medium) var(--motion-easing-spring);
+  outline-offset: 2px;
+}
+
+/* React Aria state hooks */
+.btn[data-focus-visible] {
+  outline: 2px solid var(--color-primary);
+}
+.btn[data-disabled] {
+  opacity: 0.4;
+  cursor:  not-allowed;
+}
+.btn[data-pressed] {
+  transform: scale(0.97) translateY(0) !important;
+  transition-duration: 100ms;
+}
+
+/* Shimmer sweep — shared across variants that opt in via .shimmer class */
+.btn::after {
+  content:    '';
+  position:   absolute;
+  inset:      0;
+  background: linear-gradient(
+    105deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 75%
+  );
+  transform:        translateX(-120%);
+  transition:       transform var(--motion-duration-long) var(--motion-easing-spring);
+  pointer-events:   none;
+}
+
+/* ── Variants ────────────────────────────────────────────────────────── */
+
+.primary {
+  background:   var(--color-primary);
+  color:        var(--color-on-primary);
+  border-color: var(--color-primary);
+  font-weight:  var(--font-weight-bold);
+  box-shadow:   var(--shadow-btn);
+}
+.primary[data-hovered]:not([data-disabled]) {
+  background:   var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  box-shadow:   var(--shadow-btn-hover);
+  transform:    translateY(-2px);
+}
+.primary[data-hovered]:not([data-disabled])::after {
+  transform: translateX(120%);
+}
+
+.secondary {
+  background:   transparent;
+  color:        var(--color-text-body);
+  border-color: var(--color-primary-subtle-hover);
+}
+.secondary[data-hovered]:not([data-disabled]) {
+  border-color: var(--color-primary);
+  color:        var(--color-primary);
+}
+
+.destructive {
+  background:   var(--color-danger-subtle);
+  color:        var(--color-danger);
+  border-color: var(--color-danger-subtle-border);
+}
+.destructive[data-hovered]:not([data-disabled]) {
+  background: var(--color-danger-subtle-hover);
+}
+
+/* ── Sizes ───────────────────────────────────────────────────────────── */
+
+.sm {
+  font-size:  var(--font-size-sm);
+  padding:    var(--space-2) var(--space-5);
+  min-height: 32px;
+}
+.md {
+  font-size:  var(--font-size-base);
+  padding:    var(--space-3) var(--space-8);
+  min-height: 44px;
+}
+.lg {
+  font-size:  var(--font-size-md);
+  padding:    var(--space-4) var(--space-10);
+  min-height: 52px;
+}

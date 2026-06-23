@@ -1,0 +1,13 @@
+{
+  "_note": "Component name → Figma componentSetId + componentKey. Populated by /figma-ds after generation.",
+  "Button":          { "componentSetId": "TBD", "componentKey": "TBD" },
+  "Badge":           { "componentSetId": "TBD", "componentKey": "TBD" },
+  "Card":            { "componentSetId": "TBD", "componentKey": "TBD" },
+  "Chip":            { "componentSetId": "TBD", "componentKey": "TBD" },
+  "ClaraPanel":      { "componentSetId": "TBD", "componentKey": "TBD" },
+  "DraggableTicker": { "componentSetId": "TBD", "componentKey": "TBD" },
+  "Hero":            { "componentSetId": "TBD", "componentKey": "TBD" },
+  "Modal":           { "componentSetId": "TBD", "componentKey": "TBD" },
+  "Select":          { "componentSetId": "TBD", "componentKey": "TBD" },
+  "Table":           { "componentSetId": "TBD", "componentKey": "TBD" }
+}

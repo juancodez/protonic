@@ -1,8 +1,7 @@
 import { Button as AriaButton } from 'react-aria-components';
 import { cn } from '../../lib/cn';
-import { buttonStyles } from './Button.styles';
 import type { ProtonicButtonProps } from './Button.types';
-import './Button.css';
+import { buttonVariants } from './Button.styles';
 
 export function Button({
   variant = 'primary',
@@ -15,7 +14,8 @@ export function Button({
   return (
     <AriaButton
       {...props}
-      className={cn(buttonStyles({ variant, size }), className)}
+      isDisabled={props.isDisabled || isLoading}
+      className={cn(buttonVariants({ variant, size }), className)}
       data-loading={isLoading || undefined}
     >
       {isLoading ? '…' : children}

@@ -1,0 +1,14 @@
+{
+  "text-style": {
+    "display-xl": { "$value": "800 48px/1.06 'Bricolage Grotesque', sans-serif", "$type": "string" },
+    "display-lg": { "$value": "700 36px/1.10 'Bricolage Grotesque', sans-serif", "$type": "string" },
+    "display-md": { "$value": "600 24px/1.30 'Bricolage Grotesque', sans-serif", "$type": "string" },
+    "display-sm": { "$value": "600 20px/1.30 'Bricolage Grotesque', sans-serif", "$type": "string" },
+    "body-lg":    { "$value": "400 17px/1.65 'Plus Jakarta Sans', sans-serif",   "$type": "string" },
+    "body-md":    { "$value": "400 15px/1.65 'Plus Jakarta Sans', sans-serif",   "$type": "string" },
+    "body-sm":    { "$value": "400 12.5px/1.65 'Plus Jakarta Sans', sans-serif", "$type": "string" },
+    "label-md":   { "$value": "600 14px/1.30 'Plus Jakarta Sans', sans-serif",   "$type": "string" },
+    "label-sm":   { "$value": "600 12.5px/1.30 'Plus Jakarta Sans', sans-serif", "$type": "string" },
+    "caption":    { "$value": "400 10.5px/1.65 'Plus Jakarta Sans', sans-serif", "$type": "string" }
+  }
+}

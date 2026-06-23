@@ -4,14 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build:tokens": "node sd.config.mjs",
+    "dev": "npm run build:tokens && vite",
+    "build": "npm run build:tokens && tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "audit": "tsx src/agents/component-auditor.ts",
-    "design-review": "tsx src/agents/design-review.ts"
+    "audit:all": "tsx src/agents/audit-all.ts",
+    "design-review": "tsx src/agents/design-review.ts",
+    "index": "node .ai/index-components.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -35,6 +38,7 @@
     "@vitest/coverage-v8": "^4.1.9",
     "playwright": "^1.61.0",
     "storybook": "^10.4.6",
+    "style-dictionary": "^5.5.0",
     "tsx": "^4.22.4",
     "typescript": "^5.7.2",
     "vite": "^6.3.5",

@@ -1,0 +1,39 @@
+{
+  "color": {
+    "orange": {
+      "500": { "$value": "#a43700", "$type": "color" },
+      "700": { "$value": "#8a2e00", "$type": "color" }
+    },
+    "navy": {
+      "900": { "$value": "#1e1b17", "$type": "color" }
+    },
+    "brown": {
+      "700": { "$value": "#594139", "$type": "color" },
+      "600": { "$value": "#7a6558", "$type": "color" },
+      "500": { "$value": "#7a5a00", "$type": "color" }
+    },
+    "taupe": {
+      "500": { "$value": "#8c7168", "$type": "color" },
+      "300": { "$value": "#c0a898", "$type": "color" }
+    },
+    "cream": {
+      "50": { "$value": "#fff8f1", "$type": "color" }
+    },
+    "beige": {
+      "100": { "$value": "#f4ede5", "$type": "color" }
+    },
+    "amber": {
+      "400": { "$value": "#ffb830", "$type": "color" }
+    },
+    "terracotta": {
+      "200": { "$value": "#ffb59a", "$type": "color" }
+    },
+    "green": {
+      "600": { "$value": "#15803d", "$type": "color" }
+    },
+    "red": {
+      "600": { "$value": "#dc2626", "$type": "color" }
+    },
+    "white": { "$value": "#ffffff", "$type": "color" }
+  }
+}

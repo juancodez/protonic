@@ -1,11 +1,10 @@
 import { cn } from '../../lib/cn';
-import { cardStyles } from './Card.styles';
 import type { ProtonicCardProps } from './Card.types';
-import './Card.css';
+import styles from './Card.module.css';
 
 export function Card({ className, children, ...props }: ProtonicCardProps) {
   return (
-    <div className={cn(cardStyles(), className)} {...props}>
+    <div className={cn(styles.card, className)} {...props}>
       {children}
     </div>
   );

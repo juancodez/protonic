@@ -1,0 +1,18 @@
+{
+  "motion": {
+    "duration": {
+      "fast":   { "$value": "150ms", "$type": "duration" },
+      "normal": { "$value": "200ms", "$type": "duration" },
+      "medium": { "$value": "250ms", "$type": "duration" },
+      "slow":   { "$value": "300ms", "$type": "duration" },
+      "slower": { "$value": "350ms", "$type": "duration" },
+      "base":   { "$value": "400ms", "$type": "duration" },
+      "long":   { "$value": "550ms", "$type": "duration" }
+    },
+    "easing": {
+      "out":    { "$value": "cubic-bezier(0.23, 1, 0.32, 1)",    "$type": "string" },
+      "in-out": { "$value": "cubic-bezier(0.77, 0, 0.175, 1)",   "$type": "string" },
+      "spring": { "$value": "cubic-bezier(0.16, 1, 0.3, 1)",     "$type": "string" }
+    }
+  }
+}

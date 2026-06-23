@@ -8,7 +8,7 @@ import {
 } from 'react-aria-components';
 import type { Key } from 'react-aria-components';
 import type { ProtonicTableProps } from './Table.types';
-import './Table.css';
+import styles from './Table.module.css';
 
 export function Table({
   columns,
@@ -21,7 +21,7 @@ export function Table({
   return (
     <AriaTable
       aria-label={ariaLabel}
-      className="protonic-table"
+      className={styles.table}
       selectionMode={selectionMode}
       onSelectionChange={(keys) => {
         if (onSelectionChange && keys !== 'all') {
@@ -34,7 +34,7 @@ export function Table({
         {(col) => (
           <Column
             id={col.id}
-            className="protonic-table__column"
+            className={styles.column}
             allowsSorting={col.allowsSorting}
             isRowHeader={col.id === columns[0].id}
           >
@@ -44,9 +44,9 @@ export function Table({
       </TableHeader>
       <TableBody items={rows}>
         {(row) => (
-          <Row id={row.id} className="protonic-table__row">
+          <Row id={row.id} className={styles.row}>
             {columns.map((col) => (
-              <Cell key={col.id} className="protonic-table__cell">
+              <Cell key={col.id} className={styles.cell}>
                 {String(row[col.id] ?? '')}
               </Cell>
             ))}

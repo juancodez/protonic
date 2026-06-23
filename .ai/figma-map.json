@@ -1,0 +1,60 @@
+{
+  "_comment": "Lookup table for figma-component-generator. Maps component name → Figma node IDs. componentSetId is populated after first push via figma-component-generator.",
+  "figmaFileKey": "rRSxMj33ZtioxdrabH5rm6",
+  "components": {
+    "Button": {
+      "componentSetId": null,
+      "page": "Components",
+      "pushed": true,
+      "notes": "Pushed in session 2025-06. ID not captured — run figma eval to resolve."
+    },
+    "Badge": {
+      "componentSetId": null,
+      "page": "Components",
+      "pushed": true,
+      "notes": "Pushed in session 2025-06."
+    },
+    "Card": {
+      "componentSetId": null,
+      "page": "Components",
+      "pushed": true,
+      "notes": "Pushed in session 2025-06."
+    },
+    "Hero": {
+      "componentSetId": null,
+      "page": "Components",
+      "pushed": true,
+      "notes": "Pushed in session 2025-06."
+    },
+    "Modal": {
+      "componentSetId": null,
+      "page": "Components",
+      "pushed": true,
+      "notes": "Pushed in session 2025-06."
+    },
+    "Select": {
+      "componentSetId": null,
+      "page": "Components",
+      "pushed": true,
+      "notes": "Pushed in session 2025-06."
+    },
+    "Table": {
+      "componentSetId": null,
+      "page": "Components",
+      "pushed": true,
+      "notes": "Pushed in session 2025-06."
+    },
+    "ClaraPanel": {
+      "componentSetId": null,
+      "page": "Components",
+      "pushed": true,
+      "notes": "Pushed in session 2025-06."
+    },
+    "DraggableTicker": {
+      "componentSetId": null,
+      "page": "Components",
+      "pushed": true,
+      "notes": "Pushed in session 2025-06."
+    }
+  }
+}

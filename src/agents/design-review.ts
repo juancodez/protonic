@@ -43,6 +43,42 @@ interface CSSCheck {
   severity: 'fail' | 'warn';
 }
 
+// Spacing scale for nearest-token resolver (ponytail: hardcoded, no JSON read needed)
+const SPACING_SCALE: Array<{ px: number; token: string }> = [
+  { px: 4,   token: '--space-1' },
+  { px: 8,   token: '--space-2' },
+  { px: 12,  token: '--space-3' },
+  { px: 16,  token: '--space-4' },
+  { px: 20,  token: '--space-5' },
+  { px: 24,  token: '--space-6' },
+  { px: 32,  token: '--space-8' },
+  { px: 40,  token: '--space-10' },
+  { px: 48,  token: '--space-12' },
+  { px: 64,  token: '--space-16' },
+  { px: 72,  token: '--space-18' },
+  { px: 80,  token: '--space-20' },
+  { px: 96,  token: '--space-24' },
+  { px: 120, token: '--space-30' },
+  { px: 160, token: '--space-40' },
+];
+
+function nearestSpacingTokens(pxValue: string): string {
+  const n = parseInt(pxValue, 10);
+  if (isNaN(n)) return 'check var(--space-*) scale';
+  const sorted = [...SPACING_SCALE].sort((a, b) => Math.abs(a.px - n) - Math.abs(b.px - n));
+  const [first, second] = sorted;
+  return second
+    ? `nearest: var(${first.token}) [${first.px}px] or var(${second.token}) [${second.px}px]`
+    : `nearest: var(${first.token}) [${first.px}px]`;
+}
+
+// Foundation token palette names — these should NEVER appear in component CSS
+const FOUNDATION_PALETTES = ['orange', 'navy', 'brown', 'taupe', 'cream', 'beige', 'amber', 'terracotta', 'green', 'red', 'white'];
+const FOUNDATION_TOKEN_RE = new RegExp(
+  `var\\(--color-(${FOUNDATION_PALETTES.join('|')})-?\\d*\\)`,
+  'g'
+);
+
 // ponytail: regex-based — no CSS AST needed for these simple checks
 const CHECKS: CSSCheck[] = [
   {
@@ -67,27 +103,57 @@ const CHECKS: CSSCheck[] = [
     // px spacing > 1px — 1px border hairlines are acceptable, 0 needs no token
     pattern: /(?:padding|margin|gap|top|right|bottom|left|inset)(?:-\w+)?\s*:\s*([2-9]\d*px|\d{2,}px)/g,
     rule: 'Raw px spacing value',
-    fix: (_v: string) => 'Replace with var(--space-[n]) — scale: 4px=1, 8px=2, 12px=3, 16px=4, 20px=5, 24px=6, 32px=8',
+    fix: (v: string) => nearestSpacingTokens(v),
     severity: 'fail',
   },
   {
     pattern: /font-family\s*:\s*(?!var\()(["'][^"']+["']|[\w-]+)/g,
     rule: 'Hardcoded font-family',
-    fix: () => 'Replace with var(--font-display) or var(--font-body)',
+    fix: () => 'Replace with var(--font-family-display) or var(--font-family-body)',
     severity: 'fail',
   },
   {
     // border-radius that isn't 0, 50%, or a var()
     pattern: /border-radius\s*:\s*(?!var\(|0|50%)([0-9]+(?:px|rem|em|%))/g,
     rule: 'Hardcoded border-radius',
-    fix: () => 'Replace with var(--radius-default) [8px] or var(--radius-pill) [100px]',
+    fix: () => 'Replace with var(--radius-sm) [8px], var(--radius-md) [16px], or var(--radius-pill) [100px]',
+    severity: 'fail',
+  },
+  {
+    // Easing keywords — must use motion tokens
+    pattern: /transition[^:]*:\s*[^;]*\s(ease(?:-in(?:-out)?|-out)?|linear)(?:\s|;|$)/g,
+    rule: 'Hardcoded easing keyword',
+    fix: () => 'Replace with var(--motion-easing-out), var(--motion-easing-in-out), or var(--motion-easing-spring)',
+    severity: 'fail',
+  },
+  {
+    // Foundation token used directly in component — must use semantic alias
+    pattern: FOUNDATION_TOKEN_RE,
+    rule: 'Foundation token in component CSS — use semantic alias',
+    fix: (v: string) => {
+      const map: Record<string, string> = {
+        'var(--color-orange-500)': 'var(--color-primary)',
+        'var(--color-orange-700)': 'var(--color-primary-dark)',
+        'var(--color-red-600)':    'var(--color-danger)',
+        'var(--color-green-600)':  'var(--color-success)',
+        'var(--color-navy-900)':   'var(--color-text)',
+        'var(--color-brown-700)':  'var(--color-text-body)',
+        'var(--color-taupe-500)':  'var(--color-text-muted)',
+        'var(--color-taupe-300)':  'var(--color-text-subtle)',
+        'var(--color-cream-50)':   'var(--color-bg)',
+        'var(--color-beige-100)':  'var(--color-bg-surface)',
+        'var(--color-white)':      'var(--color-surface)',
+        'var(--color-amber-400)':  'var(--color-accent)',
+      };
+      return map[v] ? `Use ${map[v]} instead` : 'Use the semantic alias from color/semantic.json';
+    },
     severity: 'fail',
   },
   {
     // box-shadow — Protonic flat elevation contract: depth via border + bg shift, not shadows
-    pattern: /box-shadow\s*:\s*(?!none|inset\s+0\s+0\s+0)([^;]+)/g,
+    pattern: /box-shadow\s*:\s*(?!none|var\()([^;]+)/g,
     rule: 'box-shadow detected — flat elevation contract',
-    fix: () => 'Protonic uses flat elevation. Use border + background shift for depth. See contracts.ts: flatElevation',
+    fix: () => 'Protonic uses flat elevation. Use border + background shift, or var(--shadow-*) tokens. See contracts.ts: flatElevation',
     severity: 'warn',
   },
 ];

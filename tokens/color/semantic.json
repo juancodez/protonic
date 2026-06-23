@@ -1,0 +1,30 @@
+{
+  "color": {
+    "primary":                { "$value": "{color.orange.500}", "$type": "color" },
+    "primary-dark":           { "$value": "{color.orange.700}", "$type": "color" },
+    "primary-subtle":         { "$value": "rgba(164,55,0,0.10)", "$type": "color" },
+    "primary-subtle-hover":   { "$value": "rgba(164,55,0,0.18)", "$type": "color" },
+    "primary-subtle-select":  { "$value": "rgba(164,55,0,0.15)", "$type": "color" },
+    "on-primary":             { "$value": "{color.white}", "$type": "color" },
+    "bg":                     { "$value": "{color.cream.50}", "$type": "color" },
+    "bg-surface":             { "$value": "{color.beige.100}", "$type": "color" },
+    "surface":                { "$value": "{color.white}", "$type": "color" },
+    "text":                   { "$value": "{color.navy.900}", "$type": "color" },
+    "text-body":              { "$value": "{color.brown.700}", "$type": "color" },
+    "text-muted":             { "$value": "{color.taupe.500}", "$type": "color" },
+    "text-subtle":            { "$value": "{color.taupe.300}", "$type": "color" },
+    "accent":                 { "$value": "{color.amber.400}", "$type": "color" },
+    "accent-light":           { "$value": "{color.terracotta.200}", "$type": "color" },
+    "success":                { "$value": "{color.green.600}", "$type": "color" },
+    "success-subtle":         { "$value": "rgba(21,128,61,0.10)", "$type": "color" },
+    "warning-subtle":         { "$value": "rgba(255,184,48,0.15)", "$type": "color" },
+    "warning-text":           { "$value": "{color.brown.500}", "$type": "color" },
+    "danger":                 { "$value": "{color.red.600}", "$type": "color" },
+    "danger-subtle":          { "$value": "rgba(220,38,38,0.08)", "$type": "color" },
+    "danger-subtle-border":   { "$value": "rgba(220,38,38,0.20)", "$type": "color" },
+    "danger-subtle-hover":    { "$value": "rgba(220,38,38,0.15)", "$type": "color" },
+    "overlay":                { "$value": "rgba(30,27,23,0.60)", "$type": "color" },
+    "bg-inverted-subtle":     { "$value": "rgba(255,248,241,0.12)", "$type": "color" },
+    "text-inverted-muted":    { "$value": "rgba(255,248,241,0.78)", "$type": "color" }
+  }
+}

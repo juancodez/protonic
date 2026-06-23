@@ -1,0 +1,8 @@
+{
+  "radius": {
+    "sm":   { "$value": "8px",   "$type": "dimension" },
+    "md":   { "$value": "16px",  "$type": "dimension" },
+    "lg":   { "$value": "20px",  "$type": "dimension" },
+    "pill": { "$value": "100px", "$type": "dimension" }
+  }
+}

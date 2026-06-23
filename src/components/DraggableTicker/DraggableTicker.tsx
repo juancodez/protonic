@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { cn } from '../../lib/cn';
-import { tickerStyles } from './DraggableTicker.styles';
 import type { ProtonicDraggableTickerProps } from './DraggableTicker.types';
-import './DraggableTicker.css';
+import styles from './DraggableTicker.module.css';
 
 export function DraggableTicker({
   items,
@@ -73,9 +72,7 @@ export function DraggableTicker({
       isDragging = false;
       velocity = SPEED;
     };
-    const onResize = () => {
-      itemWidth = rowA.scrollWidth + gap;
-    };
+    const onResize = () => { itemWidth = rowA.scrollWidth + gap; };
 
     track.addEventListener('pointerdown',   onPointerDown);
     track.addEventListener('pointermove',   onPointerMove);
@@ -94,19 +91,11 @@ export function DraggableTicker({
   }, [gap, items]);
 
   const renderItems = (keyPrefix: string, ref: React.RefObject<HTMLDivElement>) => (
-    <div
-      ref={ref}
-      className="protonic-ticker__row"
-      style={{ gap: `${gap}px` }}
-      aria-hidden="true"
-    >
+    <div ref={ref} className={styles.row} style={{ gap: `${gap}px` }} aria-hidden="true">
       {items.map((label, i) => (
         <span
           key={`${keyPrefix}-${i}`}
-          className={cn(
-            'protonic-ticker__item',
-            i % 2 === 1 && 'protonic-ticker__item--square',
-          )}
+          className={cn(styles.item, i % 2 === 1 && styles.itemSquare)}
         >
           {label}
         </span>
@@ -115,12 +104,8 @@ export function DraggableTicker({
   );
 
   return (
-    <div
-      className={cn(tickerStyles(), className)}
-      style={{ height: `${height}px` }}
-      aria-hidden="true"
-    >
-      <div ref={trackRef} className="protonic-ticker__track">
+    <div className={cn(styles.ticker, className)} style={{ height: `${height}px` }} aria-hidden="true">
+      <div ref={trackRef} className={styles.track}>
         {renderItems('a', rowARef)}
         {renderItems('b', rowBRef)}
       </div>

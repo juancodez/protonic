@@ -1,0 +1,152 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+export const ColorOrange500 = "#a43700";
+export const ColorOrange700 = "#8a2e00";
+export const ColorNavy900 = "#1e1b17";
+export const ColorBrown500 = "#7a5a00";
+export const ColorBrown600 = "#7a6558";
+export const ColorBrown700 = "#594139";
+export const ColorTaupe300 = "#c0a898";
+export const ColorTaupe500 = "#8c7168";
+export const ColorCream50 = "#fff8f1";
+export const ColorBeige100 = "#f4ede5";
+export const ColorAmber400 = "#ffb830";
+export const ColorTerracotta200 = "#ffb59a";
+export const ColorGreen600 = "#15803d";
+export const ColorRed600 = "#dc2626";
+export const ColorWhite = "#ffffff";
+export const ColorPrimary = "#a43700";
+export const ColorPrimaryDark = "#8a2e00";
+export const ColorPrimarySubtle = "#a437001a";
+export const ColorPrimarySubtleHover = "#a437002e";
+export const ColorPrimarySubtleSelect = "#a4370026";
+export const ColorOnPrimary = "#ffffff";
+export const ColorBg = "#fff8f1";
+export const ColorBgSurface = "#f4ede5";
+export const ColorSurface = "#ffffff";
+export const ColorText = "#1e1b17";
+export const ColorTextBody = "#594139";
+export const ColorTextMuted = "#8c7168";
+export const ColorTextSubtle = "#c0a898";
+export const ColorAccent = "#ffb830";
+export const ColorAccentLight = "#ffb59a";
+export const ColorSuccess = "#15803d";
+export const ColorSuccessSubtle = "#15803d1a";
+export const ColorWarningSubtle = "#ffb83026";
+export const ColorWarningText = "#7a5a00";
+export const ColorDanger = "#dc2626";
+export const ColorDangerSubtle = "#dc262614";
+export const ColorDangerSubtleBorder = "#dc262633";
+export const ColorDangerSubtleHover = "#dc262626";
+export const ColorOverlay = "#1e1b1799";
+export const ColorBgInvertedSubtle = "#fff8f11f";
+export const ColorTextInvertedMuted = "#fff8f1c7";
+export const FontFamilyDisplay = "'Bricolage Grotesque', sans-serif";
+export const FontFamilyBody = "'Plus Jakarta Sans', sans-serif";
+export const FontWeightLight = 300;
+export const FontWeightRegular = 400;
+export const FontWeightMedium = 500;
+export const FontWeightSemibold = 600;
+export const FontWeightBold = 700;
+export const FontWeightExtrabold = 800;
+export const FontSizeXs = "10.5px";
+export const FontSizeSm = "12.5px";
+export const FontSizeBase = "14px";
+export const FontSizeMd = "15px";
+export const FontSizeLg = "17px";
+export const FontSizeXl = "18px";
+export const FontLineHeightTight = 1.06;
+export const FontLineHeightSnug = 1.3;
+export const FontLineHeightNormal = 1.65;
+export const FontLineHeightRelaxed = 1.75;
+export const FontLetterSpacingTight = "-0.03em";
+export const FontLetterSpacingDisplay = "-0.01em";
+export const FontLetterSpacingWide = "0.2em";
+export const FontLetterSpacingWider = "0.22em";
+export const Space1 = "4px";
+export const Space2 = "8px";
+export const Space3 = "12px";
+export const Space4 = "16px";
+export const Space5 = "20px";
+export const Space6 = "24px";
+export const Space8 = "32px";
+export const Space10 = "40px";
+export const Space12 = "48px";
+export const Space16 = "64px";
+export const Space18 = "72px";
+export const Space20 = "80px";
+export const Space24 = "96px";
+export const Space30 = "120px";
+export const Space40 = "160px";
+export const RadiusSm = "8px";
+export const RadiusMd = "16px";
+export const RadiusLg = "20px";
+export const RadiusPill = "100px";
+export const MotionDurationFast = "150ms";
+export const MotionDurationNormal = "200ms";
+export const MotionDurationMedium = "250ms";
+export const MotionDurationSlow = "300ms";
+export const MotionDurationSlower = "350ms";
+export const MotionDurationBase = "400ms";
+export const MotionDurationLong = "550ms";
+export const MotionEasingOut = "cubic-bezier(0.23, 1, 0.32, 1)";
+export const MotionEasingInOut = "cubic-bezier(0.77, 0, 0.175, 1)";
+export const MotionEasingSpring = "cubic-bezier(0.16, 1, 0.3, 1)";
+export const ShadowSm = "0 2px 16px rgba(164,55,0,0.07)";
+export const ShadowMd = "0 4px 24px rgba(164,55,0,0.08)";
+export const ShadowLg = "0 8px 32px rgba(164,55,0,0.13)";
+export const ShadowXl = "0 32px 80px rgba(164,55,0,0.10)";
+export const ShadowBtn =
+  "0 4px 20px rgba(164,55,0,0.28), inset 0 1px 0 rgba(255,255,255,0.15)";
+export const ShadowBtnHover =
+  "0 12px 36px rgba(164,55,0,0.38), 0 0 0 1px rgba(164,55,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)";
+export const ShadowNav =
+  "0 4px 24px rgba(164,55,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6)";
+export const ShadowNavScrolled =
+  "0 8px 32px rgba(164,55,0,0.12), inset 0 1px 0 rgba(255,255,255,0.6)";
+export const ShadowSurfaceInset = "inset 0 1px 0 rgba(255,255,255,0.9)";
+export const ShadowCard =
+  "0 2px 16px rgba(164,55,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9)";
+export const ShadowCardHover =
+  "0 8px 32px rgba(164,55,0,0.13), inset 0 1px 0 rgba(255,255,255,0.9)";
+export const TextStyleDisplayXl =
+  "800 48px/1.06 'Bricolage Grotesque', sans-serif";
+export const TextStyleDisplayLg =
+  "700 36px/1.10 'Bricolage Grotesque', sans-serif";
+export const TextStyleDisplayMd =
+  "600 24px/1.30 'Bricolage Grotesque', sans-serif";
+export const TextStyleDisplaySm =
+  "600 20px/1.30 'Bricolage Grotesque', sans-serif";
+export const TextStyleBodyLg = "400 17px/1.65 'Plus Jakarta Sans', sans-serif";
+export const TextStyleBodyMd = "400 15px/1.65 'Plus Jakarta Sans', sans-serif";
+export const TextStyleBodySm =
+  "400 12.5px/1.65 'Plus Jakarta Sans', sans-serif";
+export const TextStyleLabelMd = "600 14px/1.30 'Plus Jakarta Sans', sans-serif";
+export const TextStyleLabelSm =
+  "600 12.5px/1.30 'Plus Jakarta Sans', sans-serif";
+export const TextStyleCaption =
+  "400 10.5px/1.65 'Plus Jakarta Sans', sans-serif";
+export const BorderWidthThin = "1px";
+export const BorderWidthThick = "2px";
+export const BorderStyleSolid = "solid";
+export const BorderStyleDashed = "dashed";
+export const ZIndexBase = 0;
+export const ZIndexRaised = 10;
+export const ZIndexDropdown = 100;
+export const ZIndexSticky = 200;
+export const ZIndexOverlay = 300;
+export const ZIndexModal = 400;
+export const ZIndexToast = 500;
+export const ZIndexTooltip = 600;
+export const IconSizeXs = "12px";
+export const IconSizeSm = "16px";
+export const IconSizeMd = "20px";
+export const IconSizeLg = "24px";
+export const IconSizeXl = "32px";
+export const BreakpointSm = "640px";
+export const BreakpointMd = "768px";
+export const BreakpointLg = "1024px";
+export const BreakpointXl = "1280px";
+export const Breakpoint2xl = "1536px";

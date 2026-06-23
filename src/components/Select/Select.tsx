@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from 'react-aria-components';
 import type { ProtonicSelectProps, SelectOption } from './Select.types';
-import './Select.css';
+import styles from './Select.module.css';
 
 export function Select<T extends SelectOption>({
   label,
@@ -17,18 +17,20 @@ export function Select<T extends SelectOption>({
   ...props
 }: ProtonicSelectProps<T>) {
   return (
-    <AriaSelect className="protonic-select" {...props}>
-      <Label className="protonic-select__label">{label}</Label>
-      <Button className="protonic-select__trigger">
+    <AriaSelect className={styles.select} {...props}>
+      <Label className={styles.label}>{label}</Label>
+      <Button className={styles.trigger}>
         <SelectValue>
-          {({ selectedText }) => selectedText || <span style={{ color: 'var(--color-text-muted)' }}>{placeholder}</span>}
+          {({ selectedText }) =>
+            selectedText || <span style={{ color: 'var(--color-text-muted)' }}>{placeholder}</span>
+          }
         </SelectValue>
-        <span aria-hidden className="protonic-select__arrow">▾</span>
+        <span aria-hidden className={styles.arrow}>▾</span>
       </Button>
-      <Popover className="protonic-select__popover">
-        <ListBox className="protonic-select__listbox" items={options}>
+      <Popover className={styles.popover}>
+        <ListBox className={styles.listbox} items={options}>
           {(option) => (
-            <ListBoxItem className="protonic-select__option" id={option.id}>
+            <ListBoxItem className={styles.option} id={option.id}>
               {option.label}
             </ListBoxItem>
           )}
