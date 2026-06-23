@@ -1,13 +1,13 @@
 {
   "_note": "Component name → Figma componentSetId + componentKey. Populated by /figma-ds after generation.",
-  "Button":          { "componentSetId": "TBD", "componentKey": "TBD" },
-  "Badge":           { "componentSetId": "TBD", "componentKey": "TBD" },
-  "Card":            { "componentSetId": "TBD", "componentKey": "TBD" },
-  "Chip":            { "componentSetId": "TBD", "componentKey": "TBD" },
-  "ClaraPanel":      { "componentSetId": "TBD", "componentKey": "TBD" },
-  "DraggableTicker": { "componentSetId": "TBD", "componentKey": "TBD" },
-  "Hero":            { "componentSetId": "TBD", "componentKey": "TBD" },
-  "Modal":           { "componentSetId": "TBD", "componentKey": "TBD" },
-  "Select":          { "componentSetId": "TBD", "componentKey": "TBD" },
-  "Table":           { "componentSetId": "TBD", "componentKey": "TBD" }
+  "Button":          { "componentSetId": "52:21",  "componentKey": "febfe2792ae2613c17898c0771b81282769f9eec" },
+  "Badge":           { "componentSetId": "52:31",  "componentKey": "32c59188d8f61b72894b1a4571ca7689d90502d6" },
+  "Card":            { "componentSetId": "52:58",  "componentKey": "873894ecec9d71950ea639f7bb1fda958d56c253" },
+  "Chip":            { "componentSetId": "52:52",  "componentKey": "dbc0325b5404022ddac348ff10c27e35f92cfd8b" },
+  "Select":          { "componentSetId": "54:82",  "componentKey": "7dc45e6be912979c6bc6f9e1ae1a837e344ab34a" },
+  "Modal":           { "componentSetId": "54:95",  "componentKey": "aa7c0b70f9ceef7e269b6bc74f6ba97a49c6456b" },
+  "Table":           { "componentSetId": "54:207", "componentKey": "80b9be538482d7f6cd5cff83dfcc729690aef214" },
+  "Hero":            { "componentSetId": "54:220", "componentKey": "88edd3c957e4b68dc0e0d26cf8c36d9f56b09b40" },
+  "ClaraPanel":      { "componentSetId": "54:246", "componentKey": "2ebddc1bba11ea2c97845a89a3897079667e1b99" },
+  "DraggableTicker": { "componentSetId": "54:313", "componentKey": "d7f43bee6dd6da5719958c9fe7581be064a1d5c7" }
 }

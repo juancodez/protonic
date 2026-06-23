@@ -1,5 +1,5 @@
 {
-  "fileKey": "R4KIv7XKg8g1A1NR9R11cI",
+  "fileKey": "rRSxMj33ZtioxdrabH5rm6",
   "fonts": {
     "body": "Plus Jakarta Sans",
     "display": "Bricolage Grotesque"
@@ -32,7 +32,7 @@
     "radius": "Protonic/Radius",
     "motion": "Protonic/Motion"
   },
-  "pageName": "Components",
+  "pageName": "Design System Klaro",
   "components": [
     { "name": "Button",          "path": "src/components/Button",          "category": "atom" },
     { "name": "Badge",           "path": "src/components/Badge",           "category": "atom" },
