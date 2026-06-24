@@ -19,15 +19,19 @@
 
   #header {
     position: fixed; top: 28px; left: 36px;
-    z-index: 20; pointer-events: none;
+    z-index: 20; pointer-events: auto;
   }
-  #header h1 {
+  #header h1 a {
     font-size: 22px; font-weight: 800;
     letter-spacing: -0.03em; color: #fff;
+    text-decoration: none;
+    transition: opacity .15s;
   }
+  #header h1 a:hover { opacity: 0.7; }
   #header p {
     font-size: 10.5px; color: #3d4f6a;
     margin-top: 4px; letter-spacing: 0.1em; text-transform: uppercase;
+    pointer-events: none;
   }
 
   #mode-toggle {
@@ -83,7 +87,16 @@
   #panel-layer-tag { display: inline-block; font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 100px; margin-bottom: 14px; border: 1px solid currentColor; opacity: .8; }
   #panel-name      { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -.025em; margin-bottom: 5px; line-height: 1.2; }
   #panel-short     { font-size: 12.5px; color: #3d5475; margin-bottom: 22px; }
-  #panel-desc      { font-size: 13.5px; color: #7a92b0; line-height: 1.75; margin-bottom: 28px; }
+  #panel-desc      { font-size: 13.5px; color: #7a92b0; line-height: 1.75; margin-bottom: 22px; }
+  #panel-link      { margin-bottom: 22px; display: none; }
+  #panel-link a    {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; letter-spacing: .02em;
+    padding: 9px 14px; border-radius: 8px;
+    border: 1px solid currentColor; text-decoration: none;
+    opacity: .75; transition: opacity .15s;
+  }
+  #panel-link a:hover { opacity: 1; }
   #panel-connects-title { font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #2a3a52; margin-bottom: 10px; }
   #connects-list   { display: flex; flex-direction: column; gap: 7px; }
   .connect-item    { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.05); border-radius: 8px; cursor: pointer; transition: background .15s, border-color .15s; }
@@ -98,7 +111,7 @@
 <canvas id="helix"></canvas>
 
 <div id="header">
-  <h1>Protonic</h1>
+  <h1><a href="https://github.com/juancodez/protonic" target="_blank" rel="noopener">Protonic ↗</a></h1>
   <p>Agentic Design System · 23 Nodes</p>
 </div>
 
@@ -108,7 +121,7 @@
 </div>
 
 <div id="legend"></div>
-<div id="hint">Click node to explore · Drag to orbit in 3D</div>
+<div id="hint">Click node to explore · Drag to orbit · Scroll to zoom (3D)</div>
 
 <div id="panel">
   <button id="panel-close">✕</button>
@@ -117,6 +130,7 @@
   <div id="panel-name"></div>
   <div id="panel-short"></div>
   <div id="panel-desc"></div>
+  <div id="panel-link"><a id="panel-link-a" href="#" target="_blank" rel="noopener"></a></div>
   <div id="panel-connects-title">Connects to</div>
   <div id="connects-list"></div>
 </div>
@@ -206,6 +220,7 @@ const NODES = [
   { id: 23, layer:7, name:'Lyse Health Audit',     short:'External design system auditor',
     desc:'@lyse-labs/lyse — audits 6 axes: tokens, a11y, components, stories, ai-surface, ai-governance. Connected via .mcp.json and .lyse.yaml. Lives on the second strand — the other chromosome. Current score: 74/100 (B+), a11y: 100.',
     connects:[5, 8, 14, 18, 19],
+    link:{ label:'Lyse GitHub Repository ↗', url:'https://github.com/lyse-labs/lyse' },
     // ponytail: lyse sits at frac=0.5 on the B strand (Math.PI offset) — the second chromosome
     lyseFrac: 0.5,
   },
@@ -249,6 +264,8 @@ let camY        = 0;
 let isDragging  = false;
 let lastMX      = 0, lastMY = 0;
 let dragX       = 0, dragY  = 0;
+let zoom        = 1;
+let targetZoom  = 1;
 
 // ── State ─────────────────────────────────────────────────────────────────────
 
@@ -274,7 +291,7 @@ function project3d(x3, y3, z3) {
   const cx2 = Math.cos(camX), sx2 = Math.sin(camX);
   const ry2 = ry*cx2 - rz*sx2;
   const rz2 = ry*sx2 + rz*cx2;
-  const sc  = FOV / (FOV + rz2 + 500);
+  const sc  = FOV / (FOV + rz2 + 500) * zoom;
   return { x: canvas.width*0.44 + rx*sc, y: canvas.height*0.5 + ry2*sc, sc, rz: rz2 };
 }
 
@@ -287,8 +304,9 @@ function getPos(nodeIndex, phaseOffset = 0) {
 
   // Pure 2D formula (no perspective, left-biased, full vertical spread)
   const cx2d  = canvas.width * 0.36;
-  const x2d   = cx2d + AMP_2D * Math.cos(angle);
-  const y2d   = TOP_PAD + frac * (canvas.height - TOP_PAD - BOT_PAD);
+  const cy2d  = canvas.height * 0.5;
+  const x2d   = cx2d + AMP_2D * zoom * Math.cos(angle);
+  const y2d   = cy2d + (TOP_PAD + frac * (canvas.height - TOP_PAD - BOT_PAD) - cy2d) * zoom;
   const z2d   = Math.sin(angle);
   const d2d   = (z2d + 1) / 2;
 
@@ -321,6 +339,18 @@ function openPanel(node) {
   document.getElementById('panel-name').textContent      = node.name;
   document.getElementById('panel-short').textContent     = node.short;
   document.getElementById('panel-desc').textContent      = node.desc;
+
+  // External link (Lyse, etc.)
+  const linkEl = document.getElementById('panel-link');
+  const linkA  = document.getElementById('panel-link-a');
+  if (node.link) {
+    linkA.href        = node.link.url;
+    linkA.textContent = node.link.label;
+    linkA.style.color = layer.color;
+    linkEl.style.display = 'block';
+  } else {
+    linkEl.style.display = 'none';
+  }
 
   const list = document.getElementById('connects-list');
   list.innerHTML = '';
@@ -439,10 +469,11 @@ function render(ts) {
   currentTs = ts;
   helixTime = ts * 0.00012;
 
-  // Lerp camera
+  // Lerp camera + zoom
   const tgt = is3D ? TARGET_3D : TARGET_2D;
   camX = lerp(camX, tgt.x + dragX, 0.045);
   camY = lerp(camY, tgt.y + dragY, 0.045);
+  zoom = lerp(zoom, targetZoom, 0.10);
 
   const W = canvas.width, H = canvas.height;
   ctx.clearRect(0, 0, W, H);
@@ -623,6 +654,11 @@ canvas.addEventListener('click', e => {
   const hit  = hitTest(e.clientX - rect.left, e.clientY - rect.top);
   hit ? openPanel(NODES.find(n => n.id === hit)) : closePanel();
 });
+
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  targetZoom = Math.max(0.35, Math.min(3.5, targetZoom - e.deltaY * 0.0008));
+}, { passive: false });
 
 requestAnimationFrame(render);
 </script>
