@@ -1,6 +1,6 @@
 # Protonic — Project Status
 
-Last updated: 2026-06-24
+Last updated: 2026-06-24 (session 2)
 
 ---
 
@@ -36,30 +36,30 @@ Lyse   ✅  Health audit integrated — 66/100 (B), runs via npm run lyse
 
 ---
 
-## Lyse health score — 66/100 (B)
+## Lyse health score — 74/100 (B+)
 
 | Axis | Score | Notes |
 |---|---|---|
 | tokens | 74 | Alias references correct — lyse alpha bug: doesn't cross-reference DTCG files |
-| a11y | 60 | **Next session**: add `@media (prefers-reduced-motion)` + `forced-colors` to CSS |
+| a11y | 100 ✅ | `prefers-reduced-motion` + `forced-colors` added to all 5 animated components |
 | components | 87 | Strong |
-| stories | N/A | Needs `npm run build-storybook` first, then re-run lyse |
-| ai-surface | 10 | mcp.json + SKILL.md added; remaining: component-manifest-json |
+| stories | N/A | lyse alpha: doesn't pick up `*.stories.tsx` source files yet |
+| ai-surface | 10 | SKILL.md frontmatter fixed; remaining: component-manifest-json |
 | ai-governance | 100 | Perfect |
 
-**To push score from 66 → 80+:**
-1. Add `@media (prefers-reduced-motion: reduce)` in all CSS files with transitions/animations (Button, Chip, Select, Modal, DraggableTicker) → a11y 60 → ~90
-2. Run `npm run build-storybook` → stories axis unlocks
-3. Wait for lyse to fix cross-file DTCG resolution (alpha bug) → tokens 74 → ~95
+**To push score further:**
+1. Wait for lyse alpha to fix cross-file DTCG resolution → tokens 74 → ~95
+2. Wait for lyse alpha to pick up `*.stories.tsx` → stories axis unlocks
+3. Open issue on lyse repo: https://github.com/lyse-labs/lyse
 
 ---
 
 ## What's left to finish (next session)
 
-- [ ] **a11y CSS**: add `prefers-reduced-motion` + `forced-colors` media queries to the 5 animated components
-- [ ] **Storybook build**: `npm run build-storybook` to unlock the stories axis in lyse
+- [x] **a11y CSS**: `prefers-reduced-motion` + `forced-colors` added to Button, Chip, Select, Modal, DraggableTicker — a11y 60 → 100
+- [x] **Storybook build**: `npm run build-storybook` ✅ — stories still N/A in lyse (alpha bug)
 - [ ] **Token alias bug**: open issue on lyse repo (`https://github.com/lyse-labs/lyse`) — cross-file DTCG resolution broken in alpha
-- [ ] **Present to Cristian**: repo is ready, Figma is ready, Lyse score shows 66/100 with clear path to 80+
+- [ ] **Present to Cristian**: repo is ready, Figma is ready, Lyse score 74/100 (B+), clear path to 80+ once alpha bugs resolved
 
 ---
 

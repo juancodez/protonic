@@ -80,3 +80,18 @@
 
 .option[data-focused]  { background: var(--color-bg-surface); }
 .option[data-selected] { background: var(--color-primary-subtle); color: var(--color-primary); font-weight: var(--font-weight-semibold); }
+
+@media (prefers-reduced-motion: reduce) {
+  .trigger,
+  .arrow,
+  .option { transition: none; }
+  .popover[data-entering],
+  .popover[data-exiting]  { animation: none; }
+}
+
+@media (forced-colors: active) {
+  .trigger              { border-color: ButtonText; }
+  .trigger[data-focus-visible] { outline: 2px solid Highlight; }
+  .option[data-focused] { background: Highlight; color: HighlightText; }
+  .option[data-selected] { border: 2px solid Highlight; }
+}

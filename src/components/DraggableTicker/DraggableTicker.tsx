@@ -45,6 +45,7 @@ export function DraggableTicker({
     };
 
     apply();
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     animFrame = requestAnimationFrame(loop);
 
     const onPointerDown = (e: PointerEvent) => {

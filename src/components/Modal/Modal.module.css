@@ -61,3 +61,14 @@
   gap:             var(--space-3);
   margin-top:      var(--space-2);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay[data-entering],
+  .overlay[data-exiting],
+  .modal[data-entering],
+  .modal[data-exiting] { animation: none; }
+}
+
+@media (forced-colors: active) {
+  .modal { border: 2px solid ButtonText; }
+}

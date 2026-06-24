@@ -1,3 +1,8 @@
+---
+name: protonic
+description: Contract-first agentic design system built on React Aria. Guides component scaffolding, auditing, and token system usage.
+---
+
 # Protonic — Agent Instructions
 
 Contract-first agentic design system built on React Aria.

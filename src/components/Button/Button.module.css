@@ -108,3 +108,14 @@
   padding:    var(--space-4) var(--space-10);
   min-height: 52px;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn::after { transition: none; }
+}
+
+@media (forced-colors: active) {
+  .btn                  { border-color: ButtonText; }
+  .btn[data-focus-visible] { outline: 2px solid Highlight; }
+  .btn[data-disabled]   { border-color: GrayText; color: GrayText; }
+}

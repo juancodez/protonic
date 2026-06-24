@@ -43,3 +43,7 @@
   border-radius: var(--radius-sm);
   background:    var(--color-bg-surface);
 }
+
+@media (forced-colors: active) {
+  .item { border-color: ButtonText; }
+}

@@ -53,3 +53,12 @@
   outline-offset: var(--space-1);
   border-radius:  var(--radius-sm);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .dismiss { transition: none; }
+}
+
+@media (forced-colors: active) {
+  .chip                 { border: 1px solid ButtonText; }
+  .dismiss:focus-visible { outline: 2px solid Highlight; }
+}
