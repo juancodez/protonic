@@ -583,22 +583,31 @@ function render(ts) {
     });
   }
 
+  // Which nodes are targets of active-layer connections (shown at partial opacity)
+  const layerTargetIds = new Set();
+  if (activeLayer) {
+    NODES.forEach(n => {
+      if (n.layer === activeLayer) (n.connects || []).forEach(id => layerTargetIds.add(id));
+    });
+  }
+
   // Sort nodes back → front by depth
   const sorted = positions
     .map((p, i) => ({ ...p, i }))
     .sort((a, b) => a.depth - b.depth);
 
   sorted.forEach(({ i, x, y, depth }) => {
-    const node    = NODES[i];
-    const layer   = LAYERS[node.layer];
-    const isHov   = node.id === hoveredId;
-    const isSel   = node.id === selectedId;
-    const isLyse  = !!node.lyseFrac;
-    const inLayer = activeLayer === null || node.layer === activeLayer;
-    const rgb     = hexRgb(layer.color);
+    const node         = NODES[i];
+    const layer        = LAYERS[node.layer];
+    const isHov        = node.id === hoveredId;
+    const isSel        = node.id === selectedId;
+    const isLyse       = !!node.lyseFrac;
+    const inLayer      = activeLayer === null || node.layer === activeLayer;
+    const isConnTarget = !inLayer && layerTargetIds.has(node.id);
+    const rgb          = hexRgb(layer.color);
 
-    // Dim everything outside the active layer
-    const dimFactor = inLayer ? 1 : 0.07;
+    // active-layer = full · connection target = 45% · rest = ghost
+    const dimFactor = inLayer ? 1 : isConnTarget ? 0.45 : 0.07;
 
     const r   = R_MIN + depth * (R_MAX - R_MIN) + (isLyse ? 4 : 0);
     const alp = (0.30 + depth * 0.70) * dimFactor;
@@ -616,10 +625,10 @@ function render(ts) {
       ctx.setLineDash([]);
     }
 
-    // Boost glow for active-layer nodes
-    const glowBase = inLayer && activeLayer ? depth * 18 + 8 : depth * 12;
+    // Boost glow for active-layer and connection-target nodes
+    const glowBase = inLayer && activeLayer ? depth * 18 + 8 : isConnTarget ? depth * 14 + 6 : depth * 12;
     ctx.shadowBlur  = isSel ? 32 : isHov ? 20 : isLyse ? 18 : glowBase;
-    ctx.shadowColor = inLayer ? layer.color : 'transparent';
+    ctx.shadowColor = (inLayer || isConnTarget) ? layer.color : 'transparent';
 
     // Fill
     ctx.beginPath();
@@ -639,9 +648,9 @@ function render(ts) {
     ctx.fillStyle = `rgba(255,255,255,${(0.45 + depth * 0.45) * dimFactor})`;
     ctx.fillText(isLyse ? 'L' : node.id, x, y + rF * 0.35);
 
-    // Labels — show for active-layer, hov/sel, or (when unfiltered) deep/Lyse nodes
+    // Labels — show for active-layer, connection targets, hov/sel, or (unfiltered) deep/Lyse
     const forceLabel = inLayer && activeLayer !== null;
-    const showLabel  = isHov || isSel || forceLabel || (!activeLayer && (depth > 0.60 || isLyse));
+    const showLabel  = isHov || isSel || forceLabel || isConnTarget || (!activeLayer && (depth > 0.60 || isLyse));
     if (showLabel) {
       const cx2d    = canvas.width * 0.36;
       const right   = x >= cx2d;
