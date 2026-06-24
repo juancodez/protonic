@@ -15,196 +15,82 @@
     height: 100vh;
   }
 
-  canvas {
-    display: block;
-    cursor: default;
-  }
+  canvas { display: block; }
 
-  /* Header */
   #header {
-    position: fixed;
-    top: 28px;
-    left: 36px;
-    z-index: 20;
-    pointer-events: none;
+    position: fixed; top: 28px; left: 36px;
+    z-index: 20; pointer-events: none;
   }
   #header h1 {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: #fff;
+    font-size: 22px; font-weight: 800;
+    letter-spacing: -0.03em; color: #fff;
   }
   #header p {
-    font-size: 10.5px;
-    color: #3d4f6a;
-    margin-top: 4px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 10.5px; color: #3d4f6a;
+    margin-top: 4px; letter-spacing: 0.1em; text-transform: uppercase;
   }
 
-  /* Mode toggle */
   #mode-toggle {
-    position: fixed;
-    top: 26px;
-    right: 36px;
-    z-index: 20;
+    position: fixed; top: 26px; right: 36px; z-index: 20;
     display: flex;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 8px;
-    overflow: hidden;
+    border-radius: 8px; overflow: hidden;
   }
   .mode-btn {
-    background: none;
-    border: none;
-    color: #3d5475;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: color 0.2s, background 0.2s;
+    background: none; border: none;
+    color: #3d5475; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; padding: 8px 16px;
+    cursor: pointer; transition: color .2s, background .2s;
     font-family: inherit;
   }
-  .mode-btn.active {
-    color: #e2e8f0;
-    background: rgba(255,255,255,0.08);
-  }
+  .mode-btn.active { color: #e2e8f0; background: rgba(255,255,255,0.08); }
   .mode-btn:hover:not(.active) { color: #64748b; }
 
-  /* Legend */
   #legend {
-    position: fixed;
-    bottom: 32px;
-    left: 36px;
-    z-index: 20;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    pointer-events: none;
+    position: fixed; bottom: 32px; left: 36px; z-index: 20;
+    display: flex; flex-direction: column; gap: 7px; pointer-events: none;
   }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 10.5px;
-    color: #3d5475;
-    letter-spacing: 0.02em;
-  }
-  .legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: #3d5475; }
+  .legend-dot  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
-  /* Hint */
   #hint {
-    position: fixed;
-    bottom: 32px;
-    right: 36px;
-    font-size: 10.5px;
-    color: #2a3a52;
-    letter-spacing: 0.05em;
-    z-index: 20;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    position: fixed; bottom: 32px; right: 36px;
+    font-size: 10.5px; color: #2a3a52; letter-spacing: 0.05em; z-index: 20; pointer-events: none;
   }
 
-  /* Detail panel */
+  /* ── Panel ── */
   #panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 360px;
-    height: 100vh;
-    background: rgba(8, 9, 18, 0.97);
+    position: fixed; top: 0; right: 0; width: 360px; height: 100vh;
+    background: rgba(8,9,18,0.97);
     border-left: 1px solid rgba(255,255,255,0.06);
     padding: 52px 30px 40px;
     transform: translateX(100%);
-    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow-y: auto;
-    z-index: 30;
+    transition: transform .38s cubic-bezier(.16,1,.3,1);
+    overflow-y: auto; z-index: 30;
   }
   #panel.open { transform: translateX(0); }
 
   #panel-close {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    background: none;
-    border: none;
-    color: #2a3a52;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 6px 8px;
-    border-radius: 6px;
-    transition: color 0.15s, background 0.15s;
-    line-height: 1;
+    position: absolute; top: 18px; right: 18px;
+    background: none; border: none; color: #2a3a52; cursor: pointer;
+    font-size: 16px; padding: 6px 8px; border-radius: 6px;
+    transition: color .15s, background .15s; line-height: 1;
   }
   #panel-close:hover { color: #64748b; background: rgba(255,255,255,0.04); }
 
-  #panel-node-id {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    color: #2a3a52;
-  }
-  #panel-layer-tag {
-    display: inline-block;
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 100px;
-    margin-bottom: 14px;
-    border: 1px solid currentColor;
-    opacity: 0.8;
-  }
-  #panel-name {
-    font-size: 20px;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -0.025em;
-    margin-bottom: 5px;
-    line-height: 1.2;
-  }
-  #panel-short {
-    font-size: 12.5px;
-    color: #3d5475;
-    margin-bottom: 22px;
-  }
-  #panel-desc {
-    font-size: 13.5px;
-    color: #7a92b0;
-    line-height: 1.75;
-    margin-bottom: 28px;
-  }
-  #panel-connects-title {
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #2a3a52;
-    margin-bottom: 10px;
-  }
-  #connects-list { display: flex; flex-direction: column; gap: 7px; }
-  .connect-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .connect-item:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.1);
-  }
-  .connect-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  #panel-node-id   { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; color: #2a3a52; }
+  #panel-layer-tag { display: inline-block; font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 8px; border-radius: 100px; margin-bottom: 14px; border: 1px solid currentColor; opacity: .8; }
+  #panel-name      { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -.025em; margin-bottom: 5px; line-height: 1.2; }
+  #panel-short     { font-size: 12.5px; color: #3d5475; margin-bottom: 22px; }
+  #panel-desc      { font-size: 13.5px; color: #7a92b0; line-height: 1.75; margin-bottom: 28px; }
+  #panel-connects-title { font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #2a3a52; margin-bottom: 10px; }
+  #connects-list   { display: flex; flex-direction: column; gap: 7px; }
+  .connect-item    { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.05); border-radius: 8px; cursor: pointer; transition: background .15s, border-color .15s; }
+  .connect-item:hover { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
+  .connect-dot  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .connect-label { font-size: 12.5px; color: #8aa0bc; }
-  .connect-id { margin-left: auto; font-size: 10px; color: #2a3a52; font-weight: 600; }
+  .connect-id   { margin-left: auto; font-size: 10px; color: #2a3a52; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -213,7 +99,7 @@
 
 <div id="header">
   <h1>Protonic</h1>
-  <p>Agentic Design System · 22 Nodes</p>
+  <p>Agentic Design System · 23 Nodes</p>
 </div>
 
 <div id="mode-toggle">
@@ -222,7 +108,7 @@
 </div>
 
 <div id="legend"></div>
-<div id="hint">Click any node to explore · Drag to orbit in 3D</div>
+<div id="hint">Click node to explore · Drag to orbit in 3D</div>
 
 <div id="panel">
   <button id="panel-close">✕</button>
@@ -239,81 +125,90 @@
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const LAYERS = {
-  1: { name: 'Tokenization',  color: '#f97316' },
-  2: { name: 'Intent',        color: '#60a5fa' },
-  3: { name: 'Indexing',      color: '#a78bfa' },
-  4: { name: 'Orchestration', color: '#2dd4bf' },
-  5: { name: 'Figma',         color: '#f472b6' },
-  6: { name: 'Agentic Loop',  color: '#4ade80' },
+  1: { name: 'Tokenization',   color: '#f97316' },
+  2: { name: 'Intent',         color: '#60a5fa' },
+  3: { name: 'Indexing',       color: '#a78bfa' },
+  4: { name: 'Orchestration',  color: '#2dd4bf' },
+  5: { name: 'Figma',          color: '#f472b6' },
+  6: { name: 'Agentic Loop',   color: '#4ade80' },
+  7: { name: 'Lyse — External Audit', color: '#22d3ee' },
 };
 
 const NODES = [
-  { id:  1, layer: 1, name: 'tokens/*.json',        short: 'W3C Design Tokens',
-    desc: 'Design decisions encoded as DTCG format. Two-layer color architecture: foundation palettes referenced by semantic roles. 12 token categories spanning color, spacing, typography, motion, and more.',
-    connects: [2] },
-  { id:  2, layer: 1, name: 'Style Dictionary',      short: 'Token compiler',
-    desc: 'Reads the W3C source JSON and emits CSS custom properties and JS/TS constants. Runs before any component build — components never build against stale token values.',
-    connects: [3, 4] },
-  { id:  3, layer: 1, name: 'JS Token Constants',    short: 'Programmatic output',
-    desc: 'Compiled tokens as JS/TS exports. Used by audit scripts, Figma sync, and any tool needing token values programmatically. Auto-generated by sd.config.mjs.',
-    connects: [12, 17] },
-  { id:  4, layer: 1, name: 'variables.css',         short: 'Compiled CSS vars',
-    desc: 'The stylesheet every component references. Foundation → semantic reference chain intact. Change one token at the source and every component follows.',
-    connects: [5] },
-  { id:  5, layer: 2, name: 'Component.module.css',  short: 'Token-based CSS',
-    desc: 'Every visual decision resolves to a design token. No hardcoded hex, px, or font-family values. The surface the token auditor patrols on every PR.',
-    connects: [6] },
-  { id:  6, layer: 2, name: 'Component.tsx',         short: 'CVA + React Aria',
-    desc: 'Behavior from React Aria. Variants from CVA. Typed props from the TypeScript interface. One source read by four consumers: metadata, docs, prop glossary, and Figma generation.',
-    connects: [7, 8] },
-  { id:  7, layer: 2, name: '/scaffold-component',   short: 'Generates 8-file anatomy',
-    desc: 'Components are not written from memory — they are scaffolded. One invocation produces the same 8-file structure every time. What the scaffold creates, the governance gate enforces.',
-    connects: [8, 18] },
-  { id:  8, layer: 2, name: 'Component.metadata.ts', short: 'AI-ready docs per component',
-    desc: 'Use cases, anti-patterns, a11y notes, AI hints, token list, and Figma binding. The API docs for agents — tells an AI when to use a component, when not to, and exactly how.',
-    connects: [11, 13] },
-  { id:  9, layer: 2, name: 'Metadata Schema',       short: 'Versioned contract',
-    desc: 'Required fields and valid values every metadata file must follow. Drift is mechanically detectable, not a matter of opinion. Enforced by /review-pr on every change.',
-    connects: [7, 18] },
-  { id: 10, layer: 2, name: 'Prop Glossary',         short: 'Canonical prop vocabulary',
-    desc: 'Governed axes: variant, size, status. Anti-synonym glossary prevents drift. Facts and judgment separated. The Figma manifest mirrors these conventions — one contract on both surfaces.',
-    connects: [6, 16] },
-  { id: 11, layer: 3, name: '/codebase-index',       short: 'Generates relationship maps',
-    desc: 'Orchestrates the deterministic indexer. Outputs component-usage, design-tokens, and dependency maps into .ai/ — then loads the fresh index into agent context.',
-    connects: [12] },
-  { id: 12, layer: 3, name: 'index-components.mjs',  short: 'Deterministic indexer',
-    desc: 'Pure scanner — same input, same output, every run. Extracts React Aria foundation, CVA variants, CSS token refs, cross-component relationships. No LLM in the loop.',
-    connects: [13] },
-  { id: 13, layer: 3, name: '.ai/index.json',        short: 'The system index',
-    desc: 'Project summary + full component array. The agent loads this once at session start and navigates from it. 10 components, 120 tokens, 12 categories, 42 relationships mapped.',
-    connects: [14] },
-  { id: 14, layer: 4, name: 'AI Agent',              short: 'The operator',
-    desc: 'Claude Code. Loads CLAUDE.md and index.json. Operates exclusively through skills. Infrastructure converts token spend from exploration into analysis: +54% accuracy, 58% faster.',
-    connects: [15, 7, 11, 17, 18] },
-  { id: 15, layer: 4, name: 'Rules',                 short: 'Path-scoped constraints',
-    desc: '.claude/rules/ — each rule carries paths: frontmatter and loads only when the agent touches matching files. Rules teach the agent the what, how, and why of each system it operates in.',
-    connects: [14] },
-  { id: 16, layer: 5, name: '.figma/manifest.json',  short: 'Design identity source',
-    desc: 'Single source of truth for Figma: file key, fonts, icon set, token namespaces, variant conventions. Every Figma skill reads identity from here. Code is the source, Figma is the render target.',
-    connects: [17] },
-  { id: 17, layer: 5, name: '/figma-ds',             short: 'Code → Figma',
-    desc: 'Reads TSX variants + CSS tokens + manifest → generates Figma component set → writes back componentSetId. All 10 Protonic components live in the Klaro Design System Figma file.',
-    connects: [16, 14] },
-  { id: 18, layer: 6, name: '/review-pr',            short: 'Governance gate',
-    desc: '7-layer review on every change: file structure, axes drift, React Aria conventions, token compliance, metadata conformance, export completeness, Storybook coverage. Severity-ranked verdicts.',
-    connects: [19] },
-  { id: 19, layer: 6, name: 'Audit Reports',         short: 'Token violations ranked',
-    desc: 'Full-system violations by component, severity-ranked, with exact fix suggestions. Governance stops being a quarterly project. Because the index knows everything, the report is cheap and repeatable.',
-    connects: [20] },
-  { id: 20, layer: 6, name: 'Self-healing',          short: 'Exact fixes + rationale',
-    desc: 'Proposes the exact token replacement with rationale: which token replaces which hardcoded value, which canonical prop replaces a drifted one. Agent closes the loop: audit → propose → heal.',
-    connects: [14] },
-  { id: 21, layer: 6, name: 'ARC Benchmark',         short: 'Proof the infrastructure works',
-    desc: 'Accuracy +54% · Speed 58% faster · Consistency 99.9% better · False negatives eliminated. Source: Cristian Morales Achiardi. Infrastructure converts exploration into analysis.',
-    connects: [22] },
-  { id: 22, layer: 6, name: 'The Loop, Closed',      short: 'Self-closing system',
-    desc: 'No top or bottom. No start or end. Tokens → Components → Index → Agent → Figma → Audit → Heal → back to the start. That self-closing loop is what "agentic" means.',
-    connects: [1] },
+  { id:  1, layer:1, name:'tokens/*.json',        short:'W3C Design Tokens',
+    desc:'Design decisions encoded as DTCG format. Two-layer color architecture: foundation palettes referenced by semantic roles. 12 token categories.',
+    connects:[2] },
+  { id:  2, layer:1, name:'Style Dictionary',      short:'Token compiler',
+    desc:'Reads the W3C source JSON and emits CSS custom properties and JS/TS constants. Runs before any component build — components never build against stale values.',
+    connects:[3,4] },
+  { id:  3, layer:1, name:'JS Token Constants',    short:'Programmatic output',
+    desc:'Compiled tokens as JS/TS exports. Used by audit scripts, Figma sync, and any tool needing token values programmatically. Auto-generated by sd.config.mjs.',
+    connects:[12,17] },
+  { id:  4, layer:1, name:'variables.css',         short:'Compiled CSS vars',
+    desc:'The stylesheet every component references. Foundation → semantic reference chain intact. Change one token at the source and every component follows.',
+    connects:[5] },
+  { id:  5, layer:2, name:'Component.module.css',  short:'Token-based CSS',
+    desc:'Every visual decision resolves to a design token. No hardcoded hex, px, or font-family values. The surface the token auditor patrols on every PR.',
+    connects:[6] },
+  { id:  6, layer:2, name:'Component.tsx',         short:'CVA + React Aria',
+    desc:'Behavior from React Aria. Variants from CVA. Typed props from the TypeScript interface. One source read by four consumers: metadata, docs, prop glossary, and Figma.',
+    connects:[7,8] },
+  { id:  7, layer:2, name:'/scaffold-component',   short:'Generates 8-file anatomy',
+    desc:'Components are not written from memory — scaffolded. Same input → same 8-file structure every time. What the scaffold creates, the governance gate enforces.',
+    connects:[8,18] },
+  { id:  8, layer:2, name:'Component.metadata.ts', short:'AI-ready docs per component',
+    desc:'Use cases, anti-patterns, a11y notes, AI hints, token list, and Figma binding. The API docs for agents — tells an AI when to use a component, when not to, and exactly how.',
+    connects:[11,13] },
+  { id:  9, layer:2, name:'Metadata Schema',       short:'Versioned contract',
+    desc:'Required fields and valid values every metadata file must follow. Drift is mechanically detectable, not a matter of opinion. Enforced by /review-pr.',
+    connects:[7,18] },
+  { id: 10, layer:2, name:'Prop Glossary',         short:'Canonical prop vocabulary',
+    desc:'Governed axes: variant, size, status. Anti-synonym glossary prevents drift. Facts and judgment separated. Figma manifest mirrors these conventions.',
+    connects:[6,16] },
+  { id: 11, layer:3, name:'/codebase-index',       short:'Generates relationship maps',
+    desc:'Orchestrates the deterministic indexer. Outputs component-usage, design-tokens, and dependency maps into .ai/ then loads the fresh index into agent context.',
+    connects:[12] },
+  { id: 12, layer:3, name:'index-components.mjs',  short:'Deterministic indexer',
+    desc:'Pure scanner — same input, same output, every run. Extracts React Aria foundation, CVA variants, CSS token refs, cross-component relationships. No LLM.',
+    connects:[13] },
+  { id: 13, layer:3, name:'.ai/index.json',        short:'The system index',
+    desc:'Project summary + full component array. Agent loads this once at session start. 10 components, 120 tokens, 12 categories, 42 relationships mapped.',
+    connects:[14] },
+  { id: 14, layer:4, name:'AI Agent',              short:'The operator',
+    desc:'Claude Code. Loads CLAUDE.md and index.json. Operates exclusively through skills. Infrastructure converts token spend from exploration into analysis: +54% accuracy, 58% faster.',
+    connects:[15,7,11,17,18] },
+  { id: 15, layer:4, name:'Rules',                 short:'Path-scoped constraints',
+    desc:'.claude/rules/ — each rule carries paths: frontmatter and loads only when the agent touches matching files. Rules teach the agent the what, how, and why.',
+    connects:[14] },
+  { id: 16, layer:5, name:'.figma/manifest.json',  short:'Design identity source',
+    desc:'Single source of truth for Figma: file key, fonts, icon set, token namespaces, variant conventions. Code is the source, Figma is the render target.',
+    connects:[17] },
+  { id: 17, layer:5, name:'/figma-ds',             short:'Code → Figma',
+    desc:'Reads TSX variants + CSS tokens + manifest → generates Figma component set → writes back componentSetId. All 10 Protonic components live in Klaro Design System.',
+    connects:[16,14] },
+  { id: 18, layer:6, name:'/review-pr',            short:'Governance gate',
+    desc:'7-layer review on every change: file structure, axes drift, React Aria conventions, token compliance, metadata conformance, export completeness, Storybook coverage.',
+    connects:[19] },
+  { id: 19, layer:6, name:'Audit Reports',         short:'Token violations ranked',
+    desc:'Full-system violations by component, severity-ranked, with exact fix suggestions. Because the index knows everything, the report is cheap and repeatable.',
+    connects:[20] },
+  { id: 20, layer:6, name:'Self-healing',          short:'Exact fixes + rationale',
+    desc:'Proposes the exact token replacement with rationale. Agent closes the loop: audit → propose → human approves → heal.',
+    connects:[14] },
+  { id: 21, layer:6, name:'ARC Benchmark',         short:'Proof the infrastructure works',
+    desc:'Accuracy +54% · Speed 58% faster · Consistency 99.9% better · False negatives eliminated. Source: Cristian Morales Achiardi. Infrastructure = exploration → analysis.',
+    connects:[22] },
+  { id: 22, layer:6, name:'The Loop, Closed',      short:'Self-closing system',
+    desc:'No top or bottom. No start or end. Tokens → Components → Index → Agent → Figma → Audit → Heal → back to start. That self-closing loop is what "agentic" means.',
+    connects:[1] },
+
+  // ── Lyse: the second chromosome ──────────────────────────────────────────
+  { id: 23, layer:7, name:'Lyse Health Audit',     short:'External design system auditor',
+    desc:'@lyse-labs/lyse — audits 6 axes: tokens, a11y, components, stories, ai-surface, ai-governance. Connected via .mcp.json and .lyse.yaml. Lives on the second strand — the other chromosome. Current score: 74/100 (B+), a11y: 100.',
+    connects:[5, 8, 14, 18, 19],
+    // ponytail: lyse sits at frac=0.5 on the B strand (Math.PI offset) — the second chromosome
+    lyseFrac: 0.5,
+  },
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -321,7 +216,6 @@ const NODES = [
 function hexRgb(hex) {
   return `${parseInt(hex.slice(1,3),16)},${parseInt(hex.slice(3,5),16)},${parseInt(hex.slice(5,7),16)}`;
 }
-
 function lerp(a, b, t) { return a + (b - a) * t; }
 
 // ── Canvas ────────────────────────────────────────────────────────────────────
@@ -329,86 +223,90 @@ function lerp(a, b, t) { return a + (b - a) * t; }
 const canvas = document.getElementById('helix');
 const ctx    = canvas.getContext('2d');
 
-function resize() {
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 resize();
 window.addEventListener('resize', resize);
 
-// ── Camera state ──────────────────────────────────────────────────────────────
-
-let is3D   = false;
-let camX   = 0;      // pitch (up/down tilt)
-let camY   = 0;      // yaw (left/right spin)
-// 3D target camera angles
-const TARGET_3D = { x: 0.28, y: 0.55 };
-const TARGET_2D = { x: 0,    y: 0    };
-
-// Mouse drag
-let isDragging   = false;
-let lastMouseX   = 0;
-let lastMouseY   = 0;
-let dragCamX     = 0;
-let dragCamY     = 0;
-
-// ── Helix params ──────────────────────────────────────────────────────────────
+// ── Constants ─────────────────────────────────────────────────────────────────
 
 const NUM_TURNS = 3.8;
-const AMP       = 90;
-const R_MAX     = 13;
+const AMP_2D    = 115;   // wider spread in 2D
+const AMP_3D    = 95;
+const R_MAX     = 14;
 const R_MIN     = 6;
 const TOP_PAD   = 90;
 const BOT_PAD   = 90;
 const FOV       = 520;
+const TARGET_3D = { x: 0.28, y: 0.55 };
+const TARGET_2D = { x: 0,    y: 0    };
+const MAX_TLEN  = Math.sqrt(TARGET_3D.x**2 + TARGET_3D.y**2);
 
-// ── 3D → screen projection ────────────────────────────────────────────────────
+// ── Camera ────────────────────────────────────────────────────────────────────
 
-function project(x3, y3, z3) {
-  // Rotate around Y (yaw)
-  const cy = Math.cos(camY), sy = Math.sin(camY);
-  const rx =  x3 * cy + z3 * sy;
-  const ry =  y3;
-  const rz = -x3 * sy + z3 * cy;
-
-  // Rotate around X (pitch)
-  const cx2 = Math.cos(camX), sx2 = Math.sin(camX);
-  const rx2 = rx;
-  const ry2 = ry * cx2 - rz * sx2;
-  const rz2 = ry * sx2 + rz * cx2;
-
-  // Perspective
-  const scale = FOV / (FOV + rz2 + 500);
-  const scx   = canvas.width  * 0.44;
-  const scy   = canvas.height * 0.50;
-
-  return {
-    x:     scx + rx2 * scale,
-    y:     scy + ry2 * scale,
-    scale,
-    z:     rz2,
-  };
-}
-
-// ── Node world coordinates ────────────────────────────────────────────────────
-
-let helixTime = 0; // auto-rotation offset
-
-function nodeWorld(i) {
-  const frac  = i / (NODES.length - 1);
-  const angle = frac * NUM_TURNS * Math.PI * 2 + helixTime;
-  const halfH = (canvas.height - TOP_PAD - BOT_PAD) / 2;
-  const y3    = -halfH + frac * halfH * 2; // centered around 0
-  const x3    = AMP * Math.cos(angle);
-  const z3    = AMP * Math.sin(angle);
-  return { x3, y3, z3, angle };
-}
+let is3D        = false;
+let camX        = 0;
+let camY        = 0;
+let isDragging  = false;
+let lastMX      = 0, lastMY = 0;
+let dragX       = 0, dragY  = 0;
 
 // ── State ─────────────────────────────────────────────────────────────────────
 
-let hoveredId  = null;
-let selectedId = null;
-let positions  = []; // screen positions for mouse hit-test
+let hoveredId   = null;
+let selectedId  = null;
+let positions   = [];   // { x, y, depth } per node index
+let currentTs   = 0;
+let helixTime   = 0;
+
+// ── Transition progress (0=2D, 1=3D) ─────────────────────────────────────────
+
+function tProgress() {
+  return Math.min(1, Math.sqrt(camX**2 + camY**2) / MAX_TLEN);
+}
+
+// ── 3D projection ─────────────────────────────────────────────────────────────
+
+function project3d(x3, y3, z3) {
+  const cy = Math.cos(camY), sy = Math.sin(camY);
+  const rx =  x3*cy + z3*sy;
+  const ry =  y3;
+  const rz = -x3*sy + z3*cy;
+  const cx2 = Math.cos(camX), sx2 = Math.sin(camX);
+  const ry2 = ry*cx2 - rz*sx2;
+  const rz2 = ry*sx2 + rz*cx2;
+  const sc  = FOV / (FOV + rz2 + 500);
+  return { x: canvas.width*0.44 + rx*sc, y: canvas.height*0.5 + ry2*sc, sc, rz: rz2 };
+}
+
+// ── Node position (lerped 2D ↔ 3D) ───────────────────────────────────────────
+
+function getPos(nodeIndex, phaseOffset = 0) {
+  const isLyse = NODES[nodeIndex].lyseFrac !== undefined;
+  const frac   = isLyse ? NODES[nodeIndex].lyseFrac : nodeIndex / (NODES.length - 1 - 1); // -1 for lyse
+  const angle  = frac * NUM_TURNS * Math.PI * 2 + helixTime + phaseOffset;
+
+  // Pure 2D formula (no perspective, left-biased, full vertical spread)
+  const cx2d  = canvas.width * 0.36;
+  const x2d   = cx2d + AMP_2D * Math.cos(angle);
+  const y2d   = TOP_PAD + frac * (canvas.height - TOP_PAD - BOT_PAD);
+  const z2d   = Math.sin(angle);
+  const d2d   = (z2d + 1) / 2;
+
+  // 3D projected
+  const halfH = (canvas.height - TOP_PAD - BOT_PAD) / 2;
+  const y3    = -halfH + frac * halfH * 2;
+  const x3    = AMP_3D * Math.cos(angle);
+  const z3    = AMP_3D * Math.sin(angle);
+  const p3    = project3d(x3, y3, z3);
+  const d3    = Math.min(1, Math.max(0, (p3.sc - 0.55) / 0.5));
+
+  const t = tProgress();
+  return {
+    x:     lerp(x2d, p3.x, t),
+    y:     lerp(y2d, p3.y, t),
+    depth: lerp(d2d, d3,   t),
+  };
+}
 
 // ── Panel ─────────────────────────────────────────────────────────────────────
 
@@ -417,8 +315,8 @@ const panel = document.getElementById('panel');
 function openPanel(node) {
   selectedId = node.id;
   const layer = LAYERS[node.layer];
-  document.getElementById('panel-node-id').textContent   = `Node ${node.id} of 22`;
-  document.getElementById('panel-layer-tag').textContent = `Layer ${node.layer} · ${layer.name}`;
+  document.getElementById('panel-node-id').textContent   = `Node ${node.id} of 23`;
+  document.getElementById('panel-layer-tag').textContent = `${layer.name}`;
   document.getElementById('panel-layer-tag').style.color = layer.color;
   document.getElementById('panel-name').textContent      = node.name;
   document.getElementById('panel-short').textContent     = node.short;
@@ -426,28 +324,23 @@ function openPanel(node) {
 
   const list = document.getElementById('connects-list');
   list.innerHTML = '';
-  node.connects.forEach(cid => {
-    const cn   = NODES.find(n => n.id === cid);
+  (node.connects || []).forEach(cid => {
+    const cn = NODES.find(n => n.id === cid);
     if (!cn) return;
-    const cl   = LAYERS[cn.layer];
-    const item = document.createElement('div');
-    item.className = 'connect-item';
-    item.innerHTML =
+    const cl = LAYERS[cn.layer];
+    const el = document.createElement('div');
+    el.className = 'connect-item';
+    el.innerHTML =
       `<div class="connect-dot" style="background:${cl.color}"></div>` +
       `<span class="connect-label">${cn.name}</span>` +
       `<span class="connect-id">#${cn.id}</span>`;
-    item.onclick = () => openPanel(cn);
-    list.appendChild(item);
+    el.onclick = () => openPanel(cn);
+    list.appendChild(el);
   });
-
   panel.classList.add('open');
 }
 
-function closePanel() {
-  selectedId = null;
-  panel.classList.remove('open');
-}
-
+function closePanel() { selectedId = null; panel.classList.remove('open'); }
 document.getElementById('panel-close').onclick = closePanel;
 
 // ── Legend ────────────────────────────────────────────────────────────────────
@@ -456,9 +349,7 @@ const legend = document.getElementById('legend');
 Object.entries(LAYERS).forEach(([id, l]) => {
   const el = document.createElement('div');
   el.className = 'legend-item';
-  el.innerHTML =
-    `<div class="legend-dot" style="background:${l.color}"></div>` +
-    `<span>L${id} · ${l.name}</span>`;
+  el.innerHTML = `<div class="legend-dot" style="background:${l.color}"></div><span>L${id} · ${l.name}</span>`;
   legend.appendChild(el);
 });
 
@@ -471,168 +362,207 @@ document.querySelectorAll('.mode-btn').forEach(btn => {
   };
 });
 
-// ── Draw strands ──────────────────────────────────────────────────────────────
+// ── Draw ──────────────────────────────────────────────────────────────────────
 
-function drawStrand(phaseOffset, alpha) {
+function drawStrand(phaseOff, alpha) {
   const steps = 180;
+  const t = tProgress();
   ctx.beginPath();
   for (let i = 0; i <= steps; i++) {
     const frac  = i / steps;
-    const angle = frac * NUM_TURNS * Math.PI * 2 + helixTime + phaseOffset;
+    const angle = frac * NUM_TURNS * Math.PI * 2 + helixTime + phaseOff;
+    const cx2d  = canvas.width * 0.36;
+    const x2d   = cx2d + AMP_2D * Math.cos(angle);
+    const y2d   = TOP_PAD + frac * (canvas.height - TOP_PAD - BOT_PAD);
     const halfH = (canvas.height - TOP_PAD - BOT_PAD) / 2;
-    const y3    = -halfH + frac * halfH * 2;
-    const x3    = AMP * Math.cos(angle);
-    const z3    = AMP * Math.sin(angle);
-    const p     = project(x3, y3, z3);
-    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+    const p3    = project3d(AMP_3D * Math.cos(angle), -halfH + frac * halfH * 2, AMP_3D * Math.sin(angle));
+    const x = lerp(x2d, p3.x, t);
+    const y = lerp(y2d, p3.y, t);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
   }
   ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-  ctx.lineWidth   = 1;
+  ctx.lineWidth = 1;
   ctx.stroke();
 }
 
-// ── Draw closing arc ──────────────────────────────────────────────────────────
-
 function drawClosingArc(p1, p22) {
-  const ox = Math.max(p1.x, p22.x) + (is3D ? 50 : 60);
+  const ox = Math.max(p1.x, p22.x) + 65;
   ctx.beginPath();
   ctx.moveTo(p22.x, p22.y);
   ctx.bezierCurveTo(ox, p22.y, ox, p1.y, p1.x, p1.y);
   ctx.strokeStyle = 'rgba(74,222,128,0.18)';
-  ctx.lineWidth   = 1.5;
+  ctx.lineWidth = 1.5;
   ctx.setLineDash([5, 8]);
   ctx.stroke();
   ctx.setLineDash([]);
-
   // Arrow at p1
   ctx.beginPath();
   ctx.moveTo(p1.x - 8, p1.y - 5);
   ctx.lineTo(p1.x,     p1.y);
   ctx.lineTo(p1.x - 8, p1.y + 5);
   ctx.strokeStyle = 'rgba(74,222,128,0.4)';
-  ctx.lineWidth   = 1.5;
+  ctx.lineWidth = 1.5;
   ctx.stroke();
 }
 
-// ── Draw connection lines ──────────────────────────────────────────────────────
-
 function drawConnections(node) {
-  const from = positions[node.id - 1];
-  node.connects.forEach(cid => {
+  // Pulsing animation: sharp sawtooth-style pulse
+  const pulse = Math.abs(Math.sin(currentTs * 0.0035));
+  const from  = positions[node.id - 1];
+  const rgb   = hexRgb(LAYERS[node.layer].color);
+
+  (node.connects || []).forEach(cid => {
     const to = positions[cid - 1];
     if (!from || !to) return;
-    const rgb = hexRgb(LAYERS[node.layer].color);
     ctx.beginPath();
     ctx.moveTo(from.x, from.y);
     ctx.lineTo(to.x,   to.y);
-    ctx.strokeStyle = `rgba(${rgb},0.28)`;
-    ctx.lineWidth   = 1.2;
+    ctx.strokeStyle = `rgba(${rgb},${0.08 + pulse * 0.45})`;
+    ctx.lineWidth   = 0.8 + pulse * 1.4;
     ctx.setLineDash([4, 7]);
     ctx.stroke();
     ctx.setLineDash([]);
+
+    // Travelling dot along the line
+    const tx = lerp(from.x, to.x, pulse);
+    const ty = lerp(from.y, to.y, pulse);
+    ctx.beginPath();
+    ctx.arc(tx, ty, 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${rgb},${0.5 + pulse * 0.5})`;
+    ctx.fill();
   });
 }
 
 // ── Render ────────────────────────────────────────────────────────────────────
 
 function render(ts) {
+  currentTs = ts;
   helixTime = ts * 0.00012;
 
-  // Lerp camera toward target
-  const tgt  = is3D ? TARGET_3D : TARGET_2D;
-  const spd  = 0.045;
-  camX = lerp(camX, tgt.x + dragCamX, spd);
-  camY = lerp(camY, tgt.y + dragCamY, spd);
+  // Lerp camera
+  const tgt = is3D ? TARGET_3D : TARGET_2D;
+  camX = lerp(camX, tgt.x + dragX, 0.045);
+  camY = lerp(camY, tgt.y + dragY, 0.045);
 
-  const W = canvas.width;
-  const H = canvas.height;
+  const W = canvas.width, H = canvas.height;
   ctx.clearRect(0, 0, W, H);
 
-  // Background radial gradient
-  const cx = W * 0.44, cy = H * 0.5;
-  const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, H * 0.75);
-  bg.addColorStop(0, 'rgba(14,11,28,0.65)');
-  bg.addColorStop(1, 'rgba(0,0,0,0)');
-  ctx.fillStyle = bg;
+  // Background glow
+  const bgG = ctx.createRadialGradient(W*0.36, H*0.5, 0, W*0.36, H*0.5, H*0.72);
+  bgG.addColorStop(0, 'rgba(14,11,30,0.6)');
+  bgG.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = bgG;
   ctx.fillRect(0, 0, W, H);
 
   // Strands
-  drawStrand(0,       0.07);
-  drawStrand(Math.PI, 0.04);
+  drawStrand(0,         0.08);  // strand A (main)
+  drawStrand(Math.PI,   0.045); // strand B (lyse chromosome)
 
-  // Compute screen positions
-  positions = NODES.map((_, i) => {
-    const { x3, y3, z3 } = nodeWorld(i);
-    return project(x3, y3, z3);
+  // Lyse connection bridges between strands (faint)
+  const lysePulse = 0.5 + 0.5 * Math.sin(ts * 0.0008);
+  for (let k = 0; k < 5; k++) {
+    const frac = (k + 0.5) / 5;
+    const aA   = frac * NUM_TURNS * Math.PI * 2 + helixTime;
+    const aB   = aA + Math.PI;
+    const pA   = getPos(Math.round(frac * 21), 0);        // approx A strand point
+    const cx2d = canvas.width * 0.36;
+    const y2d  = TOP_PAD + frac * (canvas.height - TOP_PAD - BOT_PAD);
+    const t    = tProgress();
+    const halfH = (H - TOP_PAD - BOT_PAD) / 2;
+    const p3B  = project3d(AMP_3D * Math.cos(aB), -halfH + frac * halfH * 2, AMP_3D * Math.sin(aB));
+    const xB   = lerp(cx2d + AMP_2D * Math.cos(aB), p3B.x, t);
+    const yB   = lerp(y2d, p3B.y, t);
+    ctx.beginPath();
+    ctx.moveTo(pA.x, pA.y);
+    ctx.lineTo(xB, yB);
+    ctx.strokeStyle = `rgba(34,211,238,${0.04 + lysePulse * 0.06})`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Compute all screen positions
+  // Nodes 0–21 are on strand A; node 22 (Lyse, index) is on strand B
+  positions = NODES.map((node, i) => {
+    const phase = node.lyseFrac !== undefined ? Math.PI : 0;
+    return getPos(Math.min(i, 21), phase);
   });
 
-  // Closing arc (22 → 1)
+  // Closing arc (node 22 → node 1)
   drawClosingArc(positions[0], positions[21]);
 
-  // Connection lines for selected node
+  // Connection lines for selected (pulsing)
   if (selectedId) {
     const sel = NODES.find(n => n.id === selectedId);
     if (sel) drawConnections(sel);
   }
 
-  // Draw nodes back → front
+  // Sort nodes back → front by depth
   const sorted = positions
     .map((p, i) => ({ ...p, i }))
-    .sort((a, b) => a.z - b.z);
+    .sort((a, b) => a.depth - b.depth);
 
-  sorted.forEach(({ i, x, y, z, scale }) => {
-    const node   = NODES[i];
-    const layer  = LAYERS[node.layer];
-    const isHov  = node.id === hoveredId;
-    const isSel  = node.id === selectedId;
+  sorted.forEach(({ i, x, y, depth }) => {
+    const node  = NODES[i];
+    const layer = LAYERS[node.layer];
+    const isHov = node.id === hoveredId;
+    const isSel = node.id === selectedId;
+    const isLyse = !!node.lyseFrac;
+    const rgb   = hexRgb(layer.color);
 
-    // In 2D mode (camX≈0, camY≈0), fall back to simple sine depth
-    const depth2d = (Math.sin(nodeWorld(i).angle) + 1) / 2;
-    const depth   = is3D ? Math.min(1, Math.max(0, (scale - 0.6) / 0.4)) : depth2d;
+    const r   = R_MIN + depth * (R_MAX - R_MIN) + (isLyse ? 4 : 0);
+    const alp = 0.30 + depth * 0.70;
+    const rF  = isSel ? r + 5 : isHov ? r + 3 : r;
 
-    const r      = R_MIN + depth * (R_MAX - R_MIN);
-    const alpha  = 0.30 + depth * 0.70;
-    const rgb    = hexRgb(layer.color);
-    const rF     = isSel ? r + 5 : isHov ? r + 3 : r;
+    // Lyse extra: outer orbit ring
+    if (isLyse) {
+      const lyseRing = 0.5 + 0.5 * Math.sin(ts * 0.002);
+      ctx.beginPath();
+      ctx.arc(x, y, rF + 8 + lyseRing * 4, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${rgb},${0.15 + lyseRing * 0.2})`;
+      ctx.lineWidth = 1;
+      ctx.setLineDash([3, 5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
 
     // Glow
-    ctx.shadowBlur  = isSel ? 30 : isHov ? 20 : depth * 12;
+    ctx.shadowBlur  = isSel ? 32 : isHov ? 20 : isLyse ? 18 : depth * 12;
     ctx.shadowColor = layer.color;
 
-    // Circle fill
+    // Fill
     ctx.beginPath();
     ctx.arc(x, y, rF, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${rgb},${alpha * (isSel ? 0.88 : isHov ? 0.76 : 0.55)})`;
+    ctx.fillStyle = `rgba(${rgb},${alp * (isSel ? 0.9 : isHov ? 0.78 : 0.55)})`;
     ctx.fill();
 
-    // Circle stroke
-    ctx.strokeStyle = `rgba(${rgb},${alpha})`;
-    ctx.lineWidth   = isSel ? 2.5 : 1.5;
+    // Stroke
+    ctx.strokeStyle = `rgba(${rgb},${alp})`;
+    ctx.lineWidth   = isSel ? 2.5 : isLyse ? 2 : 1.5;
     ctx.stroke();
     ctx.shadowBlur  = 0;
 
     // Node ID
-    ctx.font      = `600 ${Math.max(7, Math.round(rF * 0.65))}px system-ui`;
+    ctx.font      = `600 ${Math.max(7, Math.round(rF * 0.62))}px system-ui`;
     ctx.textAlign = 'center';
     ctx.fillStyle = `rgba(255,255,255,${0.45 + depth * 0.45})`;
-    ctx.fillText(node.id, x, y + rF * 0.35);
+    ctx.fillText(isLyse ? 'L' : node.id, x, y + rF * 0.35);
 
-    // Labels for hovered/selected or front-facing
-    if (isHov || isSel || depth > 0.62) {
-      const scx2    = canvas.width * 0.44;
-      const right   = x >= scx2;
-      const labelX  = right ? x + rF + 10 : x - rF - 10;
+    // Labels
+    if (isHov || isSel || depth > 0.60 || isLyse) {
+      const cx2d    = canvas.width * 0.36;
+      const right   = x >= cx2d;
+      const lx      = right ? x + rF + 11 : x - rF - 11;
       ctx.textAlign = right ? 'left' : 'right';
-      const nAlpha  = isSel || isHov ? 0.92 : 0.35 + depth * 0.5;
+      const nAlpha  = isSel || isHov ? 0.92 : isLyse ? 0.8 : 0.30 + depth * 0.55;
 
-      ctx.font      = `${isSel || isHov ? 600 : 400} 11px system-ui`;
+      ctx.font      = `${isSel || isHov || isLyse ? 600 : 400} ${isLyse ? 12 : 11}px system-ui`;
       ctx.fillStyle = `rgba(255,255,255,${nAlpha})`;
-      ctx.fillText(node.name, labelX, y + 4);
+      ctx.fillText(node.name, lx, y + 4);
 
-      if (isHov || isSel) {
+      if (isHov || isSel || isLyse) {
         ctx.font      = '10px system-ui';
-        ctx.fillStyle = `rgba(${rgb},0.82)`;
-        ctx.fillText(node.short, labelX, y + 17);
+        ctx.fillStyle = `rgba(${rgb},0.85)`;
+        ctx.fillText(node.short, lx, y + 17);
       }
     }
   });
@@ -640,74 +570,58 @@ function render(ts) {
   requestAnimationFrame(render);
 }
 
-// ── Mouse hit test ────────────────────────────────────────────────────────────
+// ── Hit test ──────────────────────────────────────────────────────────────────
 
 function hitTest(mx, my) {
-  // Check front-to-back
   const byDepth = positions
     .map((p, i) => ({ ...p, i }))
-    .sort((a, b) => b.scale - a.scale);
+    .sort((a, b) => b.depth - a.depth);
 
-  for (const { i, x, y, scale } of byDepth) {
-    const depth  = Math.min(1, Math.max(0, (scale - 0.6) / 0.4));
-    const r      = R_MIN + depth * (R_MAX - R_MIN) + 8;
+  for (const { i, x, y, depth } of byDepth) {
+    const r = R_MIN + depth * (R_MAX - R_MIN) + 9;
     if (Math.hypot(mx - x, my - y) < r) return NODES[i].id;
   }
   return null;
 }
 
+// ── Mouse ─────────────────────────────────────────────────────────────────────
+
 canvas.addEventListener('mousemove', e => {
-  if (isDragging) {
-    const dx = e.clientX - lastMouseX;
-    const dy = e.clientY - lastMouseY;
-    if (is3D) {
-      dragCamY += dx * 0.008;
-      dragCamX += dy * 0.008;
-    }
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
+  if (isDragging && is3D) {
+    dragY += (e.clientX - lastMX) * 0.008;
+    dragX += (e.clientY - lastMY) * 0.008;
+    lastMX = e.clientX; lastMY = e.clientY;
     return;
   }
-
   const rect = canvas.getBoundingClientRect();
-  const hit  = hitTest(e.clientX - rect.left, e.clientY - rect.top);
-  hoveredId  = hit;
-  canvas.style.cursor = hit ? 'pointer' : (is3D ? 'grab' : 'default');
+  hoveredId  = hitTest(e.clientX - rect.left, e.clientY - rect.top);
+  canvas.style.cursor = hoveredId ? 'pointer' : (is3D ? 'grab' : 'default');
 });
 
 canvas.addEventListener('mousedown', e => {
   if (!hoveredId && is3D) {
-    isDragging = true;
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
+    isDragging = true; lastMX = e.clientX; lastMY = e.clientY;
     canvas.style.cursor = 'grabbing';
   }
 });
 
 window.addEventListener('mouseup', () => {
-  if (isDragging) {
-    isDragging = false;
-    canvas.style.cursor = 'grab';
-    // Slowly return drag offset to 0
-    const decay = () => {
-      dragCamX *= 0.92;
-      dragCamY *= 0.92;
-      if (Math.abs(dragCamX) + Math.abs(dragCamY) > 0.001) requestAnimationFrame(decay);
-      else { dragCamX = 0; dragCamY = 0; }
-    };
-    requestAnimationFrame(decay);
-  }
+  if (!isDragging) return;
+  isDragging = false;
+  canvas.style.cursor = 'grab';
+  const decay = () => {
+    dragX *= 0.92; dragY *= 0.92;
+    if (Math.abs(dragX) + Math.abs(dragY) > 0.001) requestAnimationFrame(decay);
+    else { dragX = 0; dragY = 0; }
+  };
+  requestAnimationFrame(decay);
 });
 
 canvas.addEventListener('click', e => {
   if (isDragging) return;
   const rect = canvas.getBoundingClientRect();
   const hit  = hitTest(e.clientX - rect.left, e.clientY - rect.top);
-  if (hit) {
-    openPanel(NODES.find(n => n.id === hit));
-  } else {
-    closePanel();
-  }
+  hit ? openPanel(NODES.find(n => n.id === hit)) : closePanel();
 });
 
 requestAnimationFrame(render);
