@@ -53,10 +53,23 @@
 
   #legend {
     position: fixed; bottom: 32px; left: 36px; z-index: 20;
-    display: flex; flex-direction: column; gap: 7px; pointer-events: none;
+    display: flex; flex-direction: column; gap: 7px; pointer-events: auto;
   }
-  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: #3d5475; }
-  .legend-dot  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .legend-item {
+    display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: #3d5475;
+    cursor: pointer; padding: 4px 8px 4px 4px; border-radius: 6px;
+    border: 1px solid transparent;
+    transition: color .15s, border-color .15s, background .15s;
+    user-select: none;
+  }
+  .legend-item:hover { color: #64748b; }
+  .legend-item.active {
+    color: #e2e8f0;
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+  }
+  .legend-dot  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; transition: box-shadow .2s; }
+  .legend-item.active .legend-dot { box-shadow: 0 0 6px 2px currentColor; }
 
   #hint {
     position: fixed; bottom: 32px; right: 36px;
@@ -271,7 +284,8 @@ let targetZoom  = 1;
 
 let hoveredId   = null;
 let selectedId  = null;
-let positions   = [];   // { x, y, depth } per node index
+let activeLayer = null;   // layer id (1–7) or null = show all
+let positions   = [];
 let currentTs   = 0;
 let helixTime   = 0;
 
@@ -376,10 +390,24 @@ document.getElementById('panel-close').onclick = closePanel;
 // ── Legend ────────────────────────────────────────────────────────────────────
 
 const legend = document.getElementById('legend');
+const legendEls = {};
 Object.entries(LAYERS).forEach(([id, l]) => {
   const el = document.createElement('div');
   el.className = 'legend-item';
-  el.innerHTML = `<div class="legend-dot" style="background:${l.color}"></div><span>L${id} · ${l.name}</span>`;
+  el.style.color = l.color;
+  el.innerHTML = `<div class="legend-dot" style="background:${l.color}; color:${l.color}"></div><span style="color:#3d5475">L${id} · ${l.name}</span>`;
+  el.onclick = () => {
+    const lid = parseInt(id);
+    activeLayer = activeLayer === lid ? null : lid;
+    Object.values(legendEls).forEach(e => e.classList.remove('active'));
+    if (activeLayer !== null) el.classList.add('active');
+    // close panel if selected node isn't in this layer
+    if (selectedId) {
+      const selNode = NODES.find(n => n.id === selectedId);
+      if (selNode && activeLayer !== null && selNode.layer !== activeLayer) closePanel();
+    }
+  };
+  legendEls[id] = el;
   legend.appendChild(el);
 });
 
@@ -521,10 +549,38 @@ function render(ts) {
   // Closing arc (node 22 → node 1)
   drawClosingArc(positions[0], positions[21]);
 
-  // Connection lines for selected (pulsing)
+  // Connection lines for selected node (pulsing)
   if (selectedId) {
     const sel = NODES.find(n => n.id === selectedId);
     if (sel) drawConnections(sel);
+  }
+
+  // Active-layer connections: light up all edges for nodes in the selected layer
+  if (activeLayer) {
+    const rgb   = hexRgb(LAYERS[activeLayer].color);
+    const pulse = Math.abs(Math.sin(currentTs * 0.0025));
+    NODES.forEach(node => {
+      if (node.layer !== activeLayer) return;
+      const from = positions[node.id - 1];
+      (node.connects || []).forEach(cid => {
+        const to = positions[cid - 1];
+        if (!from || !to) return;
+        ctx.beginPath();
+        ctx.moveTo(from.x, from.y);
+        ctx.lineTo(to.x,   to.y);
+        ctx.strokeStyle = `rgba(${rgb},${0.18 + pulse * 0.52})`;
+        ctx.lineWidth   = 1.2 + pulse * 1.6;
+        ctx.setLineDash([4, 7]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        const tx = lerp(from.x, to.x, pulse);
+        const ty = lerp(from.y, to.y, pulse);
+        ctx.beginPath();
+        ctx.arc(tx, ty, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgb},${0.6 + pulse * 0.4})`;
+        ctx.fill();
+      });
+    });
   }
 
   // Sort nodes back → front by depth
@@ -533,16 +589,20 @@ function render(ts) {
     .sort((a, b) => a.depth - b.depth);
 
   sorted.forEach(({ i, x, y, depth }) => {
-    const node  = NODES[i];
-    const layer = LAYERS[node.layer];
-    const isHov = node.id === hoveredId;
-    const isSel = node.id === selectedId;
-    const isLyse = !!node.lyseFrac;
-    const rgb   = hexRgb(layer.color);
+    const node    = NODES[i];
+    const layer   = LAYERS[node.layer];
+    const isHov   = node.id === hoveredId;
+    const isSel   = node.id === selectedId;
+    const isLyse  = !!node.lyseFrac;
+    const inLayer = activeLayer === null || node.layer === activeLayer;
+    const rgb     = hexRgb(layer.color);
+
+    // Dim everything outside the active layer
+    const dimFactor = inLayer ? 1 : 0.07;
 
     const r   = R_MIN + depth * (R_MAX - R_MIN) + (isLyse ? 4 : 0);
-    const alp = 0.30 + depth * 0.70;
-    const rF  = isSel ? r + 5 : isHov ? r + 3 : r;
+    const alp = (0.30 + depth * 0.70) * dimFactor;
+    const rF  = isSel ? r + 5 : isHov ? r + 3 : inLayer && activeLayer ? r + 2 : r;
 
     // Lyse extra: outer orbit ring
     if (isLyse) {
@@ -556,9 +616,10 @@ function render(ts) {
       ctx.setLineDash([]);
     }
 
-    // Glow
-    ctx.shadowBlur  = isSel ? 32 : isHov ? 20 : isLyse ? 18 : depth * 12;
-    ctx.shadowColor = layer.color;
+    // Boost glow for active-layer nodes
+    const glowBase = inLayer && activeLayer ? depth * 18 + 8 : depth * 12;
+    ctx.shadowBlur  = isSel ? 32 : isHov ? 20 : isLyse ? 18 : glowBase;
+    ctx.shadowColor = inLayer ? layer.color : 'transparent';
 
     // Fill
     ctx.beginPath();
@@ -568,23 +629,25 @@ function render(ts) {
 
     // Stroke
     ctx.strokeStyle = `rgba(${rgb},${alp})`;
-    ctx.lineWidth   = isSel ? 2.5 : isLyse ? 2 : 1.5;
+    ctx.lineWidth   = isSel ? 2.5 : (inLayer && activeLayer) ? 2.2 : isLyse ? 2 : 1.5;
     ctx.stroke();
     ctx.shadowBlur  = 0;
 
     // Node ID
     ctx.font      = `600 ${Math.max(7, Math.round(rF * 0.62))}px system-ui`;
     ctx.textAlign = 'center';
-    ctx.fillStyle = `rgba(255,255,255,${0.45 + depth * 0.45})`;
+    ctx.fillStyle = `rgba(255,255,255,${(0.45 + depth * 0.45) * dimFactor})`;
     ctx.fillText(isLyse ? 'L' : node.id, x, y + rF * 0.35);
 
-    // Labels
-    if (isHov || isSel || depth > 0.60 || isLyse) {
+    // Labels — show for active-layer, hov/sel, or (when unfiltered) deep/Lyse nodes
+    const forceLabel = inLayer && activeLayer !== null;
+    const showLabel  = isHov || isSel || forceLabel || (!activeLayer && (depth > 0.60 || isLyse));
+    if (showLabel) {
       const cx2d    = canvas.width * 0.36;
       const right   = x >= cx2d;
       const lx      = right ? x + rF + 11 : x - rF - 11;
       ctx.textAlign = right ? 'left' : 'right';
-      const nAlpha  = isSel || isHov ? 0.92 : isLyse ? 0.8 : 0.30 + depth * 0.55;
+      const nAlpha  = (isSel || isHov ? 0.92 : isLyse ? 0.8 : 0.30 + depth * 0.55) * dimFactor;
 
       ctx.font      = `${isSel || isHov || isLyse ? 600 : 400} ${isLyse ? 12 : 11}px system-ui`;
       ctx.fillStyle = `rgba(255,255,255,${nAlpha})`;
