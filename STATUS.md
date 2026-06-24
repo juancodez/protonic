@@ -1,12 +1,12 @@
 # Protonic — Project Status
 
-Last updated: 2026-06-24 (session 2)
+Last updated: 2026-06-24 (session 3)
 
 ---
 
 ## Where we are
 
-All 3 phases complete + 22-step agentic audit closed + Figma fully pushed + Lyse integrated.
+All 3 phases complete + 22-step agentic audit closed + Figma fully pushed + Lyse integrated + visualization live + Klaro Design System deployed.
 
 ```
 Phase 1 ✅  Button, Modal, Select, Table — React Aria base, fully accessible
@@ -14,7 +14,9 @@ Phase 2 ✅  Design layer — DTCG tokens, CVA variants, CSS custom properties, 
 Phase 3 ✅  Agentic layer — Component Auditor, Design Review, A11y Agent, Docs Agent, Review PR
 Audit  ✅  22-node agentic system closed (AGENTIC-SYSTEM.md documents every node)
 Figma  ✅  All 10 components pushed — variables + component sets live in Klaro Design System file
-Lyse   ✅  Health audit integrated — 66/100 (B), runs via npm run lyse
+Lyse   ✅  82/100 (A−) — up from 66 → 74 → 82 across 3 sessions
+Viz    ✅  Interactive 22-step helix visualization — https://protonic-agenticsystem.vercel.app
+Klaro  ✅  Standalone design system showcase — https://klaro-design-system.vercel.app
 ```
 
 ---
@@ -36,30 +38,37 @@ Lyse   ✅  Health audit integrated — 66/100 (B), runs via npm run lyse
 
 ---
 
-## Lyse health score — 74/100 (B+)
+## Lyse health score — 82/100 (A−)
 
-| Axis | Score | Notes |
-|---|---|---|
-| tokens | 74 | Alias references correct — lyse alpha bug: doesn't cross-reference DTCG files |
-| a11y | 100 ✅ | `prefers-reduced-motion` + `forced-colors` added to all 5 animated components |
-| components | 87 | Strong |
-| stories | N/A | lyse alpha: doesn't pick up `*.stories.tsx` source files yet |
-| ai-surface | 10 | SKILL.md frontmatter fixed; remaining: component-manifest-json |
-| ai-governance | 100 | Perfect |
+| Axis | Score | Δ | Notes |
+|---|---|---|---|
+| tokens | 74 | = | Alias references correct — lyse alpha bug: doesn't cross-reference DTCG files |
+| a11y | 100 ✅ | = | `prefers-reduced-motion` + `forced-colors` on all 5 animated components |
+| components | 87 | = | Strong |
+| stories | N/A | = | lyse alpha: doesn't pick up `*.stories.tsx` source files yet |
+| ai-surface | 50 | ↑ from 10 | SKILL.md frontmatter fixed; 3 findings remain (see below) |
+| ai-governance | 100 ✅ | = | Perfect |
 
-**To push score further:**
-1. Wait for lyse alpha to fix cross-file DTCG resolution → tokens 74 → ~95
-2. Wait for lyse alpha to pick up `*.stories.tsx` → stories axis unlocks
-3. Open issue on lyse repo: https://github.com/lyse-labs/lyse
+**Score history:** 66 → 74 → 82
+
+**Remaining ai-surface findings (fixable):**
+1. `AGENTS.md` doesn't reference toolchain config files → add mention of `package.json`, `tsconfig.json`
+2. No `MIGRATION.md` → add minimal migration guide
+3. Fix those two → estimated score ~88
+
+**Blocked on lyse alpha bugs:**
+- Cross-file DTCG resolution → tokens 74 → ~95 when fixed
+- `*.stories.tsx` detection → stories axis N/A → unlocks when fixed
+- Issue to open: https://github.com/lyse-labs/lyse
 
 ---
 
-## What's left to finish (next session)
+## What's next
 
-- [x] **a11y CSS**: `prefers-reduced-motion` + `forced-colors` added to Button, Chip, Select, Modal, DraggableTicker — a11y 60 → 100
-- [x] **Storybook build**: `npm run build-storybook` ✅ — stories still N/A in lyse (alpha bug)
-- [ ] **Token alias bug**: open issue on lyse repo (`https://github.com/lyse-labs/lyse`) — cross-file DTCG resolution broken in alpha
-- [ ] **Present to Cristian**: repo is ready, Figma is ready, Lyse score 74/100 (B+), clear path to 80+ once alpha bugs resolved
+- [ ] Fix `AGENTS.md` toolchain refs → ai-surface 50 → ~70
+- [ ] Add `MIGRATION.md` → ai-surface improves further
+- [ ] Wire Protonic tokens into Klaro (`klaro-landing-01`) — token bridge
+- [ ] Open lyse alpha issue (DTCG cross-file + stories axis)
 
 ---
 
