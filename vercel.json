@@ -1,7 +1,6 @@
 {
-  "buildCommand": "echo done",
-  "outputDirectory": ".",
+  "buildCommand": "mkdir -p public && cp presentation.html public/index.html",
+  "outputDirectory": "public",
   "installCommand": "echo skip",
-  "framework": null,
-  "rewrites": [{ "source": "/", "destination": "/presentation.html" }]
+  "framework": null
 }
