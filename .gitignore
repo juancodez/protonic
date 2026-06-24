@@ -5,3 +5,8 @@ dist/
 
 *storybook.log
 storybook-static
+
+# Lyse local cache
+.lyse/
+
+.vercel
