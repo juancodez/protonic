@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design System Audit — Protonic & Klaro Web · June 2026</title>
+<style>
+  :root {
+    --orange:      #a43700;
+    --orange-light:#fff3ed;
+    --orange-mid:  rgba(164,55,0,0.12);
+    --navy:        #1e1b17;
+    --brown:       #594139;
+    --taupe:       #8c7168;
+    --cream:       #fff8f1;
+    --beige:       #f4ede5;
+    --green:       #15803d;
+    --green-light: #f0fdf4;
+    --amber:       #b45309;
+    --amber-light: #fffbeb;
+    --red:         #dc2626;
+    --red-light:   #fef2f2;
+    --blue:        #1d4ed8;
+    --blue-light:  #eff6ff;
+    --border:      rgba(164,55,0,0.12);
+    --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --radius: 12px;
+    --radius-lg: 20px;
+    --shadow-card: 0 2px 16px rgba(164,55,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9);
+    --shadow-strong: 0 8px 32px rgba(164,55,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(164,55,0,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,248,241,0.5);
+    margin-bottom: 12px;
+  }
+  .header-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .header-title span { color: #ffb830; }
+  .header-sub {
+    font-size: 16px;
+    color: rgba(255,248,241,0.65);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .header-meta-item {
+    font-size: 13px;
+    color: rgba(255,248,241,0.5);
+  }
+  .header-meta-item strong { color: rgba(255,248,241,0.85); font-weight: 600; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .section { padding: 56px 0 48px; }
+  .section + .section { border-top: 1px solid var(--border); }
+
+  /* ── SCORE CARDS ── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .score-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+  }
+  .score-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent-color, var(--orange));
+  }
+  .score-card.strong::before { background: var(--green); }
+  .score-card.functional::before { background: #d97706; }
+  .score-card.weak::before { background: #ea580c; }
+  .score-card.absent::before { background: var(--red); }
+
+  .score-system {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 8px;
+  }
+  .score-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brown);
+    margin-bottom: 16px;
+  }
+  .score-value {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--navy);
+  }
+  .score-suffix { font-size: 1.2rem; color: var(--taupe); font-weight: 500; }
+  .score-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-top: 12px;
+  }
+  .status-strong   { background: #dcfce7; color: #15803d; }
+  .status-functional{ background: #fef3c7; color: #92400e; }
+  .status-weak     { background: #ffedd5; color: #c2410c; }
+  .status-absent   { background: #fee2e2; color: #b91c1c; }
+
+  /* ── SYSTEM COMPARISON TABLE ── */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 24px 0;
+  }
+  .comparison-table th {
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    border-bottom: 2px solid var(--beige);
+    white-space: nowrap;
+  }
+  .comparison-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--beige);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .comparison-table tr:hover td { background: var(--orange-light); }
+  .comparison-table td:first-child {
+    font-weight: 600;
+    color: var(--brown);
+    white-space: nowrap;
+    width: 200px;
+  }
+
+  /* ── FINDING CARDS ── */
+  .findings-list { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+  .finding {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow-card);
+    align-items: start;
+  }
+  .finding-id {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--taupe);
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+  .finding-content {}
+  .finding-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .finding-body { font-size: 13px; color: var(--brown); line-height: 1.6; }
+  .finding-code {
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    font-size: 12px;
+    background: var(--beige);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    color: var(--navy);
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.6;
+  }
+  .finding-action {
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 600;
+    margin-top: 10px;
+    padding: 6px 10px;
+    background: var(--green-light);
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .sev-critical { color: #b91c1c; }
+  .sev-high     { color: #c2410c; }
+  .sev-medium   { color: #92400e; }
+  .sev-low      { color: var(--taupe); }
+  .sev-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .sev-badge.critical { background:#fee2e2; color:#b91c1c; }
+  .sev-badge.high     { background:#ffedd5; color:#c2410c; }
+  .sev-badge.medium   { background:#fef3c7; color:#92400e; }
+  .sev-badge.low      { background:var(--beige); color:var(--taupe); }
+  .sev-badge.pass     { background:#dcfce7; color:#15803d; }
+  .sev-badge.info     { background:var(--blue-light); color:var(--blue); }
+
+  /* ── DIMENSION TABLE ── */
+  .dimension-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 20px 0;
+  }
+  .dimension-table th {
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    border-bottom: 2px solid var(--beige);
+    text-align: left;
+  }
+  .dimension-table td {
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--beige);
+    vertical-align: top;
+  }
+  .dimension-table tr:hover td { background: var(--orange-light); }
+  .dimension-table td:first-child { font-weight: 600; color: var(--brown); white-space: nowrap; }
+
+  /* ── PILL BADGES ── */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .pill.green   { background:#dcfce7; color:#15803d; }
+  .pill.amber   { background:#fef3c7; color:#92400e; }
+  .pill.orange  { background:#ffedd5; color:#c2410c; }
+  .pill.red     { background:#fee2e2; color:#b91c1c; }
+  .pill.blue    { background:var(--blue-light); color:var(--blue); }
+  .pill.gray    { background:var(--beige); color:var(--taupe); }
+
+  /* ── SECTION HEADERS ── */
+  .section-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+  h3:first-child { margin-top: 0; }
+  .section-intro {
+    font-size: 15px;
+    color: var(--brown);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  /* ── SYSTEM HEADER BANNERS ── */
+  .system-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-card);
+  }
+  .system-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .system-icon.protonic { background: var(--navy); color: #ffb830; font-family: var(--font-display); }
+  .system-icon.klaro    { background: var(--orange); color: #fff; font-family: var(--font-display); }
+  .system-info {}
+  .system-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+  }
+  .system-desc { font-size: 13px; color: var(--taupe); margin-top: 2px; }
+  .system-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+  /* ── STAT ROW ── */
+  .stat-row {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-card);
+  }
+  .stat-item {
+    flex: 1;
+    padding: 20px 24px;
+    border-right: 1px solid var(--beige);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-top: 6px;
+  }
+
+  /* ── ACTION PLAN ── */
+  .action-tier {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-card);
+  }
+  .action-tier-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .action-tier-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .action-tier-title { font-weight: 700; font-size: 15px; color: var(--navy); }
+  .action-tier-sub { font-size: 12px; color: var(--taupe); margin-left: auto; }
+  .action-list { list-style: none; }
+  .action-list li {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 13.5px;
+    color: var(--brown);
+    border-bottom: 1px solid var(--beige);
+    align-items: flex-start;
+  }
+  .action-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .action-list li::before { content: '→'; color: var(--taupe); flex-shrink: 0; }
+  .action-sys {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .action-sys.protonic { background: var(--navy); color: #ffb830; }
+  .action-sys.klaro    { background: var(--orange-mid); color: var(--orange); }
+  .action-sys.both     { background: var(--beige); color: var(--brown); }
+
+  /* ── TOKEN TIER VIZ ── */
+  .tier-viz {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 12px 0;
+    flex-wrap: wrap;
+  }
+  .tier-box {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 1.5px solid;
+  }
+  .tier-box.present { background: #dcfce7; border-color: #86efac; color: #15803d; }
+  .tier-box.partial { background: #fef3c7; border-color: #fcd34d; color: #92400e; }
+  .tier-box.absent  { background: #fee2e2; border-color: #fca5a5; color: #b91c1c; }
+  .tier-arrow { color: var(--taupe); font-size: 16px; }
+
+  /* ── COMPONENT INVENTORY ── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .comp-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 4px rgba(164,55,0,0.06);
+  }
+  .comp-name { font-weight: 700; font-size: 14px; color: var(--navy); }
+  .comp-cat { font-size: 11px; color: var(--taupe); margin-top: 2px; }
+  .comp-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 20px 0;
+    border-left: 3px solid;
+  }
+  .callout.info    { background: var(--blue-light); border-color: var(--blue); color: #1e3a8a; }
+  .callout.warning { background: var(--amber-light); border-color: #f59e0b; color: #78350f; }
+  .callout.success { background: var(--green-light); border-color: var(--green); color: #14532d; }
+  .callout.context { background: var(--beige); border-color: var(--taupe); color: var(--brown); }
+  .callout strong  { font-weight: 700; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--beige); margin: 40px 0; }
+
+  /* ── NAV ── */
+  .toc {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255,248,241,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+  }
+  .toc-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .toc a {
+    display: block;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--taupe);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .toc a:hover { color: var(--orange); border-color: var(--orange); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,248,241,0.4);
+    padding: 32px 48px;
+    font-size: 13px;
+    margin-top: 80px;
+  }
+  footer strong { color: rgba(255,248,241,0.7); }
+
+  @media (max-width: 640px) {
+    .site-header { padding: 36px 20px 32px; }
+    .container { padding: 0 20px; }
+    .toc { padding: 0 20px; }
+    .stat-row { flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--beige); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ──────────────────────────────────────── HEADER ── -->
+<header class="site-header">
+  <div class="header-eyebrow">Design System Ops · Full Audit Report</div>
+  <h1 class="header-title">
+    <span>Protonic</span> &amp; Klaro Web<br>Design System Audit
+  </h1>
+  <p class="header-sub">
+    Comparative assessment across tokens, components, governance, documentation,
+    AI readiness, and platform maturity. Generated using the design-system-ops skill pack.
+  </p>
+  <div class="header-meta">
+    <span class="header-meta-item"><strong>Date</strong> · June 26, 2026</span>
+    <span class="header-meta-item"><strong>Method</strong> · Direct inspection</span>
+    <span class="header-meta-item"><strong>Skill pack</strong> · murphytrueman/design-system-ops</span>
+    <span class="header-meta-item"><strong>Assessed by</strong> · Claude Code (Sonnet 4.6)</span>
+  </div>
+</header>
+
+<!-- ──────────────────────────────────────── TOC ── -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#executive">Executive Summary</a>
+    <a href="#protonic">Protonic</a>
+    <a href="#klaro">Klaro Web</a>
+    <a href="#tokens">Token Audit</a>
+    <a href="#components">Component Audit</a>
+    <a href="#health">System Health</a>
+    <a href="#actions">Action Plan</a>
+  </div>
+</nav>
+
+<!-- ──────────────────────────────────────── EXECUTIVE SUMMARY ── -->
+<main>
+<section class="section" id="executive">
+<div class="container">
+  <p class="section-tag">Executive Summary</p>
+  <h2>Two systems at very different maturity stages</h2>
+  <p class="section-intro">
+    Protonic is a mature, contract-first design system with agentic infrastructure, full token discipline, and 10 audited components at 10/10.
+    Klaro Web is an app codebase with styling primitives — not yet a design system — using Tailwind utility classes with significant hardcoded values and no token compliance layer.
+    The relationship between them is the most important finding: they should share a token contract but currently diverge on primary color values.
+  </p>
+
+  <!-- Overall health scores -->
+  <div class="score-grid">
+    <div class="score-card strong">
+      <div class="score-system">Protonic</div>
+      <div class="score-label">Overall Health</div>
+      <div class="score-value">82<span class="score-suffix">/100</span></div>
+      <div class="score-status status-strong">🟢 Systematic / Measured</div>
+    </div>
+    <div class="score-card weak">
+      <div class="score-system">Klaro Web</div>
+      <div class="score-label">Overall Health</div>
+      <div class="score-value">41<span class="score-suffix">/100</span></div>
+      <div class="score-status status-weak">🟠 Ad-hoc / Early Managed</div>
+    </div>
+    <div class="score-card functional">
+      <div class="score-system">Cross-system</div>
+      <div class="score-label">Token Alignment</div>
+      <div class="score-value">⚠</div>
+      <div class="score-status status-functional">🟡 Divergent primary color</div>
+    </div>
+    <div class="score-card absent">
+      <div class="score-system">Klaro Web</div>
+      <div class="score-label">Token Compliance</div>
+      <div class="score-value">🔴</div>
+      <div class="score-status status-absent">Hardcoded values throughout</div>
+    </div>
+  </div>
+
+  <!-- Summary comparison table -->
+  <h3>At a glance — system comparison</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Protonic</th>
+        <th>Klaro Web</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Library type</td>
+        <td><span class="pill green">Design System</span></td>
+        <td><span class="pill amber">App codebase</span></td>
+      </tr>
+      <tr>
+        <td>Token architecture</td>
+        <td>3-tier: primitives → semantic → component-level via CSS Modules (DTCG)</td>
+        <td>1-tier: @theme block in globals.css (no semantic contracts)</td>
+      </tr>
+      <tr>
+        <td>Token count</td>
+        <td>146 CSS custom props (compiled via Style Dictionary)</td>
+        <td>47 CSS vars (mixed semantic/primitive naming)</td>
+      </tr>
+      <tr>
+        <td>Components</td>
+        <td>10 components — all with Storybook stories, metadata, React Aria</td>
+        <td>13 files (3 UI + 4 layout + 5 landing + 1 utility) — no stories</td>
+      </tr>
+      <tr>
+        <td>Token compliance</td>
+        <td>100% — CSS Modules use only <code>var(--token)</code>, no hardcoded values</td>
+        <td>Critical violations — inline hex/Tailwind arbitrary values throughout</td>
+      </tr>
+      <tr>
+        <td>Accessibility</td>
+        <td>React Aria (WCAG 2.1 AA+), 100% on a11y dimension</td>
+        <td>Standard HTML, partial — no explicit ARIA contracts</td>
+      </tr>
+      <tr>
+        <td>Documentation</td>
+        <td>Storybook + .ai/index.json + metadata.ts per component</td>
+        <td>None — no Storybook, no usage guidelines</td>
+      </tr>
+      <tr>
+        <td>Governance</td>
+        <td>Agentic 22-node system, slash commands, contribution workflow</td>
+        <td>None — no contribution process, no deprecation path</td>
+      </tr>
+      <tr>
+        <td>AI readiness</td>
+        <td>.ai/index.json + relationships + metadata — strong (Lyse 82/100)</td>
+        <td>Absent — no machine-readable index</td>
+      </tr>
+      <tr>
+        <td>Figma sync</td>
+        <td>All 10 components pushed — variables + component sets live</td>
+        <td>None</td>
+      </tr>
+      <tr>
+        <td>Primary color</td>
+        <td><code>#a43700</code> (variables.css, correct)</td>
+        <td><code>#E8622A</code> in Button.tsx — diverges from globals.css <code>#a43700</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <strong>Critical cross-system finding:</strong>
+    Klaro Web's <code>Button.tsx</code> uses <code>bg-[#E8622A]</code> as the primary color, while <code>globals.css</code> defines <code>--color-primary: #a43700</code> — the same value as Protonic's source of truth in <code>primitives.ts</code>. The app's primary interactive color is visually different from its own declared primary token. This is a design coherence failure and must be fixed before Klaro Web can claim any token contract with Protonic.
+  </div>
+</div>
+</section>
+
+<!-- ──────────────────────────────────────── PROTONIC ── -->
+<section class="section" id="protonic">
+<div class="container">
+  <p class="section-tag">System 1 of 2</p>
+  <h2>Protonic</h2>
+
+  <div class="system-banner">
+    <div class="system-icon protonic">P</div>
+    <div class="system-info">
+      <div class="system-name">Protonic Agentic System</div>
+      <div class="system-desc">Contract-first design system · React Aria · Vite + TypeScript · Storybook · 22-node agentic infrastructure</div>
+      <div class="system-tags">
+        <span class="pill green">Phase 1 ✅</span>
+        <span class="pill green">Phase 2 ✅</span>
+        <span class="pill green">Phase 3 ✅</span>
+        <span class="pill green">Figma ✅</span>
+        <span class="pill green">Lyse 82/100</span>
+        <span class="pill blue">10 components</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-num">10</div><div class="stat-lbl">Components</div></div>
+    <div class="stat-item"><div class="stat-num">10/10</div><div class="stat-lbl">All audit scores</div></div>
+    <div class="stat-item"><div class="stat-num">146</div><div class="stat-lbl">CSS custom props</div></div>
+    <div class="stat-item"><div class="stat-num">22</div><div class="stat-lbl">Agentic nodes</div></div>
+    <div class="stat-item"><div class="stat-num">82</div><div class="stat-lbl">Lyse score</div></div>
+  </div>
+
+  <!-- Dimension health table -->
+  <h3>Health dimensions</h3>
+  <table class="dimension-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Status</th>
+        <th>Key finding</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tokens</td>
+        <td><span class="pill green">🟢 Strong</span></td>
+        <td>3-tier DTCG architecture, Style Dictionary compiled, 100% token compliance in component CSS. Two backward-compat aliases pending cleanup.</td>
+      </tr>
+      <tr>
+        <td>Components</td>
+        <td><span class="pill green">🟢 Strong</span></td>
+        <td>All 10 components pass 10/10 audit, React Aria base, CVA variants, full state coverage, Storybook stories, Figma component sets.</td>
+      </tr>
+      <tr>
+        <td>Documentation</td>
+        <td><span class="pill green">🟢 Strong</span></td>
+        <td>Storybook stories per component, .ai/index.json machine-readable index, metadata.ts contracts, DESIGN.md. Usage guidelines not yet separate from stories.</td>
+      </tr>
+      <tr>
+        <td>Adoption</td>
+        <td><span class="pill amber">🟡 Functional</span></td>
+        <td>Klaro is the only consumer. Single-consumer systems carry healthy risk — strong until Klaro confirms it's using Protonic components directly (vs. parallel implementations).</td>
+      </tr>
+      <tr>
+        <td>Governance</td>
+        <td><span class="pill green">🟢 Strong</span></td>
+        <td>22-node agentic audit system, slash commands, /scaffold-component, /component-auditor, /design-review, /review-pr, /codebase-index all operational.</td>
+      </tr>
+      <tr>
+        <td>AI readiness</td>
+        <td><span class="pill green">🟢 Strong</span></td>
+        <td>.ai/index.json + relationships map + metadata.ts per component. Lyse ai-surface at 50 (sub-optimal). Two known fixable issues: AGENTS.md toolchain refs + MIGRATION.md. Estimated +6 points on fix.</td>
+      </tr>
+      <tr>
+        <td>Platform maturity</td>
+        <td><span class="pill amber">🟡 Functional</span></td>
+        <td>Versioned via git, deployed to Vercel. No SLAs, no semver tags, no changelog per component. CHANGELOG.md exists at system level. Adequate for current stage.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Token tier -->
+  <h3>Token architecture</h3>
+  <div class="tier-viz">
+    <div class="tier-box present">Primitives<br><small>primitives.ts</small></div>
+    <div class="tier-arrow">→</div>
+    <div class="tier-box present">Semantic<br><small>semantic.ts</small></div>
+    <div class="tier-arrow">→</div>
+    <div class="tier-box present">CSS Custom Props<br><small>variables.css (146)</small></div>
+    <div class="tier-arrow">→</div>
+    <div class="tier-box partial">Component CSS<br><small>Module-scoped vars</small></div>
+  </div>
+
+  <h3>Findings</h3>
+  <div class="findings-list">
+
+    <div class="finding">
+      <div class="finding-id">P-01</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge pass">Pass</span>
+          Token compliance — all CSS Modules clean
+        </div>
+        <div class="finding-body">
+          All 10 component CSS Module files use only <code>var(--token-name)</code> references. No hardcoded hex, px font values, or arbitrary values found. Button.module.css comment "every value is a token var, no hardcoded values" is accurate and enforced.
+        </div>
+        <div class="finding-code">/* Button.module.css */
+.btn {
+  border-radius: var(--radius-pill);       /* ✅ token */
+  font-family:   var(--font-family-body);  /* ✅ token */
+  background:    var(--color-primary);     /* ✅ token */
+  transition:    background var(--motion-duration-medium) var(--motion-easing-spring); /* ✅ tokens */
+}</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-id">P-02</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge medium">Medium</span>
+          Backward-compat aliases — pending cleanup
+        </div>
+        <div class="finding-body">
+          <code>theme.css</code> contains two backward-compat alias declarations for old token names (<code>--font-display</code>, <code>--font-body</code>, <code>--radius</code>, <code>--radius-lg</code>) with a TODO comment noting they should be removed after component anatomy upgrade. These are live tech debt — components consuming old names won't break on removal if the migration is complete, but the aliases add cognitive overhead and could be silently bypassed by new components.
+        </div>
+        <div class="finding-code">/* theme.css — backward-compat aliases */
+--font-display: var(--font-family-display);  /* old → new */
+--font-body:    var(--font-family-body);     /* old → new */
+--radius:       var(--radius-sm);            /* old --radius (8px) */
+--radius-lg:    var(--radius-md);            /* old --radius-lg (16px) */</div>
+        <div class="finding-action">→ Grep all component CSS for the 4 old names → migrate → remove aliases</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-id">P-03</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge low">Low</span>
+          Missing component token tier
+        </div>
+        <div class="finding-body">
+          The architecture goes primitives → semantic → component CSS. There is no formal component-tier token layer (e.g. <code>--button-background-default: var(--color-primary)</code>). This is a valid and common two-tier architecture, not a deficiency. However it means changing all button backgrounds requires finding every <code>var(--color-primary)</code> reference in Button.module.css, rather than changing a single <code>--button-background-default</code> token. Document this as an intentional choice in DESIGN.md.
+        </div>
+        <div class="finding-action">→ Add note to DESIGN.md: two-tier is intentional; add component tier only if multi-theme support is required</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-id">P-04</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge low">Low</span>
+          AI readiness — two fixable gaps below 88/100
+        </div>
+        <div class="finding-body">
+          Lyse reports two specific ai-surface findings: (1) AGENTS.md doesn't reference toolchain config files (<code>package.json</code>, <code>tsconfig.json</code>); (2) No <code>MIGRATION.md</code>. These are small documentation gaps, not structural issues. Fixing both is estimated to raise the Lyse score from 82 to ~88.
+        </div>
+        <div class="finding-action">→ Add toolchain refs to AGENTS.md + create minimal MIGRATION.md</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-id">P-05</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge info">Info</span>
+          Single consumer — Klaro — not actively using Protonic components
+        </div>
+        <div class="finding-body">
+          Protonic was built with Klaro as the declared first consumer, but Klaro Web maintains its own parallel Button, Badge, Card, ClaraPanel, DraggableTicker implementations using Tailwind — not importing Protonic. The system is well-built but its adoption is zero. This is the most significant gap at the portfolio level, not within Protonic itself.
+        </div>
+        <div class="finding-action">→ Migration plan: replace Klaro UI components with Protonic imports, applying Klaro theme override</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Component inventory -->
+  <h3>Component inventory</h3>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <div class="comp-name">Button</div>
+      <div class="comp-cat">Atom · Core</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill blue">3 variants</span>
+        <span class="pill green">React Aria</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Badge</div>
+      <div class="comp-cat">Atom · Status</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill blue">4 states</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Chip</div>
+      <div class="comp-cat">Atom · Interactive</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill blue">8 variants</span>
+        <span class="pill green">React Aria</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Card</div>
+      <div class="comp-cat">Atom · Surface</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill gray">Flat elevation</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Select</div>
+      <div class="comp-cat">Molecule · Form</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill blue">4 states</span>
+        <span class="pill green">React Aria</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Modal</div>
+      <div class="comp-cat">Molecule · Overlay</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill blue">2 roles</span>
+        <span class="pill green">React Aria</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Table</div>
+      <div class="comp-cat">Organism · Data</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill blue">3 modes</span>
+        <span class="pill green">React Aria</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Hero</div>
+      <div class="comp-cat">Layout</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill blue">2 variants</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">ClaraPanel</div>
+      <div class="comp-cat">Layout · AI</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill blue">2 states</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">DraggableTicker</div>
+      <div class="comp-cat">Atom · Motion</div>
+      <div class="comp-meta">
+        <span class="sev-badge pass">10/10</span>
+        <span class="pill blue">3 heights</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout success">
+    <strong>Maturity stage: Systematic → approaching Measured.</strong>
+    Consistent API contracts via axes.ts, DTCG tokens, agentic governance, Figma sync, and Lyse health tracking are all in place. The gap to <em>Measured</em> is formal adoption tracking with a real consumer (Klaro) and recurring health runs on a cadence.
+  </div>
+</div>
+</section>
+
+<!-- ──────────────────────────────────────── KLARO ── -->
+<section class="section" id="klaro">
+<div class="container">
+  <p class="section-tag">System 2 of 2</p>
+  <h2>Klaro Web</h2>
+
+  <div class="system-banner">
+    <div class="system-icon klaro">K</div>
+    <div class="system-info">
+      <div class="system-name">Klaro Web App</div>
+      <div class="system-desc">Next.js 16 AI fiscal app for Spanish-speaking freelancers in Germany · Tailwind v4 · Clara AI agent · Material You warm terracotta</div>
+      <div class="system-tags">
+        <span class="pill orange">No Storybook</span>
+        <span class="pill orange">No token contracts</span>
+        <span class="pill amber">App codebase</span>
+        <span class="pill blue">13 components</span>
+        <span class="pill red">Hardcoded values</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-num">13</div><div class="stat-lbl">Component files</div></div>
+    <div class="stat-item"><div class="stat-num">47</div><div class="stat-lbl">CSS custom props</div></div>
+    <div class="stat-item"><div class="stat-num">9+</div><div class="stat-lbl">App routes</div></div>
+    <div class="stat-item"><div class="stat-num">0</div><div class="stat-lbl">Storybook stories</div></div>
+    <div class="stat-item"><div class="stat-num">🔴</div><div class="stat-lbl">Token compliance</div></div>
+  </div>
+
+  <!-- Dimension health table -->
+  <h3>Health dimensions</h3>
+  <table class="dimension-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Status</th>
+        <th>Key finding</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tokens</td>
+        <td><span class="pill orange">🟠 Weak</span></td>
+        <td>One-tier @theme block in globals.css. No primitive/semantic split. Naming mixes Material You conventions (<code>--color-primary-container</code>) with semantic shortcuts (<code>--color-ink</code>). Token compliance at component level is absent — components use inline Tailwind arbitrary values.</td>
+      </tr>
+      <tr>
+        <td>Components</td>
+        <td><span class="pill amber">🟡 Functional</span></td>
+        <td>13 component files across 3 categories (UI/layout/landing). UI components functional but Tailwind-only, no variant API abstraction. Layout components well-structured. Landing components animation-heavy. No accessibility contracts.</td>
+      </tr>
+      <tr>
+        <td>Documentation</td>
+        <td><span class="pill red">🔴 Absent</span></td>
+        <td>No Storybook. No usage guidelines. No anti-pattern documentation. No contribution process. Props are typed via TypeScript interfaces (the only documentation that exists).</td>
+      </tr>
+      <tr>
+        <td>Adoption</td>
+        <td><span class="pill gray">N/A</span></td>
+        <td>Single-app codebase — adoption dimension does not apply. Klaro is the product, not the consumer of a shared system.</td>
+      </tr>
+      <tr>
+        <td>Decision-making</td>
+        <td><span class="pill red">🔴 Absent</span></td>
+        <td>No governance process, no contribution workflow, no deprecation path. Styling decisions (when to use globals.css vs. inline Tailwind vs. @apply) are not documented.</td>
+      </tr>
+      <tr>
+        <td>AI readiness</td>
+        <td><span class="pill red">🔴 Absent</span></td>
+        <td>No machine-readable component index. No structured metadata. No component descriptions. Components are not queryable by AI tooling.</td>
+      </tr>
+      <tr>
+        <td>Platform maturity</td>
+        <td><span class="pill amber">🟡 Functional</span></td>
+        <td>Deployed on Vercel, Next.js routing and layout structure are solid. No versioning, no SLAs. Adequate for a single-product app.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Token tier -->
+  <h3>Token architecture</h3>
+  <div class="tier-viz">
+    <div class="tier-box partial">@theme block<br><small>globals.css (47 vars)</small></div>
+    <div class="tier-arrow">⬛</div>
+    <div class="tier-box absent">Semantic tier<br><small>Absent</small></div>
+    <div class="tier-arrow">⬛</div>
+    <div class="tier-box absent">Component compliance<br><small>Absent — hardcoded</small></div>
+  </div>
+
+  <h3>Findings</h3>
+  <div class="findings-list">
+
+    <div class="finding">
+      <div class="finding-id">K-01</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge critical">Critical</span>
+          Primary color divergence — Button vs. globals
+        </div>
+        <div class="finding-body">
+          <code>Button.tsx</code> uses <code>bg-[#E8622A]</code> as the primary interactive color. The token <code>--color-primary</code> in <code>globals.css</code> is <code>#a43700</code>. These are visually and perceptually different oranges. Any user comparing Button CTAs with the system's primary color sees inconsistency. Also diverges from Protonic's source of truth.
+        </div>
+        <div class="finding-code">/* globals.css */
+--color-primary: #a43700;          /* Klaro's declared primary */
+
+/* Button.tsx — WRONG */
+primary: 'bg-[#E8622A] text-white …',   /* different orange! */
+
+/* What it should be */
+primary: 'bg-[--color-primary] text-white …',   /* or: bg-primary via Tailwind @theme */</div>
+        <div class="finding-action">→ Replace all bg-[#E8622A] with bg-primary (Tailwind @theme) or var(--color-primary)</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-id">K-02</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge critical">Critical</span>
+          Hardcoded hex/rgba values throughout components
+        </div>
+        <div class="finding-body">
+          All three UI components use Tailwind arbitrary value syntax or inline hex values instead of the @theme tokens. This means a brand color change requires hunting through component files, not updating a token.
+        </div>
+        <div class="finding-code">/* Badge.tsx — uses Tailwind built-ins, not system tokens */
+urgent: 'bg-red-50 text-red-600 border border-red-200',  /* not --color-error */
+info:   'bg-blue-50 text-blue-700 …',                     /* blue not in Klaro palette */
+
+/* Card.tsx */
+className="bg-white rounded-2xl border border-black/7 shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
+/* ^^ hardcoded shadow, hardcoded white, not var(--color-bg) or var(--shadow-sm) */
+
+/* AppChrome.tsx */
+style={{ background: '#fff8f1' }}   /* var(--color-bg) exists but not used */</div>
+        <div class="finding-action">→ Audit all component files, replace arbitrary values with @theme token references</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-id">K-03</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge high">High</span>
+          Naming inconsistency — Material You + semantic shortcuts mixed
+        </div>
+        <div class="finding-body">
+          globals.css mixes two naming conventions without a clear mapping. Material You names (<code>--color-primary-container</code>, <code>--color-on-surface-variant</code>) coexist with shortcut names (<code>--color-ink</code>, <code>--color-bg</code>, <code>--color-muted</code>). A new developer cannot predict which convention to use for a new element. Neither convention is wrong, but both in the same file without mapping creates drift.
+        </div>
+        <div class="finding-code">/* globals.css — two naming systems */
+--color-on-surface: #221a16;        /* Material You */
+--color-ink:        #221a16;        /* semantic shortcut — same value! duplicate! */
+
+--color-surface: #fff8f1;           /* Material You */
+--color-bg:      #fff8f1;           /* semantic shortcut — same value! duplicate! */</div>
+        <div class="finding-action">→ Pick one convention (recommend semantic shortcuts — simpler) and remove duplicates</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-id">K-04</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge high">High</span>
+          Badge uses colors not in the Klaro design system
+        </div>
+        <div class="finding-body">
+          The Badge component's <code>info</code> and <code>muted</code> variants use Tailwind's built-in blue and gray scales (<code>bg-blue-50 text-blue-700</code>, <code>bg-gray-100 text-gray-500</code>). The Klaro design system has no blue or gray in its token set — it's a warm terracotta palette. These colors will look visually disconnected from the rest of the app.
+        </div>
+        <div class="finding-code">/* Badge.tsx — off-palette colors */
+info:  'bg-blue-50 text-blue-700 border border-blue-200',   /* no blue in Klaro */
+muted: 'bg-gray-100 text-gray-500 border border-gray-200',  /* no gray in Klaro */
+
+/* Fix — use Klaro's token set */
+info:  style with var(--color-primary-subtle) + var(--color-primary)
+muted: style with var(--color-bg-surface) + var(--color-muted)</div>
+        <div class="finding-action">→ Remap info → primary-subtle, muted → bg-surface; remove blue and gray from Klaro palette</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-id">K-05</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge medium">Medium</span>
+          No semantic token tier — no intent layer
+        </div>
+        <div class="finding-body">
+          globals.css declares color values, but there are no semantic intent tokens — tokens that say "this is the interactive surface color" or "this is the text color for disabled states." Components can't reference intent; they reference appearance. Switching to dark mode or a different theme would require updating every component file.
+        </div>
+        <div class="finding-action">→ Add semantic intent tier: --color-action-primary, --color-text-disabled, --color-surface-interactive, etc.</div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-id">K-06</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge medium">Medium</span>
+          Sidebar collapse state managed via inline JS, not CSS custom property
+        </div>
+        <div class="finding-body">
+          The sidebar width is toggled by directly calling <code>document.documentElement.style.setProperty('--sidebar-w', ...)</code> in two places (useEffect + toggle function). This pattern works but bypasses the design token layer — the CSS variable is set at runtime from JS, not from the token system. There's also a duplication risk: the default <code>--sidebar-w: 256px</code> is set in globals.css and in JS.
+        </div>
+        <div class="finding-code">/* Sidebar.tsx — two setProperty calls, fragile */
+document.documentElement.style.setProperty('--sidebar-w', isCollapsed ? '72px' : '256px');
+/* also in toggle() */
+document.documentElement.style.setProperty('--sidebar-w', next ? '72px' : '256px');</div>
+        <div class="finding-action">→ Extract to a single helper; define collapsed/expanded values as tokens in globals.css</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Component inventory -->
+  <h3>Component inventory</h3>
+  <div class="comp-grid">
+    <div class="comp-card">
+      <div class="comp-name">Button</div>
+      <div class="comp-cat">UI · Interactive</div>
+      <div class="comp-meta">
+        <span class="sev-badge high">K-01 K-02</span>
+        <span class="pill amber">4 variants</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Badge</div>
+      <div class="comp-cat">UI · Status</div>
+      <div class="comp-meta">
+        <span class="sev-badge high">K-02 K-04</span>
+        <span class="pill amber">6 variants</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Card</div>
+      <div class="comp-cat">UI · Surface</div>
+      <div class="comp-meta">
+        <span class="sev-badge medium">K-02</span>
+        <span class="pill amber">4 paddings</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">ProgressBar</div>
+      <div class="comp-cat">UI · Feedback</div>
+      <div class="comp-meta">
+        <span class="pill gray">Audit pending</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">AppChrome</div>
+      <div class="comp-cat">Layout · Shell</div>
+      <div class="comp-meta">
+        <span class="sev-badge medium">K-02</span>
+        <span class="pill green">Well structured</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Sidebar</div>
+      <div class="comp-cat">Layout · Nav</div>
+      <div class="comp-meta">
+        <span class="sev-badge medium">K-06</span>
+        <span class="pill amber">Collapse state</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">ClaraPanel</div>
+      <div class="comp-cat">Layout · AI</div>
+      <div class="comp-meta">
+        <span class="pill gray">Audit pending</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">TopBar</div>
+      <div class="comp-cat">Layout · Nav</div>
+      <div class="comp-meta">
+        <span class="pill gray">Audit pending</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">AnimatedTitle</div>
+      <div class="comp-cat">Landing · Motion</div>
+      <div class="comp-meta">
+        <span class="pill gray">Landing only</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">DraggableTicker</div>
+      <div class="comp-cat">Landing · Motion</div>
+      <div class="comp-meta">
+        <span class="pill gray">Landing only</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">HeroSlideshow</div>
+      <div class="comp-cat">Landing · Media</div>
+      <div class="comp-meta">
+        <span class="pill gray">Landing only</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Reveal</div>
+      <div class="comp-cat">Landing · Motion</div>
+      <div class="comp-meta">
+        <span class="pill gray">Landing only</span>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">ScrollCircle</div>
+      <div class="comp-cat">Landing · Motion</div>
+      <div class="comp-meta">
+        <span class="pill gray">Landing only</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <strong>Maturity stage: Ad-hoc / Early Managed.</strong>
+    Klaro Web has working components and a deployed product, but lacks the infrastructure of a design system: no token compliance, no documentation, no governance, no AI metadata. The right framing is "well-built app" not "design system." The gap to Managed is adopting Protonic components as the UI layer + using globals.css tokens exclusively in component JSX.
+  </div>
+</div>
+</section>
+
+<!-- ──────────────────────────────────────── TOKEN AUDIT ── -->
+<section class="section" id="tokens">
+<div class="container">
+  <p class="section-tag">Token Audit</p>
+  <h2>Token architecture deep dive</h2>
+  <p class="section-intro">
+    Side-by-side assessment of both systems' token files using the token-audit framework:
+    naming, tier structure, value compliance, orphans, and DTCG readiness.
+  </p>
+
+  <h3>Protonic token audit</h3>
+
+  <table class="comparison-table">
+    <thead>
+      <tr><th>Check</th><th>Result</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Primitive tier present</td>
+        <td><span class="pill green">✅ Pass</span></td>
+        <td><code>primitives.ts</code> — 10 color values, 2 fonts, 2 radii, 10 spacing steps. Strict raw-value-only discipline.</td>
+      </tr>
+      <tr>
+        <td>Semantic tier present</td>
+        <td><span class="pill green">✅ Pass</span></td>
+        <td><code>semantic.ts</code> — intent-driven names (<code>colorPrimary</code>, <code>colorBg</code>, <code>colorTextMuted</code>). All reference primitives.</td>
+      </tr>
+      <tr>
+        <td>Descriptive vs prescriptive names</td>
+        <td><span class="pill green">✅ Pass</span></td>
+        <td>Semantic names describe purpose, not appearance. <code>colorDanger</code> not <code>colorRed</code>. <code>colorTextMuted</code> not <code>colorGray</code>.</td>
+      </tr>
+      <tr>
+        <td>Tier leakage</td>
+        <td><span class="pill amber">⚠ Minor</span></td>
+        <td>CSS Modules reference <code>--color-orange-500</code>, <code>--color-navy-900</code> etc. (primitive names) in a few shadow definitions where no semantic alias exists. Acceptable at current scale.</td>
+      </tr>
+      <tr>
+        <td>Hardcoded values at component level</td>
+        <td><span class="pill green">✅ None found</span></td>
+        <td>All 10 Component.module.css files are clean. Design review agents enforce this.</td>
+      </tr>
+      <tr>
+        <td>Dark mode / theming</td>
+        <td><span class="pill amber">⚠ Not present</span></td>
+        <td>Single theme only. No <code>[data-theme="dark"]</code> variant. Semantic tier is in place to support this when needed.</td>
+      </tr>
+      <tr>
+        <td>DTCG format</td>
+        <td><span class="pill green">✅ Present</span></td>
+        <td>Style Dictionary compiles tokens to <code>variables.css</code>. <code>sd.config.mjs</code> defines the build pipeline.</td>
+      </tr>
+      <tr>
+        <td>Missing semantic tokens (interaction states)</td>
+        <td><span class="pill amber">⚠ Partial</span></td>
+        <td>No explicit <code>--color-focus-ring</code>, <code>--color-disabled</code>, <code>--color-hover</code> semantic tokens — these states are handled per-component with React Aria data attributes. Functional but not centralised.</td>
+      </tr>
+      <tr>
+        <td>Backward-compat aliases</td>
+        <td><span class="pill amber">⚠ 4 aliases</span></td>
+        <td><code>--font-display</code>, <code>--font-body</code>, <code>--radius</code>, <code>--radius-lg</code> — all with TODO to remove.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Klaro Web token audit</h3>
+
+  <table class="comparison-table">
+    <thead>
+      <tr><th>Check</th><th>Result</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Primitive tier present</td>
+        <td><span class="pill amber">⚠ Partial</span></td>
+        <td>@theme block contains raw hex values, but not structured as a primitive tier — mixed with semantic values in the same block.</td>
+      </tr>
+      <tr>
+        <td>Semantic tier present</td>
+        <td><span class="pill amber">⚠ Mixed in</span></td>
+        <td>Shortcuts like <code>--color-bg</code>, <code>--color-ink</code>, <code>--color-muted</code> exist in @theme but are the same raw values as Material You names — no reference chain.</td>
+      </tr>
+      <tr>
+        <td>Descriptive vs prescriptive names</td>
+        <td><span class="pill amber">⚠ Inconsistent</span></td>
+        <td>Mixed: Material You descriptive (<code>--color-on-surface-variant</code>) vs. prescriptive shortcut (<code>--color-ink-2</code>). Neither is consistently used by components.</td>
+      </tr>
+      <tr>
+        <td>Tier leakage</td>
+        <td><span class="pill red">🔴 Severe</span></td>
+        <td>Components bypass token system entirely with Tailwind arbitrary values. There is no tier integrity to violate — the problem is the absence of a compliance layer.</td>
+      </tr>
+      <tr>
+        <td>Hardcoded values at component level</td>
+        <td><span class="pill red">🔴 Critical</span></td>
+        <td>Button: 4 hardcoded hex values. Badge: Tailwind built-in blue/gray. Card: hardcoded shadow, hardcoded bg-white. AppChrome: inline style #fff8f1.</td>
+      </tr>
+      <tr>
+        <td>Duplicate tokens</td>
+        <td><span class="pill red">🔴 Found</span></td>
+        <td><code>--color-on-surface: #221a16</code> and <code>--color-ink: #221a16</code> are identical. <code>--color-surface: #fff8f1</code> and <code>--color-bg: #fff8f1</code> are identical. 2 pairs of exact duplicates.</td>
+      </tr>
+      <tr>
+        <td>Dark mode / theming</td>
+        <td><span class="pill red">🔴 Absent</span></td>
+        <td>No dark mode token variants anywhere in the system.</td>
+      </tr>
+      <tr>
+        <td>DTCG format</td>
+        <td><span class="pill red">🔴 Absent</span></td>
+        <td>Plain CSS custom properties in @theme block. No Style Dictionary, no type annotations.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ──────────────────────────────────────── COMPONENT AUDIT ── -->
+<section class="section" id="components">
+<div class="container">
+  <p class="section-tag">Component Audit</p>
+  <h2>Component library comparison</h2>
+  <p class="section-intro">
+    Assessment of component API quality, complexity distribution, duplication, and coverage gaps across both systems.
+  </p>
+
+  <h3>Complexity distribution — Protonic</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr><th>Category</th><th>Components</th><th>Count</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Foundational atoms</td>
+        <td>Button, Badge, Chip, Card, DraggableTicker</td>
+        <td>5 (50%)</td>
+      </tr>
+      <tr>
+        <td>Compound molecules</td>
+        <td>Select, Modal</td>
+        <td>2 (20%)</td>
+      </tr>
+      <tr>
+        <td>Organisms</td>
+        <td>Table</td>
+        <td>1 (10%)</td>
+      </tr>
+      <tr>
+        <td>Layout / Feature</td>
+        <td>Hero, ClaraPanel</td>
+        <td>2 (20%)</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout success">Distribution is healthy — foundational atoms form the majority. The two layout components (Hero, ClaraPanel) are product-specific but well-encapsulated within the Klaro theme scope.</div>
+
+  <h3>Complexity distribution — Klaro Web</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr><th>Category</th><th>Components</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>UI primitives</td>
+        <td>Button, Badge, Card, ProgressBar</td>
+        <td>Exist in parallel to Protonic equivalents — migration candidates</td>
+      </tr>
+      <tr>
+        <td>Layout / App shell</td>
+        <td>AppChrome, Sidebar, ClaraPanel, TopBar</td>
+        <td>App-specific infrastructure — should stay in Klaro</td>
+      </tr>
+      <tr>
+        <td>Landing / Motion</td>
+        <td>AnimatedTitle, DraggableTicker, HeroSlideshow, Reveal, ScrollCircle</td>
+        <td>Landing-only — marketing layer separate from app UI</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Duplication findings — across systems</h3>
+  <div class="findings-list">
+    <div class="finding">
+      <div class="finding-id">DUP-01</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge high">High</span>
+          Button — 2 implementations, different contracts
+        </div>
+        <div class="finding-body">
+          Protonic has a <code>Button</code> (React Aria, CVA, token-only CSS) and Klaro Web has its own <code>Button</code> (Tailwind arbitrary values, no React Aria). They have different variant names: Protonic uses <code>primary/secondary/destructive</code>, Klaro uses <code>primary/secondary/ghost/danger</code>. The <code>ghost</code> and <code>danger</code> variants in Klaro don't exist in Protonic.
+        </div>
+        <div class="finding-action">→ Migrate Klaro Button to Protonic. Add ghost + danger variants to Protonic first.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-id">DUP-02</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge high">High</span>
+          Badge — 2 implementations, different variant sets
+        </div>
+        <div class="finding-body">
+          Protonic Badge: <code>info/success/warning/error</code> (status-based). Klaro Badge: <code>urgent/warning/ok/info/primary/muted</code> (mixed status + role variants). The <code>muted</code> and <code>primary</code> variants exist only in Klaro, and Klaro's <code>ok</code> maps to Protonic's <code>success</code>. Naming inconsistency.
+        </div>
+        <div class="finding-action">→ Align naming (ok → success, urgent → error), add muted/primary to Protonic, migrate Klaro Badge</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-id">DUP-03</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge medium">Medium</span>
+          ClaraPanel — 2 implementations
+        </div>
+        <div class="finding-body">
+          Both systems have a <code>ClaraPanel</code> component. Protonic's version is in the design system with full metadata, stories, and token compliance. Klaro's version is a parallel implementation. One of these is redundant. The Protonic version should be the canonical one — it's better architected.
+        </div>
+        <div class="finding-action">→ After token migration, replace Klaro's ClaraPanel import with Protonic's</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-id">DUP-04</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge medium">Medium</span>
+          DraggableTicker — 2 implementations
+        </div>
+        <div class="finding-body">
+          Same story as ClaraPanel. Protonic has a well-audited version with token compliance. Klaro has its own landing-section version. The Klaro version may have product-specific animation behavior — needs investigation before migration.
+        </div>
+        <div class="finding-action">→ Audit behavioral differences; consolidate to Protonic with config props for Klaro's specifics</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Coverage gaps — what's missing</h3>
+  <div class="findings-list">
+    <div class="finding">
+      <div class="finding-id">GAP-01</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge high">High</span>
+          Protonic missing: Input, Textarea, Checkbox, Radio — full form set
+        </div>
+        <div class="finding-body">
+          Klaro's app routes (gastos, ingresos, configuracion, perfil) will need form inputs. Protonic has Select but no Input, Textarea, Checkbox, or Radio. These are foundational — every product needs them. Each Klaro page is currently implementing ad-hoc input styling via Tailwind.
+        </div>
+        <div class="finding-action">→ /scaffold-component Input (highest priority), then Checkbox, Radio, Textarea</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-id">GAP-02</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge medium">Medium</span>
+          Protonic missing: Toast / Notification component
+        </div>
+        <div class="finding-body">
+          Klaro deals with financial actions (expense submitted, tax deadline approaching). Users need feedback toasts. Neither system has a Toast/Notification component. Klaro's <code>diagnostico</code> and <code>checklist</code> pages likely need this pattern.
+        </div>
+        <div class="finding-action">→ /scaffold-component Toast after Input; scope: success/error/warning/info variants</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-id">GAP-03</div>
+      <div class="finding-content">
+        <div class="finding-title">
+          <span class="sev-badge medium">Medium</span>
+          Klaro missing: ProgressBar not in Protonic
+        </div>
+        <div class="finding-body">
+          Klaro Web has a <code>ProgressBar</code> component (used for tax filing progress, checklist completion). Protonic doesn't have this. It's a legitimate shared-system component. Either contribute it back to Protonic or acknowledge it as product-specific.
+        </div>
+        <div class="finding-action">→ Audit ProgressBar for token compliance, then contribute to Protonic as foundational atom</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ──────────────────────────────────────── SYSTEM HEALTH ── -->
+<section class="section" id="health">
+<div class="container">
+  <p class="section-tag">System Health</p>
+  <h2>7-dimension health assessment</h2>
+
+  <table class="dimension-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Protonic</th>
+        <th>Klaro Web</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tokens</td>
+        <td><span class="pill green">🟢 Strong</span> — 3-tier, DTCG, 100% compliance</td>
+        <td><span class="pill red">🔴 Weak</span> — 1 tier, hardcoded values, duplicates</td>
+      </tr>
+      <tr>
+        <td>Components</td>
+        <td><span class="pill green">🟢 Strong</span> — 10/10 audit, React Aria, CVA</td>
+        <td><span class="pill amber">🟡 Functional</span> — 13 files, no variant API, no a11y layer</td>
+      </tr>
+      <tr>
+        <td>Documentation</td>
+        <td><span class="pill green">🟢 Strong</span> — Storybook + AI index + metadata</td>
+        <td><span class="pill red">🔴 Absent</span> — TypeScript types only</td>
+      </tr>
+      <tr>
+        <td>Adoption</td>
+        <td><span class="pill amber">🟡 Functional</span> — Klaro is sole consumer, not yet integrated</td>
+        <td><span class="pill gray">N/A</span> — single product</td>
+      </tr>
+      <tr>
+        <td>Governance</td>
+        <td><span class="pill green">🟢 Strong</span> — 22-node agentic system, all 7 slash commands</td>
+        <td><span class="pill red">🔴 Absent</span> — no process</td>
+      </tr>
+      <tr>
+        <td>AI readiness</td>
+        <td><span class="pill green">🟢 Strong</span> — .ai/index.json, relationships, Lyse 82/100</td>
+        <td><span class="pill red">🔴 Absent</span> — no metadata</td>
+      </tr>
+      <tr>
+        <td>Platform maturity</td>
+        <td><span class="pill amber">🟡 Functional</span> — Vercel deployed, no semver, no SLAs</td>
+        <td><span class="pill amber">🟡 Functional</span> — Vercel deployed, Next.js routing solid</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="divider"></div>
+
+  <h3>Maturity assessment</h3>
+  <div class="score-grid">
+    <div class="score-card strong">
+      <div class="score-system">Protonic</div>
+      <div class="score-label">Maturity Stage</div>
+      <div class="score-value" style="font-size:1.5rem; padding-top:4px">Systematic<br>→ Measured</div>
+      <div class="score-status status-strong">On track</div>
+    </div>
+    <div class="score-card weak">
+      <div class="score-system">Klaro Web</div>
+      <div class="score-label">Maturity Stage</div>
+      <div class="score-value" style="font-size:1.5rem; padding-top:4px">Ad-hoc<br>→ Managed</div>
+      <div class="score-status status-weak">Token cleanup needed</div>
+    </div>
+  </div>
+
+  <p class="section-intro" style="margin-top:16px">
+    <strong>To reach Managed from Ad-hoc (Klaro):</strong> eliminate hardcoded values from all UI components, establish globals.css as the single token source, adopt Protonic imports for Button/Badge/Card/ClaraPanel.
+  </p>
+  <p class="section-intro">
+    <strong>To reach Measured from Systematic (Protonic):</strong> fix the two Lyse ai-surface findings, establish a recurring health review cadence, and confirm Klaro is actively consuming Protonic components (the adoption metric).
+  </p>
+
+  <div class="callout context">
+    <strong>A note on context:</strong> This audit sees the codebases — it does not see the team constraints, timeline pressures, or deliberate trade-offs behind them. Some findings may describe patterns that were intentional short-cuts during rapid product development. Klaro Web's use of Tailwind inline values is a common and pragmatic approach for a fast-moving product. The findings above are framed as system-level gaps, not criticisms of implementation choices made in context. If any finding describes an intentional decision, treat it as documentation rather than a deficiency.
+  </div>
+</div>
+</section>
+
+<!-- ──────────────────────────────────────── ACTION PLAN ── -->
+<section class="section" id="actions">
+<div class="container">
+  <p class="section-tag">Action Plan</p>
+  <h2>Prioritised recommendations</h2>
+  <p class="section-intro">
+    Three tiers ordered by impact. Immediate actions are blockers — they compound every other improvement. Near-term actions are structural. Longer-term actions are investment.
+  </p>
+
+  <div class="action-tier">
+    <div class="action-tier-header">
+      <div class="action-tier-dot" style="background:#dc2626"></div>
+      <div class="action-tier-title">Immediate — next 2–4 weeks</div>
+      <div class="action-tier-sub">5–10 hours total</div>
+    </div>
+    <ul class="action-list">
+      <li>
+        <span class="action-sys klaro">KLARO</span>
+        Fix primary color divergence — replace <code>bg-[#E8622A]</code> with <code>bg-primary</code> (Tailwind @theme) in Button.tsx. Single line fix, highest visual impact. (Finding K-01)
+      </li>
+      <li>
+        <span class="action-sys klaro">KLARO</span>
+        Remove duplicate tokens from globals.css — <code>--color-ink</code> duplicates <code>--color-on-surface</code>, <code>--color-bg</code> duplicates <code>--color-surface</code>. Pick one naming convention; remove the other. (Finding K-03)
+      </li>
+      <li>
+        <span class="action-sys klaro">KLARO</span>
+        Fix Badge off-palette colors — replace <code>bg-blue-50 text-blue-700</code> and <code>bg-gray-100</code> with Klaro-palette tokens. Blue and gray don't exist in the Klaro design system. (Finding K-04)
+      </li>
+      <li>
+        <span class="action-sys protonic">PROTONIC</span>
+        Fix two Lyse ai-surface findings — add toolchain refs to AGENTS.md + create minimal MIGRATION.md. Estimated Lyse score: 82 → 88. (Finding P-04)
+      </li>
+      <li>
+        <span class="action-sys protonic">PROTONIC</span>
+        Remove 4 backward-compat aliases from theme.css after verifying no component references old names. Grep: <code>--font-display, --font-body, --radius, --radius-lg</code>. (Finding P-02)
+      </li>
+    </ul>
+  </div>
+
+  <div class="action-tier">
+    <div class="action-tier-header">
+      <div class="action-tier-dot" style="background:#d97706"></div>
+      <div class="action-tier-title">Near-term — next quarter</div>
+      <div class="action-tier-sub">30–60 hours total</div>
+    </div>
+    <ul class="action-list">
+      <li>
+        <span class="action-sys klaro">KLARO</span>
+        Token compliance sweep — audit all 13 component files, replace every <code>bg-[#hex]</code>, <code>shadow-[...]</code>, <code>style={{...}}</code>, and Tailwind built-in color class with @theme token references. One file at a time. (Finding K-02)
+      </li>
+      <li>
+        <span class="action-sys both">BOTH</span>
+        Resolve Button variant naming — Klaro needs <code>ghost</code> and <code>danger</code> that Protonic doesn't have yet. Add them to Protonic first, then migrate Klaro's Button to Protonic import. (Finding DUP-01)
+      </li>
+      <li>
+        <span class="action-sys both">BOTH</span>
+        Align Badge variant names — rename Klaro's <code>ok</code> → <code>success</code>, <code>urgent</code> → <code>error</code>. Add <code>muted</code> and <code>primary</code> to Protonic Badge. Migrate Klaro Badge to Protonic import. (Finding DUP-02)
+      </li>
+      <li>
+        <span class="action-sys protonic">PROTONIC</span>
+        /scaffold-component Input — the highest-priority missing component. Klaro app routes need form inputs. React Aria TextField as the base. (Finding GAP-01)
+      </li>
+      <li>
+        <span class="action-sys klaro">KLARO</span>
+        Refactor Sidebar collapse state — extract <code>setProperty</code> calls to single helper, define <code>--sidebar-w-expanded: 256px</code> and <code>--sidebar-w-collapsed: 72px</code> in globals.css. (Finding K-06)
+      </li>
+      <li>
+        <span class="action-sys protonic">PROTONIC</span>
+        Add semantic interaction state tokens — <code>--color-focus-ring</code>, <code>--color-disabled</code>, <code>--color-hover-overlay</code> as first-class semantic tokens. Centralises what's currently per-component. (Finding P-03 / token gap)
+      </li>
+      <li>
+        <span class="action-sys klaro">KLARO</span>
+        Audit Klaro ProgressBar for token compliance, then contribute it to Protonic as a foundational atom. (Finding GAP-03)
+      </li>
+    </ul>
+  </div>
+
+  <div class="action-tier">
+    <div class="action-tier-header">
+      <div class="action-tier-dot" style="background:#15803d"></div>
+      <div class="action-tier-title">Longer-term — next 6 months</div>
+      <div class="action-tier-sub">Portfolio-level investment</div>
+    </div>
+    <ul class="action-list">
+      <li>
+        <span class="action-sys protonic">PROTONIC</span>
+        Scaffold full form set — Checkbox, Radio, Textarea, DateInput. Complete the foundational layer so Klaro can build all app routes without ad-hoc implementations. (Finding GAP-01 extension)
+      </li>
+      <li>
+        <span class="action-sys protonic">PROTONIC</span>
+        /scaffold-component Toast — financial app context means users need action feedback. success/error/warning/info variants. (Finding GAP-02)
+      </li>
+      <li>
+        <span class="action-sys klaro">KLARO</span>
+        Migrate ClaraPanel and DraggableTicker to Protonic imports. Complete the duplication elimination. (Findings DUP-03, DUP-04)
+      </li>
+      <li>
+        <span class="action-sys both">BOTH</span>
+        Add dark mode token tier — Protonic's semantic layer is ready for it. Add <code>[data-theme="dark"]</code> overrides to variables.css. Klaro's financial app users may appreciate dark mode for evening tax review sessions.
+      </li>
+      <li>
+        <span class="action-sys protonic">PROTONIC</span>
+        Set up recurring health runs — run /full-diagnostic quarterly, track Lyse score trend, establish Measured maturity stage.
+      </li>
+      <li>
+        <span class="action-sys klaro">KLARO</span>
+        Add Storybook to Klaro for the 4 layout components that won't migrate to Protonic (AppChrome, Sidebar, TopBar, ClaraPanel shell). These need documentation even if they stay app-level.
+      </li>
+      <li>
+        <span class="action-sys both">BOTH</span>
+        Klaro adopts Protonic as an npm dependency (or git submodule) — formalise the consumer relationship that currently exists only in intent. This is the adoption metric that moves Protonic to Measured maturity.
+      </li>
+    </ul>
+  </div>
+
+  <div class="callout info" style="margin-top:32px">
+    <strong>Biggest ROI move:</strong> Fix K-01 (5 minutes) + K-04 (30 minutes) + K-03 (30 minutes) in a single session — that's Klaro's visual coherence issues resolved in under 2 hours. The longer migration work (Protonic imports) can follow at a planned pace. Don't let the backlog block the quick wins.
+  </div>
+</div>
+</section>
+
+</main>
+
+<!-- ──────────────────────────────────────── FOOTER ── -->
+<footer>
+  <strong>Design System Ops Audit Report</strong> — Protonic &amp; Klaro Web · June 26, 2026
+  <br>Generated with the <strong>design-system-ops</strong> skill pack by murphytrueman
+  · Direct codebase inspection method
+  · <strong>Claude Code Sonnet 4.6</strong>
+  <br><br>
+  <em>Assessed systems: <strong>C:\Users\tn\protonic-agenticsystem</strong> · <strong>C:\Users\tn\users\klaro-web</strong></em>
+</footer>
+
+</body>
+</html>

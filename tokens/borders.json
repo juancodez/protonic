@@ -1,12 +1,15 @@
 {
   "border": {
     "width": {
-      "thin":  { "$value": "1px", "$type": "dimension" },
-      "thick": { "$value": "2px", "$type": "dimension" }
+      "$description": "Stroke width scale — thin for default surfaces, medium for focus, thick for errors",
+      "thin":   { "$value": "1px",   "$type": "dimension", "$description": "Default stroke for cards, inputs, and dividers" },
+      "medium": { "$value": "1.5px", "$type": "dimension", "$description": "Emphasis stroke for focused or selected states" },
+      "thick":  { "$value": "2px",   "$type": "dimension", "$description": "Strong stroke for error borders and active indicators" }
     },
     "style": {
-      "solid":  { "$value": "solid",  "$type": "string" },
-      "dashed": { "$value": "dashed", "$type": "string" }
+      "$description": "Border style vocabulary — solid for most surfaces, dashed for placeholder zones",
+      "solid":  { "$value": "solid",  "$type": "string", "$description": "Standard solid border for most UI surfaces" },
+      "dashed": { "$value": "dashed", "$type": "string", "$description": "Dashed border for placeholder zones and drop targets" }
     }
   }
 }

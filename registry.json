@@ -1,0 +1,112 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "protonic",
+  "homepage": "https://protonic-agenticsystem.vercel.app",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Accessible button with primary, secondary, and destructive variants. Wraps React Aria Button.",
+      "files": [{ "path": "src/components/Button/Button.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "modal",
+      "type": "registry:ui",
+      "title": "Modal",
+      "description": "Accessible dialog overlay with focus trap and scroll lock. Wraps React Aria Dialog.",
+      "files": [{ "path": "src/components/Modal/Modal.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Accessible single-select dropdown. Wraps React Aria Select.",
+      "files": [{ "path": "src/components/Select/Select.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Accessible sortable data table. Wraps React Aria Table.",
+      "files": [{ "path": "src/components/Table/Table.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Status label with success, warning, error, info, and muted variants.",
+      "files": [{ "path": "src/components/Badge/Badge.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Surface container with optional header, body, and footer slots.",
+      "files": [{ "path": "src/components/Card/Card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "chip",
+      "type": "registry:ui",
+      "title": "Chip",
+      "description": "Compact inline tag with optional dismiss action.",
+      "files": [{ "path": "src/components/Chip/Chip.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "hero",
+      "type": "registry:ui",
+      "title": "Hero",
+      "description": "Full-viewport section shell with light and inverted (dark) variants.",
+      "files": [{ "path": "src/components/Hero/Hero.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "clara-panel",
+      "type": "registry:ui",
+      "title": "ClaraPanel",
+      "description": "AI chat layout shell with message list, input area, and panel header.",
+      "files": [{ "path": "src/components/ClaraPanel/ClaraPanel.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "draggable-ticker",
+      "type": "registry:ui",
+      "title": "DraggableTicker",
+      "description": "Infinite draggable marquee with RAF velocity physics.",
+      "files": [{ "path": "src/components/DraggableTicker/DraggableTicker.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Accessible text field with label, description, and error message slots. Wraps React Aria TextField.",
+      "files": [{ "path": "src/components/Input/Input.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Accessible checkbox with indeterminate state support. Wraps React Aria Checkbox.",
+      "files": [{ "path": "src/components/Checkbox/Checkbox.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "radio",
+      "type": "registry:ui",
+      "title": "Radio",
+      "description": "Accessible radio group and radio option. Wraps React Aria RadioGroup.",
+      "files": [{ "path": "src/components/Radio/Radio.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Accessible multi-line text field with label and error message. Wraps React Aria TextField.",
+      "files": [{ "path": "src/components/Textarea/Textarea.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Transient status notification with success, warning, error, and info variants.",
+      "files": [{ "path": "src/components/Toast/Toast.tsx", "type": "registry:ui" }]
+    }
+  ]
+}

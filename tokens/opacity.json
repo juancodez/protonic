@@ -1,0 +1,6 @@
+{
+  "opacity": {
+    "disabled": { "$value": 0.4, "$type": "number" },
+    "subtle":   { "$value": 0.6, "$type": "number" }
+  }
+}

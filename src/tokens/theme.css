@@ -1,16 +1,10 @@
 /* Protonic — theme entry point
-   Source of truth: tokens/*.json (compiled by Style Dictionary → variables.css)
-   This file imports the compiled vars and adds backward-compat aliases.
-   TODO: migrate component CSS files to new canonical names, then remove aliases. */
+   Source of truth: tokens/*.json (compiled by Style Dictionary → variables.css) */
 
 @import './variables.css';
 
 :root {
-  /* backward-compat aliases — components use these until anatomy upgrade */
-  --font-display: var(--font-family-display);
-  --font-body:    var(--font-family-body);
-  --radius:       var(--radius-sm);   /* old --radius (8px)  → --radius-sm */
-  --radius-lg:    var(--radius-md);   /* old --radius-lg (16px) → --radius-md */
+  --gradient-shimmer: linear-gradient(105deg, transparent 25%, var(--color-bg-inverted-subtle) 50%, transparent 75%);
 }
 
 *,

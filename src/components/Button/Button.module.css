@@ -8,7 +8,7 @@
   gap:             var(--space-2);
   font-family:     var(--font-family-body);
   font-weight:     var(--font-weight-semibold);
-  border:          1.5px solid transparent;
+  border:          var(--border-width-medium) solid transparent;
   border-radius:   var(--radius-pill);
   cursor:          pointer;
   position:        relative;
@@ -29,12 +29,12 @@
   outline: 2px solid var(--color-primary);
 }
 .btn[data-disabled] {
-  opacity: 0.4;
+  opacity: var(--opacity-disabled);
   cursor:  not-allowed;
 }
 .btn[data-pressed] {
   transform: scale(0.97) translateY(0) !important;
-  transition-duration: 100ms;
+  transition-duration: var(--motion-duration-faster);
 }
 
 /* Shimmer sweep — shared across variants that opt in via .shimmer class */
@@ -42,12 +42,7 @@
   content:    '';
   position:   absolute;
   inset:      0;
-  background: linear-gradient(
-    105deg,
-    transparent 25%,
-    rgba(255, 255, 255, 0.14) 50%,
-    transparent 75%
-  );
+  background: var(--gradient-shimmer);
   transform:        translateX(-120%);
   transition:       transform var(--motion-duration-long) var(--motion-easing-spring);
   pointer-events:   none;

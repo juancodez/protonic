@@ -47,9 +47,10 @@ Any project can replace the theme layer without touching the general contracts.
 
 **All 3 phases complete + 22-step agentic system audit closed.**
 
-10 components — all 10/10 audit, 0 design-review warnings:
+15 components — all audit PASS, all design-review PASS:
 - Phase 1 (React Aria base): Button ✅ Modal ✅ Select ✅ Table ✅
 - Phase 2 (Klaro theme): Badge ✅ Card ✅ Hero ✅ ClaraPanel ✅ DraggableTicker ✅ Chip ✅
+- Form primitives: Input ✅ Checkbox ✅ Radio ✅ Textarea ✅ Toast ✅
 
 See `AGENTIC-SYSTEM.md` for the full 22-node architecture reference.
 

@@ -68,7 +68,7 @@ export const ButtonMetadata = {
       reason: 'Two primary buttons compete for attention and signal unclear hierarchy.',
     },
     {
-      bad:    '<Button style={{ background: "#ff0000" }}>',
+      bad:    '<Button style={{ background: "crimson" }}>',
       good:   'Add a new variant via tokens + Button.module.css',
       reason: 'Inline styles bypass the token audit and break design-system consistency. Every value must trace to a token.',
     },

@@ -13,7 +13,7 @@ export const HeroMetadata = {
   ],
   a11y: { inherited: [], owned: ['Hero renders as <section>. Hero.Heading renders as <h1> — one per page.'] },
   aiHints: [
-    'inverted=true → use accent-light (#ffb59a) for overline, text-inverted-muted for body.',
+    'inverted=true → use accent-light (var(--color-accent-light)) for overline, text-inverted-muted for body.',
     'Video element goes as a direct child before Hero.Content — z-index is handled by .content { z-index: 1 }.',
     'Hero.Actions wraps Button components — gap and flex-wrap are built in.',
   ],

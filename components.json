@@ -1,0 +1,19 @@
+{
+  "components": [
+    { "name": "Button",         "sourceFile": "src/components/Button/Button.tsx" },
+    { "name": "Modal",          "sourceFile": "src/components/Modal/Modal.tsx" },
+    { "name": "Select",         "sourceFile": "src/components/Select/Select.tsx" },
+    { "name": "Table",          "sourceFile": "src/components/Table/Table.tsx" },
+    { "name": "Badge",          "sourceFile": "src/components/Badge/Badge.tsx" },
+    { "name": "Card",           "sourceFile": "src/components/Card/Card.tsx" },
+    { "name": "Chip",           "sourceFile": "src/components/Chip/Chip.tsx" },
+    { "name": "Hero",           "sourceFile": "src/components/Hero/Hero.tsx" },
+    { "name": "ClaraPanel",     "sourceFile": "src/components/ClaraPanel/ClaraPanel.tsx" },
+    { "name": "DraggableTicker","sourceFile": "src/components/DraggableTicker/DraggableTicker.tsx" },
+    { "name": "Input",          "sourceFile": "src/components/Input/Input.tsx" },
+    { "name": "Checkbox",       "sourceFile": "src/components/Checkbox/Checkbox.tsx" },
+    { "name": "Radio",          "sourceFile": "src/components/Radio/Radio.tsx" },
+    { "name": "Textarea",       "sourceFile": "src/components/Textarea/Textarea.tsx" },
+    { "name": "Toast",          "sourceFile": "src/components/Toast/Toast.tsx" }
+  ]
+}
