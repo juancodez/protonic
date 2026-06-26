@@ -2,10 +2,10 @@
   "color": {
     "primary":                { "$value": "{color.orange.500}", "$type": "color" },
     "primary-dark":           { "$value": "{color.orange.700}", "$type": "color" },
-    "primary-subtle":         { "$value": "rgba(164,55,0,0.10)", "$type": "color" },
-    "primary-border":         { "$value": "rgba(164,55,0,0.07)", "$type": "color" },
-    "primary-subtle-hover":   { "$value": "rgba(164,55,0,0.18)", "$type": "color" },
-    "primary-subtle-select":  { "$value": "rgba(164,55,0,0.15)", "$type": "color" },
+    "primary-subtle":         { "$value": "rgba(232,98,42,0.10)", "$type": "color" },
+    "primary-border":         { "$value": "rgba(232,98,42,0.07)", "$type": "color" },
+    "primary-subtle-hover":   { "$value": "rgba(232,98,42,0.18)", "$type": "color" },
+    "primary-subtle-select":  { "$value": "rgba(232,98,42,0.15)", "$type": "color" },
     "on-primary":             { "$value": "{color.white}", "$type": "color" },
     "bg":                     { "$value": "{color.cream.50}", "$type": "color" },
     "bg-surface":             { "$value": "{color.beige.100}", "$type": "color" },
@@ -31,8 +31,13 @@
     "bg-inverted-subtle":     { "$value": "rgba(255,248,241,0.12)", "$type": "color" },
     "text-inverted-muted":    { "$value": "rgba(255,248,241,0.78)", "$type": "color" },
     "focus-ring":             { "$value": "{color.orange.500}", "$type": "color" },
-    "disabled-bg":            { "$value": "rgba(164,55,0,0.04)", "$type": "color" },
+    "disabled-bg":            { "$value": "rgba(232,98,42,0.04)", "$type": "color" },
     "disabled-text":          { "$value": "{color.taupe.500}", "$type": "color" },
-    "hover-overlay":          { "$value": "rgba(164,55,0,0.06)", "$type": "color" }
+    "hover-overlay":          { "$value": "rgba(232,98,42,0.06)", "$type": "color" },
+    "success-text":           { "$value": "{color.green.500}", "$type": "color" },
+    "success-bg":             { "$value": "{color.green.50}", "$type": "color" },
+    "warning-bg":             { "$value": "{color.amber.50}", "$type": "color" },
+    "danger-bg":              { "$value": "{color.red.50}", "$type": "color" },
+    "bg-panel":               { "$value": "{color.mist.50}", "$type": "color" }
   }
 }

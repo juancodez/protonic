@@ -3,8 +3,8 @@
  */
 
 :root {
-  --color-orange-500: #a43700;
-  --color-orange-700: #8a2e00;
+  --color-orange-500: #e8622a;
+  --color-orange-700: #c45200;
   --color-navy-900: #1e1b17;
   --color-brown-500: #7a5a00;
   --color-brown-600: #7a6558;
@@ -12,17 +12,22 @@
   --color-taupe-300: #c0a898;
   --color-taupe-500: #8c7168;
   --color-cream-50: #fff8f1;
+  --color-mist-50: #fafaf8;
   --color-beige-100: #f4ede5;
+  --color-amber-50: #fffbeb;
   --color-amber-400: #ffb830;
   --color-amber-900: #78350f;
   --color-terracotta-200: #ffb59a;
+  --color-green-50: #f0fdf4;
+  --color-green-500: #16a34a;
   --color-green-600: #15803d;
+  --color-red-50: #fef2f2;
   --color-red-600: #dc2626;
   --color-white: #ffffff;
-  --color-primary-subtle: rgba(164, 55, 0, 0.1);
-  --color-primary-border: rgba(164, 55, 0, 0.07);
-  --color-primary-subtle-hover: rgba(164, 55, 0, 0.18);
-  --color-primary-subtle-select: rgba(164, 55, 0, 0.15);
+  --color-primary-subtle: rgba(232, 98, 42, 0.1);
+  --color-primary-border: rgba(232, 98, 42, 0.07);
+  --color-primary-subtle-hover: rgba(232, 98, 42, 0.18);
+  --color-primary-subtle-select: rgba(232, 98, 42, 0.15);
   --color-success-subtle: rgba(21, 128, 61, 0.1);
   --color-success-subtle-border: rgba(21, 128, 61, 0.2);
   --color-warning-subtle: rgba(255, 184, 48, 0.15);
@@ -33,8 +38,8 @@
   --color-overlay: rgba(30, 27, 23, 0.6);
   --color-bg-inverted-subtle: rgba(255, 248, 241, 0.12);
   --color-text-inverted-muted: rgba(255, 248, 241, 0.78);
-  --color-disabled-bg: rgba(164, 55, 0, 0.04);
-  --color-hover-overlay: rgba(164, 55, 0, 0.06);
+  --color-disabled-bg: rgba(232, 98, 42, 0.04);
+  --color-hover-overlay: rgba(232, 98, 42, 0.06);
   --font-family-display: 'Bricolage Grotesque', sans-serif;
   --font-family-body: 'Plus Jakarta Sans', sans-serif;
   --font-weight-light: 300;
@@ -155,4 +160,9 @@
   --color-danger: var(--color-red-600);
   --color-focus-ring: var(--color-orange-500);
   --color-disabled-text: var(--color-taupe-500);
+  --color-success-text: var(--color-green-500);
+  --color-success-bg: var(--color-green-50);
+  --color-warning-bg: var(--color-amber-50);
+  --color-danger-bg: var(--color-red-50);
+  --color-bg-panel: var(--color-mist-50);
 }
