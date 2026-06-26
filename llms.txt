@@ -6,3 +6,7 @@
 
 - [Getting started](https://example.com/getting-started): How to install and use protonic.
 - [Components](https://example.com/components): Component API reference.
+
+## Content guidelines
+
+- [CONTENT.md](CONTENT.md): Voice, tone, status vocabulary, and per-component copy patterns (Spanish-primary, German secondary). Required reading for any agent that generates or reviews visible strings.

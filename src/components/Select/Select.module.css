@@ -12,7 +12,7 @@
   font-weight:    var(--font-weight-semibold);
   color:          var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--font-letter-spacing-label);
 }
 
 .trigger {
@@ -29,18 +29,18 @@
   font-size:       var(--font-size-base);
   color:           var(--color-text);
   cursor:          pointer;
-  transition:      border-color var(--motion-duration-fast) ease;
+  transition:      border-color var(--motion-duration-fast) var(--motion-easing-out);
 }
 
 .trigger[data-hovered]      { border-color: var(--color-primary); }
 .trigger[data-focus-visible] { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 .trigger[data-open]         { border-color: var(--color-primary); }
-.trigger[data-disabled]     { opacity: 0.4; cursor: not-allowed; }
+.trigger[data-disabled]     { opacity: var(--opacity-disabled); cursor: not-allowed; }
 
 .arrow {
   color:      var(--color-text-muted);
   font-size:  var(--font-size-xs);
-  transition: transform var(--motion-duration-fast) ease;
+  transition: transform var(--motion-duration-fast) var(--motion-easing-out);
 }
 
 .trigger[data-open] .arrow { transform: rotate(180deg); }
@@ -55,7 +55,7 @@
 }
 
 .popover[data-entering] { animation: popover-in  var(--motion-duration-fast) ease; }
-.popover[data-exiting]  { animation: popover-out 100ms ease; }
+.popover[data-exiting]  { animation: popover-out var(--motion-duration-faster) ease; }
 
 @keyframes popover-in  { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes popover-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-4px); } }
@@ -75,7 +75,7 @@
   color:         var(--color-text);
   cursor:        pointer;
   outline:       none;
-  transition:    background 100ms ease;
+  transition:    background var(--motion-duration-faster) var(--motion-easing-out);
 }
 
 .option[data-focused]  { background: var(--color-bg-surface); }
@@ -93,5 +93,5 @@
   .trigger              { border-color: ButtonText; }
   .trigger[data-focus-visible] { outline: 2px solid Highlight; }
   .option[data-focused] { background: Highlight; color: HighlightText; }
-  .option[data-selected] { border: 2px solid Highlight; }
+  .option[data-selected] { border: var(--border-width-thick) solid Highlight; }
 }

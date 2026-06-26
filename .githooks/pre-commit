@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# Protonic pre-commit hook
+# Runs component audit + design-review on staged component files.
+# Install: npm run prepare  (sets core.hooksPath to .githooks)
+
+set -e
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACM)
+
+# Only run if component or token files are staged
+if ! echo "$STAGED" | grep -qE '^src/(components|tokens)/'; then
+  exit 0
+fi
+
+echo ""
+echo "🔍 Protonic pre-commit checks..."
+echo ""
+
+# Audit — finds affected component dirs from staged paths
+AFFECTED=$(echo "$STAGED" \
+  | grep -oE 'src/components/[^/]+' \
+  | sort -u)
+
+FAILED=0
+
+if [ -n "$AFFECTED" ]; then
+  while IFS= read -r dir; do
+    result=$(npm run --silent audit -- "$dir" 2>&1)
+    if echo "$result" | grep -q "FAIL"; then
+      echo "❌  audit FAIL: $dir"
+      echo "$result" | grep "FAIL\|Error\|✗" | head -5
+      FAILED=1
+    else
+      echo "✅  audit PASS: $dir"
+    fi
+  done <<< "$AFFECTED"
+fi
+
+# Design review — same dirs
+if [ -n "$AFFECTED" ]; then
+  while IFS= read -r dir; do
+    result=$(npm run --silent design-review -- "$dir" 2>&1)
+    if echo "$result" | grep -q "Result: FAIL"; then
+      echo "❌  design-review FAIL: $dir"
+      echo "$result" | grep "FAIL\|❌" | head -5
+      FAILED=1
+    fi
+  done <<< "$AFFECTED"
+fi
+
+# TypeScript — always run if component files are staged
+tsc_out=$(npm run --silent typecheck 2>&1)
+if [ $? -ne 0 ]; then
+  echo "❌  typecheck FAIL"
+  echo "$tsc_out" | head -10
+  FAILED=1
+else
+  echo "✅  typecheck PASS"
+fi
+
+echo ""
+if [ $FAILED -ne 0 ]; then
+  echo "Pre-commit blocked. Fix the issues above and re-commit."
+  exit 1
+fi
+
+echo "All checks passed. Committing."
+exit 0

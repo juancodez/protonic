@@ -1,6 +1,6 @@
 # Protonic — Project Status
 
-Last updated: 2026-06-24 (session 3)
+Last updated: 2026-06-26 (session 5 — CLOSED)
 
 ---
 
@@ -12,7 +12,9 @@ All 3 phases complete + 22-step agentic audit closed + Figma fully pushed + Lyse
 Phase 1 ✅  Button, Modal, Select, Table — React Aria base, fully accessible
 Phase 2 ✅  Design layer — DTCG tokens, CVA variants, CSS custom properties, Storybook
 Phase 3 ✅  Agentic layer — Component Auditor, Design Review, A11y Agent, Docs Agent, Review PR
+Hook   ✅  Pre-commit hook — audit + design-review + typecheck on staged component files
 Audit  ✅  22-node agentic system closed (AGENTIC-SYSTEM.md documents every node)
+Content ✅  Layer 4 added — CONTENT.md (voice, status vocabulary, per-component copy patterns)
 Figma  ✅  All 10 components pushed — variables + component sets live in Klaro Design System file
 Lyse   ✅  82/100 (A−) — up from 66 → 74 → 82 across 3 sessions
 Viz    ✅  Interactive 22-step helix visualization — https://protonic-agenticsystem.vercel.app
@@ -65,10 +67,16 @@ Klaro  ✅  Standalone design system showcase — https://klaro-design-system.ve
 
 ## What's next
 
-- [ ] Fix `AGENTS.md` toolchain refs → ai-surface 50 → ~70
-- [ ] Add `MIGRATION.md` → ai-surface improves further
-- [ ] Wire Protonic tokens into Klaro (`klaro-landing-01`) — token bridge
-- [ ] Open lyse alpha issue (DTCG cross-file + stories axis)
+- [x] Add `CONTENT.md` — Layer 4 content guidelines (voice, copy patterns, status vocabulary)
+- [x] Fix `AGENTS.md` toolchain refs — `package.json`, `tsconfig.json` documented
+- [x] `MIGRATION.md` — token alias removals + consumer setup guide
+- [x] Pre-commit hook — `.githooks/pre-commit` + `npm run prepare` to activate
+- [x] Wire Protonic tokens into Klaro — token bridge live in `klaro-landing-02`
+- [x] Fix easing keyword violations — Select (3) + Table (1) → `var(--motion-easing-out)`
+
+**Blocked on lyse alpha (upstream bugs — not actionable):**
+- Cross-file DTCG resolution → tokens axis 74 → ~95 when fixed
+- `*.stories.tsx` detection → stories axis N/A → unlocks when fixed
 
 ---
 
@@ -102,6 +110,7 @@ Claude Code slash commands:
 |---|---|
 | `AGENTIC-SYSTEM.md` | Full 22-node architecture reference — start here |
 | `AGENTS.md` | Agent contracts + how to run |
+| `CONTENT.md` | Voice, tone, status vocabulary, per-component copy patterns (Layer 4) |
 | `LYSE.md` | Lyse stack detection + component manifest (auto-generated) |
 | `.lyse.yaml` | Lyse config — component paths, rule overrides |
 | `AI_GOVERNANCE.md` | AI feature go/no-go checklist |

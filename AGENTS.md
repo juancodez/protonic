@@ -118,12 +118,25 @@ npm run design-review -- src/components/Modal
 
 ---
 
+## Toolchain
+
+| File | Purpose |
+|---|---|
+| `package.json` | Scripts, dependencies — `npm run audit:all`, `storybook`, `build:tokens` |
+| `tsconfig.json` | TypeScript strict config — all agents run with strict mode |
+| `sd.config.mjs` | Style Dictionary compiler — reads `tokens/**/*.json`, outputs `src/tokens/variables.css` |
+| `.lyse.yaml` | Lyse config — component paths, score thresholds, rule overrides |
+| `vite.config.ts` | Vite bundler config |
+| `.mcp.json` | MCP server config (lyse + Claude Code) |
+
+---
+
 ## Phase 3 roadmap
 
 - [x] `npm run audit:all` — runs Component Auditor across all 9 components (`src/agents/audit-all.ts`)
 - [x] figma-component-generator sync — all 9 components pushed to Figma (`.ai/figma-map.json` tracks state)
 - [x] `.ai/index.json` — upgraded with `figma` field + `contractRefs` per component
-- [ ] Pre-commit hook — auto-run scripts on staged `.tsx`/`.css` files
+- [x] Pre-commit hook — `.githooks/pre-commit` runs audit + design-review + typecheck on staged component files. Activate with `npm run prepare`.
 - [ ] graphify integration — generate knowledge graph of component relationships + dependencies
 - [ ] Populate `figma-map.json` componentSetIds — run figma eval to capture actual node IDs
 
