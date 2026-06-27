@@ -175,5 +175,5 @@ export const BreakpointMd = "768px";
 export const BreakpointLg = "1024px";
 export const BreakpointXl = "1280px";
 export const Breakpoint2xl = "1536px";
-export const OpacityDisabled = 0.4;
-export const OpacitySubtle = 0.6;
+export const OpacityDisabled = 0.4; // Reduced opacity for disabled controls — communicates unavailability without hiding
+export const OpacitySubtle = 0.6; // Slightly reduced opacity for secondary or de-emphasised elements

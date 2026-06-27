@@ -2,6 +2,7 @@ import { cn } from '../../lib/cn';
 import type { ProtonicClaraPanelProps } from './ClaraPanel.types';
 import styles from './ClaraPanel.module.css';
 
+/** Clara AI chat panel. Compound component — use ClaraPanel.Header, .Messages, .Bubble, .InputDock sub-components. */
 export function ClaraPanel({ className, children, ...props }: ProtonicClaraPanelProps) {
   return (
     <div className={cn(styles.panel, className)} {...props}>

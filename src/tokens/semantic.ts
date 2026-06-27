@@ -10,6 +10,7 @@ export const semantic = {
   colorTextMuted:  color.taupe500,
   colorAccent:     color.amber400,
   colorSuccess:    color.green600,
+  colorWarning:    color.amber400,
   colorDanger:     color.red600,
   fontDisplay:     font.display,
   fontBody:        font.body,

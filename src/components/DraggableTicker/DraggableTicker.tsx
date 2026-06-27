@@ -3,6 +3,7 @@ import { cn } from '../../lib/cn';
 import type { ProtonicDraggableTickerProps } from './DraggableTicker.types';
 import styles from './DraggableTicker.module.css';
 
+/** Infinite scrolling ticker with drag-to-scrub. Decorative — aria-hidden by default. Respects prefers-reduced-motion. */
 export function DraggableTicker({
   items,
   height = 60,

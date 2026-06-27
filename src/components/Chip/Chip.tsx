@@ -4,6 +4,7 @@ import type { ProtonicChipProps } from './Chip.types';
 import { chipVariants } from './Chip.styles';
 import styles from './Chip.module.css';
 
+/** Compact status tag. Optionally dismissible. Use for filters, tags, or inline status labels. */
 export function Chip({
   status      = 'info',
   dismissible = false,

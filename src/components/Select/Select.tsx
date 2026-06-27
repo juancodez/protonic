@@ -10,6 +10,7 @@ import {
 import type { ProtonicSelectProps, SelectOption } from './Select.types';
 import styles from './Select.module.css';
 
+/** Accessible dropdown select. Keyboard navigation, typeahead, and ARIA managed by React Aria. */
 export function Select<T extends SelectOption>({
   label,
   options,

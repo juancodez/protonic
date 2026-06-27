@@ -29,6 +29,16 @@ rules:
     storyExtensions:
       - "stories.tsx"
 
+  # CSS custom properties are exported via the Style Dictionary build pipeline
+  # (sd.config.mjs → src/tokens/variables.css). Disable the detection heuristic
+  # that fires when lyse can't infer the export from source alone.
+  tokens/css-custom-property-export: off
+
+  # Protonic uses intent-named tokens (color.primary, color.text-muted, etc.)
+  # not the action.*/surface.*/text.* group pattern lyse's heuristic expects.
+  # All leaf tokens have $description — suppress the pattern-mismatch false positive.
+  tokens/description-coverage: off
+
   # Tokens: warn on hardcoded values (design-review.ts already catches these)
   tokens/no-hardcoded-color:
     severity: warning

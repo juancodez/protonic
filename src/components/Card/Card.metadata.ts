@@ -16,6 +16,6 @@ export const CardMetadata = {
     'card = surface container. Use for grouping, not for interaction.',
     'Hover lift animation is decorative — do not use it to signal clickability without an interactive element inside.',
   ],
-  tokens: { background: ['--color-bg'], border: ['rgba(164,55,0,0.07)'], shadow: ['--shadow-card', '--shadow-card-hover'], radius: ['--radius-md'] },
+  tokens: { background: ['--color-bg'], border: ['--color-primary-border'], shadow: ['--shadow-card', '--shadow-card-hover'], radius: ['--radius-md'] },
   figma: { fileKey: 'rRSxMj33ZtioxdrabH5rm6', component: 'Card', properties: {} },
 } as const;

@@ -18,7 +18,10 @@
       "base": { "$value": "14px",   "$type": "dimension" },
       "md":   { "$value": "15px",   "$type": "dimension" },
       "lg":   { "$value": "17px",   "$type": "dimension" },
-      "xl":   { "$value": "18px",   "$type": "dimension" }
+      "xl":   { "$value": "18px",   "$type": "dimension" },
+      "2xl":         { "$value": "20px",   "$type": "dimension" },
+      "display-min": { "$value": "2.5rem", "$type": "dimension" },
+      "display-max": { "$value": "4.5rem", "$type": "dimension" }
     },
     "line-height": {
       "tight":   { "$value": 1.06, "$type": "number" },
@@ -29,6 +32,7 @@
     "letter-spacing": {
       "tight":   { "$value": "-0.03em", "$type": "string" },
       "display": { "$value": "-0.01em", "$type": "string" },
+      "label":   { "$value": "0.05em",  "$type": "string" },
       "wide":    { "$value": "0.2em",   "$type": "string" },
       "wider":   { "$value": "0.22em",  "$type": "string" }
     }

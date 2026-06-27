@@ -32,7 +32,7 @@
   border:        1px solid var(--color-primary-subtle);
   border-radius: var(--radius-pill);
   font-family:   var(--font-family-body);
-  font-size:     0.8125rem;
+  font-size:     var(--font-size-sm);
   font-weight:   var(--font-weight-semibold);
   color:         var(--color-text-body);
   white-space:   nowrap;

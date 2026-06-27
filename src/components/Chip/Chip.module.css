@@ -42,7 +42,7 @@
   padding:         0;
   cursor:          pointer;
   color:           inherit;
-  opacity:         0.6;
+  opacity:         var(--opacity-subtle);
   font-size:       var(--font-size-base);
   line-height:     1;
   transition:      opacity var(--motion-duration-normal) var(--motion-easing-out);

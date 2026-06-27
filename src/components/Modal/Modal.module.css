@@ -1,7 +1,7 @@
 .overlay {
   position:        fixed;
   inset:           0;
-  z-index:         100;
+  z-index:         var(--z-index-overlay);
   display:         flex;
   align-items:     center;
   justify-content: center;
@@ -42,7 +42,7 @@
 
 .title {
   font-family: var(--font-family-display);
-  font-size:   1.25rem;
+  font-size:   var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color:       var(--color-text);
   margin:      0;
@@ -70,5 +70,5 @@
 }
 
 @media (forced-colors: active) {
-  .modal { border: 2px solid ButtonText; }
+  .modal { border: var(--border-width-thick) solid ButtonText; }
 }

@@ -140,8 +140,8 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
-  --opacity-disabled: 0.4;
-  --opacity-subtle: 0.6;
+  --opacity-disabled: 0.4; /** Reduced opacity for disabled controls — communicates unavailability without hiding */
+  --opacity-subtle: 0.6; /** Slightly reduced opacity for secondary or de-emphasised elements */
   --color-primary: var(--color-orange-500);
   --color-primary-dark: var(--color-orange-700);
   --color-on-primary: var(--color-white);

@@ -3,6 +3,7 @@ import type { ProtonicHeroProps } from './Hero.types';
 import { heroVariants } from './Hero.styles';
 import styles from './Hero.module.css';
 
+/** Full-viewport section shell. Compound component — use Hero.Overline, .Heading, .Sub, .Actions sub-components. */
 export function Hero({ inverted = false, className, children, ...props }: ProtonicHeroProps) {
   return (
     <section className={cn(heroVariants({ inverted }), className)} {...props}>

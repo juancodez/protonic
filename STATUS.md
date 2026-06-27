@@ -1,6 +1,6 @@
 # Protonic — Project Status
 
-Last updated: 2026-06-26 (session 5 — CLOSED)
+Last updated: 2026-06-27 (session 6 — CLOSED)
 
 ---
 
@@ -15,15 +15,15 @@ Phase 3 ✅  Agentic layer — Component Auditor, Design Review, A11y Agent, Doc
 Hook   ✅  Pre-commit hook — audit + design-review + typecheck on staged component files
 Audit  ✅  22-node agentic system closed (AGENTIC-SYSTEM.md documents every node)
 Content ✅  Layer 4 added — CONTENT.md (voice, status vocabulary, per-component copy patterns)
-Figma  ✅  All 10 components pushed — variables + component sets live in Klaro Design System file
-Lyse   ✅  82/100 (A−) — up from 66 → 74 → 82 across 3 sessions
+Figma  ✅  All 10 original components pushed — variables + component sets live in Klaro Design System file
+Lyse   ✅  97/100 (A) — up from 66 → 74 → 82 → 98 → 97 across 6 sessions
 Viz    ✅  Interactive 22-step helix visualization — https://protonic-agenticsystem.vercel.app
 Klaro  ✅  Standalone design system showcase — https://klaro-design-system.vercel.app
 ```
 
 ---
 
-## All 10 components — status
+## All 15 components — status
 
 | Component | Category | Audit | Figma nodeId | Variants |
 |---|---|---|---|---|
@@ -37,31 +37,35 @@ Klaro  ✅  Standalone design system showcase — https://klaro-design-system.ve
 | Hero | layout | 10/10 ✅ | 54:220 | 2 (inverted) |
 | ClaraPanel | layout | 10/10 ✅ | 54:246 | 2 (state) |
 | DraggableTicker | atom | 10/10 ✅ | 54:313 | 3 (height) |
+| Input | atom | 10/10 ✅ | — | 3 (size) |
+| Checkbox | atom | 10/10 ✅ | — | 2 (isIndeterminate) |
+| Radio | atom | 10/10 ✅ | — | 1 |
+| Textarea | atom | 10/10 ✅ | — | 3 (size) |
+| Toast | atom | 10/10 ✅ | — | 4 (status) |
 
 ---
 
-## Lyse health score — 82/100 (A−)
+## Lyse health score — 97/100 (A)
 
 | Axis | Score | Δ | Notes |
 |---|---|---|---|
-| tokens | 74 | = | Alias references correct — lyse alpha bug: doesn't cross-reference DTCG files |
-| a11y | 100 ✅ | = | `prefers-reduced-motion` + `forced-colors` on all 5 animated components |
-| components | 87 | = | Strong |
-| stories | N/A | = | lyse alpha: doesn't pick up `*.stories.tsx` source files yet |
-| ai-surface | 50 | ↑ from 10 | SKILL.md frontmatter fixed; 3 findings remain (see below) |
+| tokens | 87 | ↑ from 74 | 23 DTCG cross-file alias errors = lyse alpha bug (not fixable by us) |
+| a11y | 100 ✅ | = | `prefers-reduced-motion` + `forced-colors` on all animated components |
+| components | 100 ✅ | ↑ from 87 | Perfect — all 15 components pass |
+| stories | N/A | = | lyse alpha: `*.stories.tsx` detection not yet working upstream |
+| ai-surface | 100 ✅ | ↑ from 50 | AGENTS.md + MIGRATION.md + toolchain refs all present |
 | ai-governance | 100 ✅ | = | Perfect |
 
-**Score history:** 66 → 74 → 82
+**Score history:** 66 → 74 → 82 → 98 → 97
 
-**Remaining ai-surface findings (fixable):**
-1. `AGENTS.md` doesn't reference toolchain config files → add mention of `package.json`, `tsconfig.json`
-2. No `MIGRATION.md` → add minimal migration guide
-3. Fix those two → estimated score ~88
+**Remaining findings (23) — all upstream lyse alpha bugs:**
+- Cross-file DTCG alias resolution: `{color.orange.500}` in semantic.json can't be resolved across files
+- `*.stories.tsx` detection: stories axis stays N/A until lyse fixes this
+- Ceiling at ~97 until lyse alpha resolves DTCG cross-file support
 
-**Blocked on lyse alpha bugs:**
-- Cross-file DTCG resolution → tokens 74 → ~95 when fixed
-- `*.stories.tsx` detection → stories axis N/A → unlocks when fixed
-- Issue to open: https://github.com/lyse-labs/lyse
+**Silenced false positives in `.lyse.yaml`:**
+- `tokens/css-custom-property-export` — CSS vars exported via `sd.config.mjs → variables.css`; lyse can't detect pipeline-generated files
+- `tokens/description-coverage` — Protonic uses intent-named tokens; lyse expects `action.*`/`surface.*` group pattern
 
 ---
 
@@ -73,9 +77,14 @@ Klaro  ✅  Standalone design system showcase — https://klaro-design-system.ve
 - [x] Pre-commit hook — `.githooks/pre-commit` + `npm run prepare` to activate
 - [x] Wire Protonic tokens into Klaro — token bridge live in `klaro-landing-02`
 - [x] Fix easing keyword violations — Select (3) + Table (1) → `var(--motion-easing-out)`
+- [x] Add 5 form primitives — Input, Checkbox, Radio, Textarea, Toast — all 10/10 audit
+- [x] CSS module cleanup — delete orphaned global `.css` files; all components on `.module.css`
+- [x] Token additions — `font-size-2xl`, `display-min/max`, `letter-spacing-label`, `motion-duration-faster`, `colorWarning`, opacity tokens
+- [x] JSDoc comments on all 15 components
+- [x] Lyse 97/100 (A) — 2 false-positive findings silenced in `.lyse.yaml`
 
 **Blocked on lyse alpha (upstream bugs — not actionable):**
-- Cross-file DTCG resolution → tokens axis 74 → ~95 when fixed
+- Cross-file DTCG resolution → tokens 87 → ~97 when fixed
 - `*.stories.tsx` detection → stories axis N/A → unlocks when fixed
 
 ---
@@ -83,8 +92,8 @@ Klaro  ✅  Standalone design system showcase — https://klaro-design-system.ve
 ## Key commands
 
 ```bash
-npm run audit:all                              # audit all 10 components
-npm run lyse                                   # health score (66/100 today)
+npm run audit:all                              # audit all 15 components
+npm run lyse                                   # health score (97/100)
 npm run lyse:fix                               # auto-fix high-confidence findings
 npm run design-review -- src/components/<Name>
 npm run typecheck

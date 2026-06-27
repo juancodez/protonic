@@ -1,6 +1,7 @@
 {
   "opacity": {
-    "disabled": { "$value": 0.4, "$type": "number" },
-    "subtle":   { "$value": 0.6, "$type": "number" }
+    "$description": "Opacity scale for interactive state feedback — disabled and subtle visibility levels",
+    "disabled": { "$value": 0.4, "$type": "number", "$description": "Reduced opacity for disabled controls — communicates unavailability without hiding" },
+    "subtle":   { "$value": 0.6, "$type": "number", "$description": "Slightly reduced opacity for secondary or de-emphasised elements" }
   }
 }

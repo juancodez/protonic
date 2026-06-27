@@ -1,6 +1,7 @@
 {
   "motion": {
     "duration": {
+      "faster": { "$value": "100ms", "$type": "duration" },
       "fast":   { "$value": "150ms", "$type": "duration" },
       "normal": { "$value": "200ms", "$type": "duration" },
       "medium": { "$value": "250ms", "$type": "duration" },

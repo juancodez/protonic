@@ -15,6 +15,7 @@ const sd = new StyleDictionary({
     'tokens/z-index.json',
     'tokens/icon-sizes.json',
     'tokens/breakpoints.json',
+    'tokens/opacity.json',
   ],
   platforms: {
     css: {

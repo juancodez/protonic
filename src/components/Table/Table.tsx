@@ -10,6 +10,7 @@ import type { Key } from 'react-aria-components';
 import type { ProtonicTableProps } from './Table.types';
 import styles from './Table.module.css';
 
+/** Data table with optional row selection and column sorting. Keyboard navigation managed by React Aria. */
 export function Table({
   columns,
   rows,

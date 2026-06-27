@@ -9,6 +9,7 @@ import { Button } from '../Button';
 import type { ProtonicModalProps } from './Modal.types';
 import styles from './Modal.module.css';
 
+/** Accessible dialog. Use role="alertdialog" for destructive confirmations, role="dialog" for standard. Wrap trigger with ModalTrigger. */
 export function Modal({ title, children, role = 'dialog', ...props }: ProtonicModalProps) {
   return (
     <ModalOverlay className={styles.overlay} {...props}>
