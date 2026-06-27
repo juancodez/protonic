@@ -8,7 +8,7 @@ export const semantic = {
   colorText:       color.navy900,
   colorTextBody:   color.brown700,
   colorTextMuted:  color.taupe500,
-  colorAccent:     color.amber400,
+  colorAccent:     color.terracotta500,
   colorSuccess:    color.green600,
   colorWarning:    color.amber400,
   colorDanger:     color.red600,

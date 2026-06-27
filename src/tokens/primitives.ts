@@ -7,7 +7,8 @@ export const color = {
   taupe500:  '#8c7168',
   cream50:   '#fff8f1',
   beige100:  '#f4ede5',
-  amber400:  '#FFB830',
+  amber400:      '#FFB830',
+  terracotta500: '#cc6040',
   green600:  '#15803d',
   red600:    '#dc2626',
 } as const;

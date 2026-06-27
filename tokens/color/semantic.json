@@ -14,7 +14,7 @@
     "text-body":              { "$value": "{color.brown.700}", "$type": "color" },
     "text-muted":             { "$value": "{color.taupe.500}", "$type": "color" },
     "text-subtle":            { "$value": "{color.taupe.300}", "$type": "color" },
-    "accent":                 { "$value": "{color.amber.400}", "$type": "color" },
+    "accent":                 { "$value": "{color.terracotta.500}", "$type": "color" },
     "accent-light":           { "$value": "{color.terracotta.200}", "$type": "color" },
     "success":                { "$value": "{color.green.600}", "$type": "color" },
     "success-subtle":         { "$value": "rgba(21,128,61,0.10)", "$type": "color" },

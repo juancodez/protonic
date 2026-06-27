@@ -31,7 +31,8 @@
       "50":  { "$value": "#fffbeb", "$type": "color" }
     },
     "terracotta": {
-      "200": { "$value": "#ffb59a", "$type": "color" }
+      "200": { "$value": "#ffb59a", "$type": "color" },
+      "500": { "$value": "#cc6040", "$type": "color" }
     },
     "green": {
       "500": { "$value": "#16a34a", "$type": "color" },
